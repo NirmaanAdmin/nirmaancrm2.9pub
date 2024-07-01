@@ -1,0 +1,30 @@
+.services_module {
+    height: 100px;
+    overflow: auto;
+}
+
+
+@media (max-width:768px) {
+    .services_module {
+        height: unset;
+        overflow: unset;
+    }
+}
+
+@media (max-width:768px) {
+    .services_description .img{
+        width: 100% !important; 
+        height: auto !important; 
+        object-fit: contain; 
+    }
+}
+
+.services_description .img {
+        width: 100% !important; 
+        height: auto !important; 
+        object-fit: contain
+}
+
+.services_description {
+    max-width: 95%;
+}
