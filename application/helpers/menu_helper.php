@@ -104,15 +104,15 @@ function app_init_admin_sidebar_menu_items()
         ]);
     }
 
-    if (has_permission('subscriptions', '', 'view') || has_permission('subscriptions', '', 'view_own')) {
-        $CI->app_menu->add_sidebar_menu_item('subscriptions', [
-            'name'     => _l('subscriptions'),
-            'href'     => admin_url('subscriptions'),
-            'icon'     => 'fa fa-repeat',
-            'position' => 15,
-            'badge'    => []
-        ]);
-    }
+    // if (has_permission('subscriptions', '', 'view') || has_permission('subscriptions', '', 'view_own')) {
+    //     $CI->app_menu->add_sidebar_menu_item('subscriptions', [
+    //         'name'     => _l('subscriptions'),
+    //         'href'     => admin_url('subscriptions'),
+    //         'icon'     => 'fa fa-repeat',
+    //         'position' => 15,
+    //         'badge'    => []
+    //     ]);
+    // }
 
     if (has_permission('expenses', '', 'view') || has_permission('expenses', '', 'view_own')) {
         $CI->app_menu->add_sidebar_menu_item('expenses', [
@@ -340,12 +340,12 @@ function app_init_admin_sidebar_menu_items()
     }
 
     if (is_admin()) {
-        $CI->app_menu->add_setup_menu_item('customers', [
-            'collapse' => true,
-            'name'     => _l('clients'),
-            'position' => 10,
-            'badge'    => [],
-        ]);
+        // $CI->app_menu->add_setup_menu_item('customers', [
+        //     'collapse' => true,
+        //     'name'     => _l('clients'),
+        //     'position' => 10,
+        //     'badge'    => [],
+        // ]);
 
         $CI->app_menu->add_setup_children_item('customers', [
             'slug'     => 'customer-groups',
@@ -509,12 +509,12 @@ function app_init_admin_sidebar_menu_items()
             'badge'    => [],
         ]);
 
-        $CI->app_menu->add_setup_menu_item('gdpr', [
-            'href'     => admin_url('gdpr'),
-            'name'     => _l('gdpr_short'),
-            'position' => 50,
-            'badge'    => [],
-        ]);
+        // $CI->app_menu->add_setup_menu_item('gdpr', [
+        //     'href'     => admin_url('gdpr'),
+        //     'name'     => _l('gdpr_short'),
+        //     'position' => 50,
+        //     'badge'    => [],
+        // ]);
 
         $CI->app_menu->add_setup_menu_item('roles', [
             'href'     => admin_url('roles'),
@@ -548,14 +548,14 @@ function app_init_admin_sidebar_menu_items()
         ]);
     }
 
-    if (has_permission('settings', '', 'view')) {
-        $CI->app_menu->add_setup_menu_item('estimate_request', [
-            'collapse' => true,
-            'name'     => _l('acs_estimate_request'),
-            'position' => 34,
-            'badge'    => [],
-        ]);
-    }
+    // if (has_permission('settings', '', 'view')) {
+    //     $CI->app_menu->add_setup_menu_item('estimate_request', [
+    //         'collapse' => true,
+    //         'name'     => _l('acs_estimate_request'),
+    //         'position' => 34,
+    //         'badge'    => [],
+    //     ]);
+    // }
 
     $CI->app_menu->add_setup_children_item('estimate_request', [
         'slug'     => 'estimate-request-forms',

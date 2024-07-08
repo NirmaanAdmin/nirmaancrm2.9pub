@@ -17,7 +17,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 * environments.
 *
 */
-define('APP_BASE_URL', 'https://demo1nirmaan360.nirmaanlaw.com/');
+define('APP_BASE_URL', 'http://localhost:8100/');
 
 /*
 * --------------------------------------------------------------------------
@@ -42,15 +42,15 @@ define('APP_DB_HOSTNAME', 'localhost');
 /**
  * The username used to connect to the database
  */
-define('APP_DB_USERNAME', 'u382352616_nirmaan123');
+define('APP_DB_USERNAME', 'team');
 /**
  * The password used to connect to the database
  */
-define('APP_DB_PASSWORD', 'Perfex@123');
+define('APP_DB_PASSWORD', 'Uday@2207');
 /**
  * The name of the database you want to connect to
  */
-define('APP_DB_NAME', 'u382352616_nirmaan123');
+define('APP_DB_NAME', 'perfex_import');
 
 /**
  * @since  2.3.0

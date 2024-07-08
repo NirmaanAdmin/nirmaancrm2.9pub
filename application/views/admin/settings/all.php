@@ -44,7 +44,7 @@
       ?>
     </ul>
     <div class="panel_s">
-     <div class="panel-body">
+     <div class="panel-body" style="display: none;">
       <a href="<?php echo admin_url('settings?group=update'); ?>"
         class="settings-group-system-update<?php if ($this->input->get('group') == 'update') { echo ' bold'; } ?>">
         <?php echo _l('settings_update'); ?>
@@ -65,6 +65,11 @@
       </div>
     </div>
   </div>
+  <div class="btn-bottom-toolbar text-right">
+        <button type="submit" class="btn btn-info">
+          <?php echo _l('settings_save'); ?>
+        </button>
+      </div>
 </div>
 <div class="col-md-9">
   <div class="panel_s">
