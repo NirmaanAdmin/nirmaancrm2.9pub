@@ -42,6 +42,7 @@ $date_formats = get_available_date_formats();
         </select>
     </div>
     <hr />
-    <?php render_yes_no_option('disable_language','disable_languages'); ?>
+    <?php render_yes_no_option('disable_language','disable_languages','', '', '', '0','1'); ?>
     <hr />
     <?php render_yes_no_option('output_client_pdfs_from_admin_area_in_client_language','settings_output_client_pdfs_from_admin_area_in_client_language','settings_output_client_pdfs_from_admin_area_in_client_language_help'); ?>
+

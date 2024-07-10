@@ -154,7 +154,7 @@ function app_init_admin_sidebar_menu_items()
         $enable_badge = get_option('enable_support_menu_badges');
         $CI->app_menu->add_sidebar_menu_item('support', [
             'collapse' => $enable_badge,
-            'name'     => _l('support'),
+            'name'     => _l('Ticketing'),
             'href'     => admin_url('tickets'),
             'icon'     => 'fa fa-ticket',
             'position' => 40,

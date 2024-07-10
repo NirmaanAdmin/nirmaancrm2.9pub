@@ -165,14 +165,14 @@ function surveys_module_init_menu_items()
             'position'   => 69,
             ]);
 
-    if (has_permission('surveys', '', 'view')) {
-        $CI->app_menu->add_sidebar_children_item('utilities', [
-                'slug'     => 'surveys',
-                'name'     => _l('surveys'),
-                'href'     => admin_url('surveys'),
-                'position' => 26,
-        ]);
-    }
+    // if (has_permission('surveys', '', 'view')) {
+    //     $CI->app_menu->add_sidebar_children_item('utilities', [
+    //             'slug'     => 'surveys',
+    //             'name'     => _l('surveys'),
+    //             'href'     => admin_url('surveys'),
+    //             'position' => 26,
+    //     ]);
+    // }
 }
 /**
  * Helper function to get text question answers

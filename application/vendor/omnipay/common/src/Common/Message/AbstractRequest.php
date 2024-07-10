@@ -265,7 +265,7 @@ abstract class AbstractRequest implements RequestInterface
      */
     private function getMoney($amount = null)
     {
-        $currencyCode = $this->getCurrency() ?: 'USD';
+        $currencyCode = $this->getCurrency() ?: 'INR';
         $currency = new Currency($currencyCode);
 
         $amount = $amount !== null ? $amount : $this->getParameter('amount');

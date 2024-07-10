@@ -230,18 +230,18 @@ function omni_sales_module_init_client_menu_items()
         echo '<link href="' . module_dir_url(OMNI_SALES_MODULE_NAME, 'assets/css/omni_sales.css') . '"  rel="stylesheet" type="text/css" />';
     }
 
-    echo '<li class="customers-nav-item-Insurances-plan">
-              <a href="'.site_url('omni_sales/omni_sales_client/view_cart').'">
-                <i class="fa fa-shopping-cart"></i>
-        <span class="text-white qty_total"></span>
-              </a>
-            </li>';
+    // echo '<li class="customers-nav-item-Insurances-plan">
+    //           <a href="'.site_url('omni_sales/omni_sales_client/view_cart').'">
+    //             <i class="fa fa-shopping-cart"></i>
+    //     <span class="text-white qty_total"></span>
+    //           </a>
+    //         </li>';
 
-    echo '<li class="customers-nav-item-Insurances-plan">
-          <a href="'.site_url('omni_sales/omni_sales_client/index/1/0').'">
-            <i class="fa fa-tags"></i>
-          </a>
-        </li>'; 
+    // echo '<li class="customers-nav-item-Insurances-plan">
+    //       <a href="'.site_url('omni_sales/omni_sales_client/index/1/0').'">
+    //         <i class="fa fa-tags"></i>
+    //       </a>
+    //     </li>'; 
 
     if(is_client_logged_in()){
         echo '<li class="customers-nav-item-Insurances-plan">
