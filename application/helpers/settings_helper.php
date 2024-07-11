@@ -169,11 +169,11 @@ function app_init_settings_tabs()
         'position' => 35,
     ]);
 
-    $CI->app_tabs->add_settings_tab('clients', [
-        'name'     => _l('settings_group_clients'),
-        'view'     => 'admin/settings/includes/clients',
-        'position' => 40,
-    ]);
+    // $CI->app_tabs->add_settings_tab('clients', [
+    //     'name'     => _l('settings_group_clients'),
+    //     'view'     => 'admin/settings/includes/clients',
+    //     'position' => 40,
+    // ]);
 
     $CI->app_tabs->add_settings_tab('tasks', [
         'name'     => _l('tasks'),

@@ -53,15 +53,15 @@ foreach ($rResult as $aRow) {
     $options .= '</div>';
 
     $for = '';
-    if($aRow['client_id']){
-        $client = get_client($aRow['client_id']);
-        $contact_name = get_contact_full_name(get_primary_contact_user_id($aRow['client_id']));
-        $name = (!is_empty_customer_company($aRow['client_id'])) ? $client->company : $contact_name ;
-        $for .= "<a href='".admin_url('clients/client/'.$aRow['client_id'])."'>{$name}</a>";
-    } elseif ($aRow['customer_group']){
-        $name = get_group_name($aRow['customer_group']);
-        $for .= "<a href='".admin_url('clients')."'>{$name->name} group</a>";
-    } else { $for = _l('customers');}
+    // if($aRow['client_id']){
+    //     $client = get_client($aRow['client_id']);
+    //     $contact_name = get_contact_full_name(get_primary_contact_user_id($aRow['client_id']));
+    //     $name = (!is_empty_customer_company($aRow['client_id'])) ? $client->company : $contact_name ;
+    //     $for .= "<a href='".admin_url('clients/client/'.$aRow['client_id'])."'>{$name}</a>";
+    // } elseif ($aRow['customer_group']){
+    //     $name = get_group_name($aRow['customer_group']);
+    //     $for .= "<a href='".admin_url('clients')."'>{$name->name} group</a>";
+    // } else { $for = _l('customers');}
     
     $link = get_product_url($aRow['id'],$aRow['name'],'subscription');
     $group = $aRow['groupId'] ? services_get_product_group_name($aRow['groupId'])->name : '';
