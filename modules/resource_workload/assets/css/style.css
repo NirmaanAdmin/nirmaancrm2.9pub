@@ -1,0 +1,99 @@
+
+.make-me-red {
+    color: #f00 !important;
+}
+.br_project {
+    background-color: #84C529 !important;
+}
+.br_ticket {
+    background-color: #8085E9 !important;
+}
+.br_lead {
+    background-color: #cc66ff !important;
+}
+.br_customer {
+    background-color: #03a9f4 !important;
+}
+.br_contract {
+    background-color: #ff6f00 !important;
+}
+.br_invoice {
+    background-color: #ff9900 !important;
+}
+.br_estimate {
+    background-color: #ff5050 !important;
+}
+.br_proposal {
+    background-color: #3333cc !important;
+}
+.br_expense {
+    background-color: #2af509 !important;
+}
+
+
+.br_project .bar-progress {
+    fill: #84C529 !important;
+}
+.br_ticket .bar-progress{
+    fill: #8085E9 !important;
+}
+.br_lead .bar-progress{
+    fill: #cc66ff !important;
+}
+.br_customer .bar-progress{
+    fill: #03a9f4 !important;
+}
+.br_contract .bar-progress{
+    fill: #ff6f00 !important;
+}
+.br_invoice .bar-progress{
+    fill: #ff9900 !important;
+}
+.br_estimate .bar-progress{
+    fill: #ff5050 !important;
+}
+.br_proposal .bar-progress{
+    fill: #3333cc !important;
+}
+
+.br_expense .bar-progress{
+    fill: #2af509 !important;
+}
+
+.details-container{
+    width: 300px;
+}
+.details-container .details_title{
+    margin-left: 10px;
+}
+.container_time{
+    max-width: 800px; 
+    height: 400px; 
+    margin: 0 auto;
+}
+
+.container_priority{
+    max-width: 800px; 
+    height: 400px;
+    margin: 0 auto;
+}
+
+.resource_workload_tab{
+    margin-bottom: 0px !important;
+}
+
+.kan-ban-tab{
+    overflow:auto;
+}
+
+.title-avatar{
+    display: inline-block;
+}
+
+.handsontable .ht_master thead{
+    visibility: unset !important;
+}
+
+.handsontable .gray-bg {
+  background-color: #A9A9A9;
+}

@@ -1,0 +1,21 @@
+  .handsontable .bg-color1 {
+  	background-color: #f5fff8 !important;
+  }
+  .handsontable .bg-color2 {
+  	background-color: #fffafb !important;
+  }
+  .handsontable .bg-color3 {
+  	background-color: #f5f5fa !important;
+  }
+  .handsontable .bg-color4 {
+  	background-color: #f7f7f0 !important;
+  }
+  .handsontable .bg-color5 {
+  	background-color: #faf8f5 !important;
+  }
+  .handsontable .bg-color6 {
+  	background-color: #f7fafa !important;
+  }
+  .handsontable th {
+    font-weight: bold;
+}

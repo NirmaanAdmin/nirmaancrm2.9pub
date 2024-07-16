@@ -1,0 +1,340 @@
+#hot-display-license-info{
+	display: none;
+}
+.input-group.input-group-select.select-contract_type {
+	position: relative;
+    display: table !important;
+    border-collapse: separate;
+}
+.input-group-btn {
+    margin-right: 4%;
+}
+
+.bottom_btn{
+	text-align: center;
+}
+
+.handsontable th {
+  font-weight:bold;
+}
+
+.fontsize10{
+    font-size:10px;
+}
+.padding0{
+    padding:0 !important;
+}
+.style_p{
+    background-color:#c53da9;
+}
+.style_w{
+    background-color:#28B8DA;
+}
+.style_a{
+    background-color:#84C529
+}
+.style_e{
+    background-color:#fb8c00
+}
+.style_l{
+    background-color:#d81b60
+}
+.style_b{
+    background-color:#d81b60
+}
+.style_u{
+    background-color:#A9A9A9
+}
+.style_om{
+    background-color:#A9A9A9
+}
+.style_me{
+    background-color:#fb3b3b
+}
+.style_po{
+    background-color:#c53da9
+}
+.contents-nowrap{
+    display: contents;line-height: 84px;white-space: nowrap;
+}
+.margin-top-0{
+    margin-top: 0px;
+}
+.margin-top-15{
+    margin-top: 15px; color: #d81b60;
+}
+.border-0-5{
+    border: 0.5px solid; color: #d81b60;
+}
+.font-15{
+    text-align: center; font-size: 15px;
+}
+.wh-150-80{
+    width: 150px; height: 80px;
+}
+.wh-500-190{
+    min-width: 500px;min-height: 190px;
+}
+.text-align-left{
+    text-align: left;
+}
+.width-100{
+    width: 100%;
+}
+.create-style{
+    background-color:#0035FF ;border:1px solid #0035FF;
+}
+.approved-style{
+    background-color:#3CD114 ;border:1px solid #3CD114;
+}
+.reject-style{
+    background-color:#FE0000 ;border:1px solid #FE0000;
+}
+.content-nowrap{
+    display: contents;line-height: 84px;white-space: nowrap;
+}
+.max-width-1000{
+    width: 1000px; max-width: 100%;
+}
+.margin-auto{
+    margin: auto;
+}
+.width-80{
+    width: 80%;
+}
+.margin-left-right-15{
+    margin-right: 15px; margin-left: 15px;
+}
+.bottom-approve{
+    width: 250px;
+    display: flex;
+    justify-content: center;
+}
+.update-btn{
+    padding-top: 26px;
+    padding-left: 5px;
+}
+.button_add_kpi{
+    padding-left: 0;
+}
+.new_kpi_row{
+    margin-bottom: 5px;
+}
+#clock_attendance_modal .clock{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #dcdcdc;
+    margin: 10px auto 10px auto;
+    position: relative;
+    border:10px solid #bbbab7;
+
+}
+#clock_attendance_modal .center{
+    background-color: #0f0a44;
+    position: absolute;
+    left: calc(50% - 8px);
+    top:  calc(50% - 8px);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    z-index: 20;
+}
+#clock_attendance_modal .hourHand{
+    width: 7px;
+    height: 67px;
+    background-color: #0f0a44;
+    transform-origin: bottom center;
+    border-radius: 4px;
+    position: absolute;
+    top: 23px;
+    left: 87px;
+    z-index: 10;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    transform: rotate(360deg);
+
+}
+#clock_attendance_modal .minuteHand{
+    width: 4px;
+    height: 68px;
+    background-color: #000;
+    transform-origin: bottom center;
+    border-radius: 4px;
+    position: absolute;
+    top: 22px;
+    left: 87px;
+    z-index: 9;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    transform: rotate(90deg);
+
+}
+#clock_attendance_modal .secondHand{
+    width: 2px;
+    height: 78px;
+    background-color:red;
+    transform-origin: bottom center;
+    border-radius: 4px;
+    position: absolute;
+    top: 12px;
+    left: 89px;
+    transition: all 0.06s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    z-index: 18;  
+    transform: rotate(360deg);
+
+}
+#clock_attendance_modal .etime_check_in_out{
+    position: absolute;
+    top: 45%;
+    left: 10%;
+    border: 1px solid #fff8dc;
+    background-color: #fff;
+    padding: 5px;
+    display: block;
+    box-shadow: inset 0px 2px 5px rgba(0,0,0,.4);
+    border-radius: 5px;
+    min-width: 70px;
+    height: 28px;
+
+}
+#clock_attendance_modal .etime_check_in_out small{
+    color:red;
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+#clock_attendance_modal .clock ul{
+    list-style: none;
+    padding: 0;
+
+}
+#clock_attendance_modal .clock ul li{
+    position: absolute;
+    width:20px;
+    height:20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 10px;
+    color:red;
+}
+#clock_attendance_modal .clock ul li:nth-child(1){
+    right: 22%;
+    top:6.5%;
+}
+#clock_attendance_modal .clock ul li:nth-child(2){
+    right: 6%;
+    top:25%;
+}
+#clock_attendance_modal .clock ul li:nth-child(3){
+    right: 1%;
+    top:calc(50% - 10px);
+    color:#000;
+    font-size: 20px;
+    font-weight: bold;
+}
+#clock_attendance_modal .clock ul li:nth-child(4){
+    right: 6%;
+    top:69%;
+}
+#clock_attendance_modal .clock ul li:nth-child(5){
+    right: 22%;
+    top:84%;
+}
+#clock_attendance_modal .clock ul li:nth-child(6){
+    right: calc(50% - 10px);
+    top:calc(99% - 20px);
+    color:#000;
+    font-size: 20px;
+    font-weight: bold;
+}
+#clock_attendance_modal .clock ul li:nth-child(7){
+    left: 22%;
+    top:84%;
+}
+#clock_attendance_modal .clock ul li:nth-child(8){
+    left: 6%;
+    top:69%;
+}
+#clock_attendance_modal .clock ul li:nth-child(9){
+    left: 1%;
+    top:calc(50% - 10px);
+    color:#000;
+    font-size: 20px;
+    font-weight: bold;
+}
+#clock_attendance_modal .clock ul li:nth-child(10){
+    left: 6%;
+    top:25%;
+}
+#clock_attendance_modal .clock ul li:nth-child(11){
+    left: 22%;
+    top:6.5%;
+}
+#clock_attendance_modal .clock ul li:nth-child(12){
+    right: calc(50% - 10px);
+    top:1%;
+    color:#000;
+    font-size: 20px;
+    font-weight: bold;
+}
+#clock_attendance_modal .bottom_co_btn{
+    display: flex;
+    justify-content: center;
+}
+#clock_attendance_modal .bottom_co_btn_item{
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#clock_attendance_modal .alert{
+    margin-bottom: 0;
+    border-radius: 0;
+}
+#clock_attendance_modal .curr_date_attendance_wrap{
+    display: flex;
+    justify-content: center;
+}
+#clock_attendance_modal .curr_date{
+    background-color:#bbbab7;
+    width: 200px;
+    border-radius: 3px;
+    padding-bottom: 5px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 5px;
+    color: #fff;
+    font-size: 18px;
+    position: relative;
+}
+#clock_attendance_modal .curr_date i{
+ line-height: 30px;
+}
+
+#clock_attendance_modal .curr_date .btn-edit-datetime, #clock_attendance_modal .curr_date .btn-close-edit-datetime {
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    bottom: 1px;
+    color: #000;
+    height: 33px;
+}
+#clock_attendance_modal .form-group{
+    margin-bottom: 2px;
+}
+#clock_attendance_modal .form-group label[for="edit_date"]{
+    font-family: 'roboto';
+}
+#edit_date, #curr_date_attendance .input-group.date .input-group-addon{
+    height: 40px;
+}
+#curr_date_attendance .input-group.date .input-group-addon{
+    padding: 0 !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+.min-width-200{
+    min-width: 200px;
+}
+.min-width-100{
+    min-width: 70px;
+}

@@ -1,0 +1,159 @@
+#prchat-header-wrapper #top_status-options {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    width: 150px;
+    margin: 10px 0px 0 0;
+    border-radius: 6px;
+    z-index: 99;
+    left: -18px;
+    line-height: initial;
+    background: #51647c;
+    -moz-transition: 0.4s all cubic-bezier(1, 1.6, 1, 1);
+    -o-transition: 0.4s all cubic-bezier(1, 1.6, 1, 1);
+    -webkit-transition: 0.4s all cubic-bezier(1, 1.6, 1, 1);
+    transition: 0.4s all cubic-bezier(1, 1.6, 1, 1);
+}
+
+body #header ul.navbar-nav>li>.profile {
+    margin-right: 27px;
+}
+
+#prchat-header-wrapper {
+    position: absolute;
+    cursor: pointer;
+    top: 15px;
+    right: 203px;
+    margin: 0 auto;
+    z-index: 99999;
+    font-size: 25px;
+    /* icon */
+}
+
+#prchat-header-wrapper #top_status-options li p {
+    font-size: 16px;
+    color: #fff;
+}
+
+#prchat-header-wrapper #top_status-options.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+#prchat-header-wrapper #top_status-options:before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 8px solid #435f7a;
+    margin: -8px 0 0 24px;
+}
+
+#prchat-header-wrapper #top_status-options ul {
+    overflow: hidden;
+    border-radius: 6px;
+    margin-bottom: 0px;
+}
+
+#prchat-header-wrapper #top_status-options ul li {
+    padding: 10px 0 2px 18px;
+    display: block;
+    cursor: pointer;
+}
+
+#prchat-header-wrapper #top_status-options ul li:hover {
+    background: #495c73;
+}
+
+#prchat-header-wrapper #top_status-options ul li span.status-circle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 5px 0 0 0;
+}
+
+#prchat-header-wrapper #top_status-options ul li span.status-circle:before {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    margin: -3px 0 0 -3px;
+    background: transparent;
+    border-radius: 50%;
+    z-index: 0;
+}
+
+#prchat-header-wrapper #top_status-options ul li p {
+    padding-left: 20px;
+}
+
+#prchat-header-wrapper #top_status-options ul li#status-online span.status-circle {
+    background: #2ecc71;
+}
+
+#prchat-header-wrapper #top_status-options ul li#status-online.active span.status-circle:before {
+    border: 2px solid #2ecc71;
+}
+
+#prchat-header-wrapper #top_status-options ul li#status-away span.status-circle {
+    background: #f1c40f;
+}
+
+#prchat-header-wrapper #top_status-options ul li#status-away.active span.status-circle:before {
+    border: 2px solid #f1c40f;
+}
+
+#prchat-header-wrapper #top_status-options ul li#status-busy span.status-circle {
+    background: #e74c3c;
+}
+
+#prchat-header-wrapper #top_status-options ul li#status-busy.active span.status-circle:before {
+    border: 2px solid #e74c3c;
+}
+
+#prchat-header-wrapper #top_status-options ul li#status-offline span.status-circle {
+    background: #95a5a6;
+}
+
+#prchat-header-wrapper #top_status-options ul li#status-offline.active span.status-circle:before {
+    border: 2px solid #95a5a6;
+    padding: 1px;
+}
+
+
+/* Header status icon */
+
+svg#chat_status_top_icon {
+    width: 26px;
+    height: 26px;
+    margin-top: 6px;
+    margin-right: 8px;
+}
+
+#chat_status_top_icon.online {
+    fill: #2ecc71;
+}
+
+#chat_status_top_icon.away {
+    fill: #f1c40f;
+}
+
+#chat_status_top_icon.busy {
+    fill: #e74c3c;
+}
+
+#chat_status_top_icon.offline {
+    fill: #95a5a6;
+}
+
+
+/* Screens */
+
+@media screen and (max-width: 900px) {
+    #prchat-header-wrapper {
+        display: none;
+    }
+}

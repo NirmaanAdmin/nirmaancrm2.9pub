@@ -1,0 +1,20 @@
+.line-suggestion button{
+	background-color: #fff;
+	border: 1px solid #c0c0c0;
+	margin-top: 5px;
+	border-radius: unset;
+}
+.line-suggestion button:nth-child(1){color: #0c0 !important;}
+.line-suggestion button:nth-child(2){color: #c00 !important;}
+.line-suggestion button:nth-child(3){color: #00c !important;}
+.line-suggestion button:nth-child(4){color: #fc0 !important;}
+.line-suggestion button:nth-child(5){color: #603 !important;}
+.line-suggestion button:nth-child(6){color: #f60 !important;}
+.line-suggestion button:nth-child(7){color: #030 !important;}
+.line-suggestion button:nth-child(8){color: #33c !important;}
+.line-suggestion button:nth-child(9){color: #036 !important;}
+.line-suggestion button:nth-child(10){color: #630 !important;}
+.line-suggestion button:nth-child(11){color: #06c !important;}
+.line-suggestion button:nth-child(12){color: #c30 !important;}
+.line-suggestion button:nth-child(13){color: #c60 !important;}
+.line-suggestion button:nth-child(14){color: #03c !important;}

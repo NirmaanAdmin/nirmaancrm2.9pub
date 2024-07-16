@@ -190,15 +190,15 @@ function app_init_admin_sidebar_menu_items()
         ]);
     }
 
-    if ((has_permission('estimate_request', '', 'view') || has_permission('estimate_request', '', 'view_own'))) {
-        $CI->app_menu->add_sidebar_menu_item('estimate_request', [
-            'name'     => _l('estimate_request'),
-            'href'     => admin_url('estimate_request'),
-            'position' => 46,
-            'icon'     => 'fa fa-list-alt',
-            'badge'    => [],
-        ]);
-    }
+    // if ((has_permission('estimate_request', '', 'view') || has_permission('estimate_request', '', 'view_own'))) {
+    //     $CI->app_menu->add_sidebar_menu_item('estimate_request', [
+    //         'name'     => _l('estimate_request'),
+    //         'href'     => admin_url('estimate_request'),
+    //         'position' => 46,
+    //         'icon'     => 'fa fa-list-alt',
+    //         'badge'    => [],
+    //     ]);
+    // }
 
     if (has_permission('knowledge_base', '', 'view')) {
         $CI->app_menu->add_sidebar_menu_item('knowledge-base', [
@@ -340,12 +340,12 @@ function app_init_admin_sidebar_menu_items()
     }
 
     if (is_admin()) {
-        // $CI->app_menu->add_setup_menu_item('customers', [
-        //     'collapse' => true,
-        //     'name'     => _l('clients'),
-        //     'position' => 10,
-        //     'badge'    => [],
-        // ]);
+        $CI->app_menu->add_setup_menu_item('customers', [
+            'collapse' => true,
+            'name'     => _l('clients'),
+            'position' => 10,
+            'badge'    => [],
+        ]);
 
         $CI->app_menu->add_setup_children_item('customers', [
             'slug'     => 'customer-groups',
@@ -495,12 +495,12 @@ function app_init_admin_sidebar_menu_items()
             $modules_name .= '<span class="badge menu-badge bg-warning">' . $modulesNeedsUpgrade . '</span>';
         }
 
-        $CI->app_menu->add_setup_menu_item('modules', [
-            'href'     => admin_url('modules'),
-            'name'     => $modules_name,
-            'position' => 35,
-            'badge'    => [],
-        ]);
+        // $CI->app_menu->add_setup_menu_item('modules', [
+        //     'href'     => admin_url('modules'),
+        //     'name'     => $modules_name,
+        //     'position' => 35,
+        //     'badge'    => [],
+        // ]);
 
         $CI->app_menu->add_setup_menu_item('custom-fields', [
             'href'     => admin_url('custom_fields'),

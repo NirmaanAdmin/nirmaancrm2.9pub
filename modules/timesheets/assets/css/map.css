@@ -1,0 +1,20 @@
+  #map {
+  	min-height: 800px;
+  	border: 2px solid #c0c0c0;
+  	border-radius: 5px;
+  }
+  .check_in_out_log{
+  	background-color: green;
+  	color: #fff;
+  	border: none;
+  	padding: 5px;
+  	padding-left: 15px;
+  	padding-right: 15px;
+  	font-size: 12px;
+  	border-radius: 14px;
+  	outline: none;
+  }
+}
+.text-success{
+  color: #030 !important;
+}

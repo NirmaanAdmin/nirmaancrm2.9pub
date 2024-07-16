@@ -263,14 +263,14 @@ function app_init_customer_profile_tabs()
         'badge'    => [],
     ]);
 
-    $CI->app_tabs->add_customer_profile_tab('subscriptions', [
-        'name'     => _l('subscriptions'),
-        'icon'     => 'fa fa-repeat',
-        'view'     => 'admin/clients/groups/subscriptions',
-        'visible'  => (has_permission('subscriptions', '', 'view') || has_permission('subscriptions', '', 'view_own')),
-        'position' => 50,
-        'badge'    => [],
-    ]);
+    // $CI->app_tabs->add_customer_profile_tab('subscriptions', [
+    //     'name'     => _l('subscriptions'),
+    //     'icon'     => 'fa fa-repeat',
+    //     'view'     => 'admin/clients/groups/subscriptions',
+    //     'visible'  => (has_permission('subscriptions', '', 'view') || has_permission('subscriptions', '', 'view_own')),
+    //     'position' => 50,
+    //     'badge'    => [],
+    // ]);
 
     $CI->app_tabs->add_customer_profile_tab('expenses', [
         'name'     => _l('expenses'),
@@ -323,13 +323,13 @@ function app_init_customer_profile_tabs()
         'badge'    => [],
     ]);
 
-    $CI->app_tabs->add_customer_profile_tab('vault', [
-        'name'     => _l('vault'),
-        'icon'     => 'fa fa-lock',
-        'view'     => 'admin/clients/groups/vault',
-        'position' => 85,
-        'badge'    => [],
-    ]);
+    // $CI->app_tabs->add_customer_profile_tab('vault', [
+    //     'name'     => _l('vault'),
+    //     'icon'     => 'fa fa-lock',
+    //     'view'     => 'admin/clients/groups/vault',
+    //     'position' => 85,
+    //     'badge'    => [],
+    // ]);
 
     $CI->app_tabs->add_customer_profile_tab('reminders', [
         'name'     => $remindersText,
