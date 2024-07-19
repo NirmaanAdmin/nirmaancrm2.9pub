@@ -58,12 +58,12 @@ function subscriptionProducts_menu()
     if (has_permission('subscriptions', '', 'view')) {
 
         $CI = &get_instance();
-        $CI->app_menu->add_sidebar_menu_item('products_', [
-            'name'     => _l('products'),
-            'collapse' => true,
-            'position' => 16,
-            'icon'     => 'fa fa-product-hunt',
-        ]);
+        // $CI->app_menu->add_sidebar_menu_item('products_', [
+        //     'name'     => _l('products'),
+        //     'collapse' => true,
+        //     'position' => 16,
+        //     'icon'     => 'fa fa-product-hunt',
+        // ]);
 
         $CI->app_menu->add_sidebar_children_item('products_', [
             'slug'     => 'services_products_invoice',
