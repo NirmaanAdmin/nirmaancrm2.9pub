@@ -5,7 +5,8 @@ $date_formats = get_available_date_formats();
     <label for="dateformat" class="control-label"><?php echo _l('settings_localization_date_format'); ?></label>
     <select name="settings[dateformat]" id="dateformat" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
         <?php foreach($date_formats as $key => $val){ ?>
-        <option value="<?php echo $key; ?>" <?php if($key == get_option('dateformat')){echo 'selected';} ?>><?php echo $val; ?></option>
+            <option value="<?php echo $key; ?>"><?php echo $val; ?></option>    
+        <!-- <option value="<?php //echo $key; ?>" <?php //if($key == get_option('dateformat')){echo 'selected';} ?>><?php //echo $val; ?></option> -->
         <?php } ?>
     </select>
 </div>
