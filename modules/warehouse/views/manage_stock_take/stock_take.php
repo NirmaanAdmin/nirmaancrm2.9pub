@@ -26,7 +26,7 @@
                         <div class="col-md-6">
                           <div class="form-group">
                              <label for="pr_order_id"><?php echo _l('reference_purchase_request'); ?></label>
-                            <select onchange="pr_order_change(this); return false;" name="pr_order_id" id="pr_order_id" class="selectpicker" data-live-search="true" data-width="100%" data-none-selected-text="<?php echo _l('ticket_settings_none_assigned'); ?>">
+                            <select onchange="pr_order_change(this); return false;" name="pr_order_id" id="pr_order_id" class="selectpicker" data-live-search="true" data-width="100%" data-none-selected-text="<?php echo _l('ticket_settings_none_assigned'); ?>" required>
                               <option value=""></option>
                               <?php foreach($pr_orders as $pr_order) { ?>
                                 <option value="<?php echo html_entity_decode($pr_order['id']); ?>"><?php echo html_entity_decode($pr_order['pur_order_number'].' - '.$pr_order['pur_order_name']); ?></option>

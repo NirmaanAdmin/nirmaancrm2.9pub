@@ -89,7 +89,7 @@
                         } ?>
                      </select>
                   </div>
-                  <?php $hide_project_selector = ' hide';
+                  <?php $hide_project_selector = ' show';
                      // Show selector only if expense is already added and there is no client linked to the expense or isset customer id
                      if((isset($expense) && $expense->clientid != 0) || isset($customer_id)){
                      $hide_project_selector = '';

@@ -61,7 +61,7 @@
                         <div class="col-md-6 <?php if($pr_orders_status == false || get_warehouse_option('goods_delivery_required_po') == 0){ echo 'hide';} ;?>" >
                           <div class="form-group">
                              <label for="pr_order_id"><?php echo _l('reference_purchase_order'); ?></label>
-                            <select onchange="pr_order_change(this); return false;" name="pr_order_id" id="pr_order_id" class="selectpicker" data-live-search="true" data-width="100%" data-none-selected-text="<?php echo _l('ticket_settings_none_assigned'); ?>" <?php if($edit_approval == 'true'){ echo 'disabled';} ; ?> >
+                            <select onchange="pr_order_change(this); return false;" name="pr_order_id" id="pr_order_id" class="selectpicker" data-live-search="true" data-width="100%" data-none-selected-text="<?php echo _l('ticket_settings_none_assigned'); ?>" <?php if($edit_approval == 'true'){ echo 'disabled';} ; ?> required>
                               <option value=""></option>
                               <?php foreach($pr_orders as $pr_order) { ?>
                                 <option value="<?php echo html_entity_decode($pr_order['id']); ?>" <?php if(isset($goods_delivery) && ($goods_delivery->pr_order_id == $pr_order['id'])){ echo 'selected' ;} ?>><?php echo html_entity_decode($pr_order['pur_order_number'].' - '.$pr_order['pur_order_name']); ?></option>
@@ -73,7 +73,7 @@
                         <div class="col-md-6 <?php if($pr_orders_status == true && get_warehouse_option('goods_delivery_required_po') == 1){ echo 'hide';} ;?> ">
                          <div class="form-group">
                           <label for="invoice_id"><?php echo _l('invoices'); ?></label>
-                            <select onchange="invoice_change(this); return false;" name="invoice_id" id="invoice_id" class="selectpicker" data-live-search="true" data-width="100%" data-none-selected-text="<?php echo _l('ticket_settings_none_assigned'); ?>" <?php if($edit_approval == 'true'){ echo 'disabled';} ; ?> >
+                            <select onchange="invoice_change(this); return false;" name="invoice_id" id="invoice_id" class="selectpicker" data-live-search="true" data-width="100%" data-none-selected-text="<?php echo _l('ticket_settings_none_assigned'); ?>" <?php if($edit_approval == 'true'){ echo 'disabled';} ; ?> required>
                                 <option value=""></option>
                                 <?php foreach($invoices as $invoice) { ?>
                                 <option value="<?php echo html_entity_decode($invoice['id']); ?>" <?php if(isset($goods_delivery) && $goods_delivery->invoice_id == $invoice['id']){ echo 'selected'; } ?>><?php echo format_invoice_number($invoice['id']).' - '.$invoice['company'].' - '.$invoice['name']; ?></option>
@@ -108,7 +108,7 @@
 
                   <?php if(ACTIVE_PROPOSAL == true){ ?>
 
-                    <div class="col-md-6 form-group <?php if($pr_orders_status == false){ echo 'hide';} ;?>" >
+                    <div class="col-md-6 form-group <?php if($pr_orders_status == false){ echo 'show';} ;?>" >
                       <label for="project"><?php echo _l('project'); ?></label>
                         <select name="project" id="project" class="selectpicker" data-live-search="true" data-width="100%" data-none-selected-text="<?php echo _l('ticket_settings_none_assigned'); ?>">
                           <option value=""></option>

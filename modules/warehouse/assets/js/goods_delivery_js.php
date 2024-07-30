@@ -8,7 +8,8 @@
   appValidateForm($('#add_goods_delivery'), {
      date_c: 'required',
      date_add: 'required',
-
+     invoice_id: 'required',
+     pr_order_id: 'required',
      <?php  if($pr_orders_status == true && get_warehouse_option('goods_delivery_required_po') == 1){  ?>
       pr_order_id: 'required',
      <?php } ?>
