@@ -255,13 +255,13 @@ function app_init_admin_sidebar_menu_items()
             'badge'    => [],
         ]);
 
-        $CI->app_menu->add_sidebar_children_item('utilities', [
-            'slug'     => 'activity-log',
-            'name'     => _l('als_activity_log_submenu'),
-            'href'     => admin_url('utilities/activity_log'),
-            'position' => 25,
-            'badge'    => [],
-        ]);
+        // $CI->app_menu->add_sidebar_children_item('utilities', [
+        //     'slug'     => 'activity-log',
+        //     'name'     => _l('als_activity_log_submenu'),
+        //     'href'     => admin_url('utilities/activity_log'),
+        //     'position' => 25,
+        //     'badge'    => [],
+        // ]);
 
         $CI->app_menu->add_sidebar_children_item('utilities', [
             'slug'     => 'ticket-pipe-log',
