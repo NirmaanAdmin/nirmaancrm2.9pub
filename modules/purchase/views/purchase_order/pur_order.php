@@ -65,7 +65,9 @@
                         <div class="col-md-<?php if(get_purchase_option('purchase_order_setting') == 1 ){ echo '12' ;}else{ echo '6' ;} ;?>">
                           <?php $prefix = get_purchase_option('pur_order_prefix');
                                 $next_number = max_number_pur_order()+1;
-                          $pur_order_number = (isset($pur_order) ? str_pad($pur_order->number,5,'0',STR_PAD_LEFT) : str_pad($next_number,5,'0',STR_PAD_LEFT));
+                                $purOrder = str_pad($next_number,5,'0',STR_PAD_LEFT);
+                                $seqNo = date('Ym').''.$purOrder;
+                          $pur_order_number = (isset($pur_order) ? str_pad($pur_order->number,5,'0',STR_PAD_LEFT) : $seqNo);
                           
                           $number = (isset($pur_order) ? $pur_order->number : $next_number);
                           echo form_hidden('number',$number); ?> 

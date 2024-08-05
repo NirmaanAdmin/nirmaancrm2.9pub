@@ -108,13 +108,13 @@ function purchase_module_init_menu_items()
             'position' => 3,
         ]);
 
-        $CI->app_menu->add_sidebar_children_item('purchase', [
-            'slug'     => 'purchase-request',
-            'name'     => _l('purchase_request'),
-            'icon'     => 'fa fa-shopping-basket',
-            'href'     => admin_url('purchase/purchase_request'),
-            'position' => 4,
-        ]);
+        // $CI->app_menu->add_sidebar_children_item('purchase', [
+        //     'slug'     => 'purchase-request',
+        //     'name'     => _l('purchase_request'),
+        //     'icon'     => 'fa fa-shopping-basket',
+        //     'href'     => admin_url('purchase/purchase_request'),
+        //     'position' => 4,
+        // ]);
 
         $CI->app_menu->add_sidebar_children_item('purchase', [
             'slug'     => 'purchase-quotation',
