@@ -7,10 +7,12 @@
   appValidateForm($('#add_goods_receipt'), {
      date_c: 'required',
      date_add: 'required',
-     <?php if($pr_orders_status == true && get_warehouse_option('goods_receipt_required_po') == 1 ){ ?>
      pr_order_id: 'required',
+     project: 'required',
+    //  <?php //if($pr_orders_status == true && get_warehouse_option('goods_receipt_required_po') == 1 ){ ?>
+    //  pr_order_id: 'required',
 
-     <?php } ?>
+    //  <?php //} ?>
     
    }); 
 
