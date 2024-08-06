@@ -29,7 +29,7 @@
                <h4 class="no-margin"><?php echo $member->firstname . ' ' . $member->lastname; ?>
                   <?php if($member->last_activity && $member->staffid != get_staff_user_id()){ ?>
                   <small> - <?php echo _l('last_active'); ?>:
-                        <span class="text-has-action" data-toggle="tooltip" data-title="<?php echo _dt($member->last_activity); ?>">
+                        <span class="text-has-action">
                               <?php echo time_ago($member->last_activity); ?>
                         </span>
                      </small>
