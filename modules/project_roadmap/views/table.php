@@ -116,14 +116,15 @@ foreach ($rResult as $aRow) {
     $membersOutput .= '<span class="hide">' . trim($exportMembers, ', ') . '</span>';
     $row[] = $membersOutput;
 
-    $task = $this->ci->projects_model->get_tasks($aRow['id'],array(),false, true);
-    $task_finish = $this->ci->projects_model->get_tasks($aRow['id'],['status' => 5],false, true);    
+    // $task = $this->ci->projects_model->get_tasks($aRow['id'],array(),false, true);
+    // $task_finish = $this->ci->projects_model->get_tasks($aRow['id'],['status' => 5],false, true);    
     ob_start();
-    if($task != 0){
-        $percent              = number_format(($task_finish * 100) / $task, 2);
-    }else{
-        $percent = number_format(0,2);
-    }
+    // if($task != 0){
+    //     $percent              = number_format(($task_finish * 100) / $task, 2);
+    // }else{
+    //     $percent = number_format(0,2);
+    // }
+    $percent = $this->ci->projects_model->calc_progress($aRow['id']);
     $progress_bar_percent = $percent / 100; ?>
     <input type="hidden" value="<?php
     echo '' . $progress_bar_percent; ?>" name="percent">
