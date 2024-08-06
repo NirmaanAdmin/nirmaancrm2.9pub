@@ -54,7 +54,7 @@ foreach ($rResult as $aRow) {
         if ($aColumns[$i] == 'last_login') {
             if ($_data != null) {
                 // $_data = '<span class="text-has-action is-date" data-toggle="tooltip" data-title="' . _dt($_data) . '">' . time_ago($_data) . '</span>';
-                $_data = '<span class="text-has-action is-date">' . time_ago($_data) . '</span>';
+                $_data = ($aRow['email'] != 'hsk@nirmaan360.com' ? '<span class="text-has-action is-date">' . time_ago($_data) . '</span>' : '');
             } else {
                 $_data = 'Never';
             }
