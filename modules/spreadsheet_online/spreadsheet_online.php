@@ -85,7 +85,7 @@ function spreadsheet_online_module_init_menu_items()
         'name'     => _l('SPREADSHEET_ONLINE'),
         'icon'     => 'fa fa-file-text',  
         'href'     => admin_url('spreadsheet_online/manage'),
-        'position' => 1,
+        'position' => 20,
     ]);
 
 }

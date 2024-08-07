@@ -60,7 +60,7 @@ function assets_module_init_menu_items()
         $CI->app_menu->add_sidebar_menu_item('assets', [
             'name'     => _l('assets'),
             'icon'     => 'fa fa-bank',
-            'position' => 40,
+            'position' => 15,
         ]);
         $CI->app_menu->add_sidebar_children_item('assets', [
             'slug'     => 'assets_menu',

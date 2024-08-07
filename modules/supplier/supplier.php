@@ -169,7 +169,7 @@ function supplier_module_init_menu_items() {
         $CI->app_menu->add_sidebar_menu_item('supplier', [
             'slug'     => 'supplier',
             'name'     => _l('suppliers'),
-            'position' => 5,
+            'position' => 14,
             'icon'     => 'fa fa-user',
             'href'     => admin_url('supplier')
         ]);

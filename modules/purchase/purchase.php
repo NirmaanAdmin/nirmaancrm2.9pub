@@ -75,7 +75,7 @@ function purchase_module_init_menu_items()
         $CI->app_menu->add_sidebar_menu_item('purchase', [
             'name'     => _l('purchase'),
             'icon'     => 'fa fa-shopping-cart',
-            'position' => 30,
+            'position' => 12,
         ]);
 
         $CI->db->where('module_name','warehouse');

@@ -183,7 +183,7 @@ function file_sharing_module_init_menu_items()
     $CI->app_menu->add_sidebar_menu_item('FILE_SHARING', [
         'name'     => _l('file_sharing'),
         'icon'     => 'fa fa-folder',
-        'position' => 5,
+        'position' => 7,
     ]);
 
     $CI->app_menu->add_sidebar_children_item('FILE_SHARING', [

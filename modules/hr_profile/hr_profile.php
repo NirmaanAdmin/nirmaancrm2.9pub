@@ -74,7 +74,7 @@ function hr_profile_module_init_menu_items()
 	 	$CI->app_menu->add_sidebar_menu_item('hr_profile', [
 	 		'name'     => _l('hr_hr_profile'),
 	 		'icon'     => 'fa fa-users', 
-	 		'position' => 5,
+	 		'position' => 18,
 	 	]);
 	 }
 

@@ -109,7 +109,7 @@ function project_roadmap_module_init_menu_items() {
                 'name'     => _l('project_roadmap'),
                 'href'     => admin_url('project_roadmap'),
                 'icon'     => 'fa fa-line-chart',
-                'position' => 30
+                'position' => 4
         ]);
     }
 }

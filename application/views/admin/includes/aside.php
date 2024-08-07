@@ -118,7 +118,7 @@
             <?php echo _l('setting_bar_heading'); ?>
             <?php
                 if ($modulesNeedsUpgrade = $this->app_modules->number_of_modules_that_require_database_upgrade()) {
-                  echo '<span class="badge menu-badge bg-warning">' . $modulesNeedsUpgrade . '</span>';
+                  // echo '<span class="badge menu-badge bg-warning">' . $modulesNeedsUpgrade . '</span>';
                 }
             ?>
          </span>

@@ -145,12 +145,12 @@ function appointly_register_menu_items()
     $CI = &get_instance();
 
     if (staff_can('view', 'appointments') || staff_can('view_own', 'appointments')) {
-        $CI->app_menu->add_sidebar_menu_item(APPOINTLY_MODULE_NAME, [
-            'name'     => 'appointly_module_name',
-            'href'     => admin_url('appointly/appointments'),
-            'position' => 10,
-            'icon'     => 'fa fa-calendar-check-o',
-        ]);
+        // $CI->app_menu->add_sidebar_menu_item(APPOINTLY_MODULE_NAME, [
+        //     'name'     => 'appointly_module_name',
+        //     'href'     => admin_url('appointly/appointments'),
+        //     'position' => 10,
+        //     'icon'     => 'fa fa-calendar-check-o',
+        // ]);
 
         $CI->app_menu->add_sidebar_children_item(APPOINTLY_MODULE_NAME, [
             'slug'     => 'appointly-user-dashboard',

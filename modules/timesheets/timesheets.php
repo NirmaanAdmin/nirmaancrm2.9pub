@@ -167,7 +167,7 @@ function timesheets_module_init_menu_items() {
 		$CI->app_menu->add_sidebar_menu_item('timesheets', [
 			'name' => _l('timesheets_and_leave'),
 			'icon' => 'fa fa-user-circle',
-			'position' => 30,
+			'position' => 19,
 		]);
 		if (has_permission('attendance_management', '', 'view_own') || has_permission('attendance_management', '', 'view') || is_admin()) {
 			$CI->app_menu->add_sidebar_children_item('timesheets', [

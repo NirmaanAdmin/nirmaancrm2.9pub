@@ -55,11 +55,11 @@ function recruitment_module_init_menu_items() {
 
 	$CI = &get_instance();
 	if (has_permission('recruitment', '', 'view')) {
-		$CI->app_menu->add_sidebar_menu_item('recruitment', [
-			'name' => _l('recruitment'),
-			'icon' => 'fa fa-address-book',
-			'position' => 30,
-		]);
+		// $CI->app_menu->add_sidebar_menu_item('recruitment', [
+		// 	'name' => _l('recruitment'),
+		// 	'icon' => 'fa fa-address-book',
+		// 	'position' => 30,
+		// ]);
 		$CI->app_menu->add_sidebar_children_item('recruitment', [
 			'slug' => 'recruitment_dashboard',
 			'name' => _l('dashboard'),

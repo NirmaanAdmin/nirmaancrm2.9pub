@@ -45,7 +45,7 @@ function resource_workload_module_init_menu_items() {
 		$CI->app_menu->add_sidebar_menu_item('resource_workload', [
 			'name' => _l('resource_workload'),
 			'icon' => 'fa fa-calendar',
-			'position' => 30,
+			'position' => 6,
 		]);
 
 		$CI->app_menu->add_sidebar_children_item('resource_workload', [

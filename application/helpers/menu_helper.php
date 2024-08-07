@@ -21,7 +21,7 @@ function app_init_admin_sidebar_menu_items()
         $CI->app_menu->add_sidebar_menu_item('customers', [
             'name'     => _l('als_clients'),
             'href'     => admin_url('clients'),
-            'position' => 5,
+            'position' => 2,
             'icon'     => 'fa fa-user-o',
             'badge'    => []
         ]);
@@ -119,7 +119,7 @@ function app_init_admin_sidebar_menu_items()
             'name'     => _l('expenses'),
             'href'     => admin_url('expenses'),
             'icon'     => 'fa fa-file-text-o',
-            'position' => 20,
+            'position' => 11,
             'badge'    => []
         ]);
     }
@@ -129,7 +129,7 @@ function app_init_admin_sidebar_menu_items()
             'name'     => _l('contracts'),
             'href'     => admin_url('contracts'),
             'icon'     => 'fa fa-file',
-            'position' => 25,
+            'position' => 9,
             'badge'    => []
         ]);
     }
@@ -138,7 +138,7 @@ function app_init_admin_sidebar_menu_items()
         'name'     => _l('projects'),
         'href'     => admin_url('projects'),
         'icon'     => 'fa fa-bars',
-        'position' => 30,
+        'position' => 3,
         'badge'    => [],
     ]);
 
@@ -146,7 +146,7 @@ function app_init_admin_sidebar_menu_items()
         'name'     => _l('als_tasks'),
         'href'     => admin_url('tasks'),
         'icon'     => 'fa fa-tasks',
-        'position' => 35,
+        'position' => 5,
         'badge'    => [],
     ]);
 
@@ -157,7 +157,7 @@ function app_init_admin_sidebar_menu_items()
             'name'     => _l('Ticketing'),
             'href'     => admin_url('tickets'),
             'icon'     => 'fa fa-ticket',
-            'position' => 40,
+            'position' => 8,
             'badge'    => []
         ]);
 
@@ -185,7 +185,7 @@ function app_init_admin_sidebar_menu_items()
             'name'     => _l('als_leads'),
             'href'     => admin_url('leads'),
             'icon'     => 'fa fa-tty',
-            'position' => 45,
+            'position' => 16,
             'badge'    => []
         ]);
     }
@@ -200,21 +200,21 @@ function app_init_admin_sidebar_menu_items()
     //     ]);
     // }
 
-    if (has_permission('knowledge_base', '', 'view')) {
-        $CI->app_menu->add_sidebar_menu_item('knowledge-base', [
-            'name'     => _l('als_kb'),
-            'href'     => admin_url('knowledge_base'),
-            'icon'     => 'fa fa-folder-open-o',
-            'position' => 50,
-            'badge'    => []
-        ]);
-    }
+    // if (has_permission('knowledge_base', '', 'view')) {
+    //     $CI->app_menu->add_sidebar_menu_item('knowledge-base', [
+    //         'name'     => _l('als_kb'),
+    //         'href'     => admin_url('knowledge_base'),
+    //         'icon'     => 'fa fa-folder-open-o',
+    //         'position' => 50,
+    //         'badge'    => []
+    //     ]);
+    // }
 
     // Utilities
     $CI->app_menu->add_sidebar_menu_item('utilities', [
         'collapse' => true,
         'name'     => _l('als_utilities'),
-        'position' => 55,
+        'position' => 21,
         'icon'     => 'fa fa-cogs',
         'badge'    => [],
     ]);
@@ -278,7 +278,7 @@ function app_init_admin_sidebar_menu_items()
             'name'     => _l('als_reports'),
             'href'     => admin_url('reports'),
             'icon'     => 'fa fa-area-chart',
-            'position' => 60,
+            'position' => 22,
             'badge'    => []
         ]);
         $CI->app_menu->add_sidebar_children_item('reports', [

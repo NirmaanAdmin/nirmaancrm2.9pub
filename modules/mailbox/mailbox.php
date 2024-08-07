@@ -62,12 +62,12 @@ function mailbox_module_init_menu_items()
             $badge = ' <span class="badge menu-badge bg-warning">'.total_rows(db_prefix().'mail_inbox', ['read' => '0', 'to_staff_id' => get_staff_user_id()]).'</span>';
         }
 
-        $CI->app_menu->add_sidebar_menu_item('mailbox', [
-            'name'     => _l('mailbox').$badge,
-            'href'     => admin_url('mailbox'),
-            'icon'     => 'fa fa-envelope-square',
-            'position' => 6,
-        ]);
+        // $CI->app_menu->add_sidebar_menu_item('mailbox', [
+        //     'name'     => _l('mailbox').$badge,
+        //     'href'     => admin_url('mailbox'),
+        //     'icon'     => 'fa fa-envelope-square',
+        //     'position' => 6,
+        // ]);
     }
 }
 
