@@ -166,13 +166,13 @@ function supplier_module_init_menu_items() {
     ]);
 
     // if (has_permission('supplier', '', 'view')) {
-        $CI->app_menu->add_sidebar_menu_item('supplier', [
-            'slug'     => 'supplier',
-            'name'     => _l('suppliers'),
-            'position' => 14,
-            'icon'     => 'fa fa-user',
-            'href'     => admin_url('supplier')
-        ]);
+        // $CI->app_menu->add_sidebar_menu_item('supplier', [
+        //     'slug'     => 'supplier',
+        //     'name'     => _l('suppliers'),
+        //     'position' => 14,
+        //     'icon'     => 'fa fa-user',
+        //     'href'     => admin_url('supplier')
+        // ]);
         $CI->app_tabs->add_customer_profile_tab('map', [
         'name'     => _l('customer_map'),
         'icon'     => 'fa fa-map-marker',
