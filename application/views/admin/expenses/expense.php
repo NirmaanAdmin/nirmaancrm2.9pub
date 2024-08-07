@@ -75,20 +75,22 @@
                      <input type="checkbox" id="billable" <?php if(isset($expense) && $expense->invoiceid !== NULL){echo 'disabled'; } ?> name="billable" <?php if(isset($expense)){if($expense->billable == 1){echo 'checked';}}; ?>>
                      <label for="billable" <?php if(isset($expense) && $expense->invoiceid !== NULL){echo 'data-toggle="tooltip" title="'._l('expense_already_invoiced').'"'; } ?>><?php echo _l('expense_add_edit_billable'); ?></label>
                   </div>
-                  <div class="form-group select-placeholder">
-                     <label for="clientid" class="control-label"><?php echo _l('expense_add_edit_customer'); ?></label>
-                     <select id="clientid" name="clientid" data-live-search="true" data-width="100%" class="ajax-search" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
-                     <?php $selected = (isset($expense) ? $expense->clientid : '');
-                        if($selected == ''){
-                          $selected = (isset($customer_id) ? $customer_id: '');
-                        }
-                        if($selected != ''){
-                         $rel_data = get_relation_data('customer',$selected);
-                         $rel_val = get_relation_values($rel_data,'customer');
-                         echo '<option value="'.$rel_val['id'].'" selected>'.$rel_val['name'].'</option>';
-                        } ?>
-                     </select>
-                  </div>
+                  <?php /*
+                     <div class="form-group select-placeholder">
+                        <label for="clientid" class="control-label"><?php echo _l('expense_add_edit_customer'); ?></label>
+                        <select id="clientid" name="clientid" data-live-search="true" data-width="100%" class="ajax-search" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
+                        <?php $selected = (isset($expense) ? $expense->clientid : '');
+                           if($selected == ''){
+                             $selected = (isset($customer_id) ? $customer_id: '');
+                           }
+                           if($selected != ''){
+                            $rel_data = get_relation_data('customer',$selected);
+                            $rel_val = get_relation_values($rel_data,'customer');
+                            echo '<option value="'.$rel_val['id'].'" selected>'.$rel_val['name'].'</option>';
+                           } ?>
+                        </select>
+                     </div>
+                  */ ?>
                   <?php $hide_project_selector = ' show';
                      // Show selector only if expense is already added and there is no client linked to the expense or isset customer id
                      if((isset($expense) && $expense->clientid != 0) || isset($customer_id)){
@@ -96,15 +98,21 @@
                      }
                      ?>
                   <div class="form-group projects-wrapper<?php echo $hide_project_selector; ?>">
-                     <label for="project_id"><?php echo _l('project'); ?></label>
-                     <div id="project_ajax_search_wrapper">
-                        <select name="project_id" id="project_id" class="projects ajax-search" data-live-search="true" data-width="100%" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
-                        <?php if(isset($expense) && $expense->project_id != 0){
-                           echo '<option value="'.$expense->project_id.'" selected>'.get_project_name_by_id($expense->project_id).'</option>';
-                           }
-                           ?>
-                        </select>
-                     </div>
+                     <?php /*
+                        <label for="project_id"><?php echo _l('project'); ?></label>
+                        <div id="project_ajax_search_wrapper">
+                           <select name="project_id" id="project_id" class="projects ajax-search" data-live-search="true" data-width="100%" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
+                           <?php if(isset($expense) && $expense->project_id != 0){
+                              echo '<option value="'.$expense->project_id.'" selected>'.get_project_name_by_id($expense->project_id).'</option>';
+                              }
+                              ?>
+                           </select>
+                        </div>
+                     */ ?>
+                     <?php 
+                        $project_selected = (isset($expense) && $expense->project_id != 0) ? $expense->project_id : '';
+                        echo render_select('project_id',$projects,array('id','name'),'project',$project_selected);
+                     ?>
                   </div>
                   <?php $rel_id = (isset($expense) ? $expense->expenseid : false); ?>
                   <?php echo render_custom_fields('expenses',$rel_id); ?>
@@ -360,6 +368,7 @@
       date:'required',
       amount:'required',
       currency:'required',
+      project_id:'required',
       repeat_every_custom: { min: 1},
     },expenseSubmitHandler);
 

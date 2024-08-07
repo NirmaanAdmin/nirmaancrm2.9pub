@@ -116,6 +116,7 @@ class Expenses extends AdminController
         ]);
         $data['bodyclass']  = 'expense';
         $data['currencies'] = $this->currencies_model->get();
+        $data['projects']    = $this->projects_model->get();
         $data['title']      = $title;
         $this->load->view('admin/expenses/expense', $data);
     }
