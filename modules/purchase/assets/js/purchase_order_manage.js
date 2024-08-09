@@ -53,7 +53,8 @@ var expenseDropzone;
     appValidateForm($('#pur_order-expense-form'), {
           category: 'required',
           date: 'required',
-          amount: 'required'
+          amount: 'required',
+          project_id: 'required'
     }, projectExpenseSubmitHandler);
 
 
@@ -111,12 +112,18 @@ function toggle_small_pur_order_view(table, main_data) {
         $(window).trigger('resize');
 }
 
-function convert_expense(pur_order,total){
+function convert_expense(pur_order,total,project_id){
     "use strict";
     $('#pur_order_expense').modal('show');
     $('input[id="amount"]').val(total);
     $('#pur_order_additional').html('');
     $('#pur_order_additional').append(hidden_input('pur_order',pur_order));
+    if(project_id != 0) {
+        $('#project_id').val(project_id).change();
+        $('button[data-id="project_id"]').attr('disabled', true);
+    } else {
+        $('button[data-id="project_id"]').attr('disabled', false);
+    }
 }
 
 function projectExpenseSubmitHandler(form) {

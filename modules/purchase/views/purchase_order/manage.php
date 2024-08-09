@@ -100,6 +100,9 @@
             <div class="dropzone-previews"></div>
             <i class="fa fa-question-circle" data-toggle="tooltip" data-title="<?php echo _l('expense_name_help'); ?>"></i>
             <?php echo render_input('expense_name','expense_name'); ?>
+            <?php 
+               echo render_select('project_id',$projects,array('id','name'),'project','');
+             ?>
             <?php echo render_textarea('note','expense_add_edit_note','',array('rows'=>4),array()); ?>
             <?php echo render_select('category',$expense_categories,array('id','name'),'expense_category'); ?>
             <?php echo render_date_input('date','expense_add_edit_date',_d(date('Y-m-d'))); ?>

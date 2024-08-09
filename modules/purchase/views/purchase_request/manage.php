@@ -27,6 +27,7 @@
                         _l('requester'),
                         _l('department'),
                         _l('request_date'),
+                        _l('project'),
                         _l('status'),
                         _l('options'),
                         ),'table_pur_request'); ?>

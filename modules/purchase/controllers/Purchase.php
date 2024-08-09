@@ -522,6 +522,7 @@ class purchase extends AdminController
     	$data['departments'] = $this->departments_model->get();
     	$data['units'] = $this->purchase_model->get_units();
     	$data['items'] = $this->purchase_model->get_items();
+        $data['projects']    = $this->projects_model->get_items();
     	
         $this->load->view('purchase_request/pur_request', $data);
     }
@@ -1015,6 +1016,7 @@ class purchase extends AdminController
         $data['vendors'] = $this->purchase_model->get_vendor();
         $data['expense_categories'] = $this->expenses_model->get_category();
         $data['item_tags'] = $this->purchase_model->get_item_tag_filter();
+        $data['projects']    = $this->projects_model->get_items();
         
         $this->load->view('purchase_order/manage', $data);
     }
@@ -1069,14 +1071,15 @@ class purchase extends AdminController
      * @param      string  $id     The identifier
      * @return redirect, view
      */
-    public function pur_order($id = ''){
+    public function pur_order($id = '', $rid = ''){
+        $project_id = '';
         if ($this->input->post()) {
             $pur_order_data = $this->input->post();
-            if ($id == '') {
+            if ($id == '' || $id == 0) {
                 if (!has_permission('purchase', '', 'create')) {
                     access_denied('purchase_order');
                 }
-                $id = $this->purchase_model->add_pur_order($pur_order_data);
+                $id = $this->purchase_model->add_pur_order($pur_order_data,$rid);
                 if ($id) {
                     set_alert('success', _l('added_successfully', _l('pur_order')));
                     
@@ -1096,12 +1099,33 @@ class purchase extends AdminController
             }
         }
 
-        if ($id == '') {
+        if ($id == '' || $id == 0) {
             $title = _l('create_new_pur_order');
         } else {
             $data['pur_order_detail'] = json_encode($this->purchase_model->get_pur_order_detail($id));
             $data['pur_order'] = $this->purchase_model->get_pur_order($id);
+            $project_id = $data['pur_order']->project_id != 0 ? $data['pur_order']->project_id : '';
             $title = _l('pur_order_detail');
+        }
+
+        if(!empty($rid)) {
+            $pur_request = $this->purchase_model->get_purchase_request($rid);
+            $pur_request_detail = $this->purchase_model->get_pur_request_detail($rid);
+            $project_id = $pur_request->project_id != 0 ? $pur_request->project_id : '';
+            $final_request_detail = array();
+            if(!empty($pur_request_detail)) {
+                foreach ($pur_request_detail as $key => $value) {
+                   $final_request_detail[$key]['item_code'] = $value['item_code'];
+                   $final_request_detail[$key]['unit_id'] = $value['unit_id'];
+                   $final_request_detail[$key]['unit_price'] = $value['unit_price'];
+                   $final_request_detail[$key]['quantity'] = $value['quantity'];
+                   $final_request_detail[$key]['into_money'] = $value['into_money'];
+                   $final_request_detail[$key]['total'] = $value['into_money'];
+                   $final_request_detail[$key]['total_money'] = $value['into_money'];
+                }
+            }
+            $data['pur_order_detail'] = json_encode($final_request_detail);
+            $data['pur_order'] = array();
         }
 
         $this->load->model('currencies_model');
@@ -1117,6 +1141,9 @@ class purchase extends AdminController
         $data['estimates'] = $this->purchase_model->get_estimates_by_status(2);
         $data['units'] = $this->purchase_model->get_units();
         $data['items'] = $this->purchase_model->get_items();
+        $data['projects'] = $this->projects_model->get_items();
+        $data['rid'] = $rid;
+        $data['project_id'] = $project_id;
         $data['title'] = $title;
 
         $this->load->view('purchase_order/pur_order', $data);

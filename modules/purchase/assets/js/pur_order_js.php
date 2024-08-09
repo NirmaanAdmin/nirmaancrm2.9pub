@@ -37,6 +37,7 @@ $(function(){
             pur_order_number: 'required',
             order_date: 'required',
             vendor: 'required',
+            project_id: 'required',
         });
     }
 

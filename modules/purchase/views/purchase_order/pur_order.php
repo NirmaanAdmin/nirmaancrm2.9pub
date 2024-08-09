@@ -138,8 +138,18 @@
                          echo render_date_input('delivery_date','delivery_date',$delivery_date); ?>
                       </div>
 
+                      <div class="col-md-6">
+                        <?php
+                          $attributes = array();
+                          if(!empty($rid)) {
+                            $attributes['disabled'] = 'disabled';
+                          }
+                          echo render_select('project_id',$projects,array('id','name'),'project',$project_id, $attributes);
+                        ?>
+                      </div>
+
                       <?php $clients_ed = (isset($pur_order) ? explode(',',$pur_order->clients) : []); ?>
-                      <div class="col-md-12">
+                      <div class="col-md-6">
                         <label for="clients"><?php echo _l('clients'); ?></label>
                         <select name="clients[]" id="clients" class="selectpicker" onchange="estimate_by_vendor(this); return false;" data-live-search="true" multiple data-width="100%" data-none-selected-text="<?php echo _l('ticket_settings_none_assigned'); ?>" >
 

@@ -2,7 +2,7 @@
 (function($) {
 "use strict";  
 
-appValidateForm($('#add_edit_pur_request-form'),{pur_rq_code:'required', pur_rq_name:'required', department:'required'});
+appValidateForm($('#add_edit_pur_request-form'),{pur_rq_code:'required', pur_rq_name:'required', department:'required', project_id:'required'});
 <?php if(isset($pur_request)){
  ?>
 var dataObject = <?php echo html_entity_decode($pur_request_detail); ?>;

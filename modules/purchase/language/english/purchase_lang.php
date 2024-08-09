@@ -216,3 +216,5 @@ $lang['company_name'] = 'Company name';
 $lang['sub_total'] = 'Sub total';
 $lang['add'] = 'Add';
 $lang['purchase_quotation'] = 'Purchase quotation';
+$lang['project'] = 'Project';
+$lang['convert_to_po'] = 'Convert to PO';

@@ -2914,4 +2914,13 @@ class Projects_model extends App_Model
             }
         }
     }
+
+    /**
+     * Gets the items.
+     *
+     * @return     <array>  The items.
+     */
+    public function get_items(){
+       return $this->db->query('select id, name from '.db_prefix().'projects')->result_array();
+    }
 }

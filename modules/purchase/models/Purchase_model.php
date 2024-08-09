@@ -1578,7 +1578,7 @@ class Purchase_model extends App_Model
      *
      * @return     boolean , int id purchase order
      */
-    public function add_pur_order($data){
+    public function add_pur_order($data,$rid = ''){
 
         $prefix = get_purchase_option('pur_order_prefix');
         $data['pur_order_number'] = $prefix.''.$data['pur_order_number'];
@@ -1637,7 +1637,11 @@ class Purchase_model extends App_Model
             $header[] = 'discount_money';
             $header[] = 'total_money';
             foreach ($pur_order_detail as $key => $value) {
-
+                if(!empty($rid)) {
+                    unset($value[0]);
+                    unset($value[1]);
+                    $value = array_values($value);
+                }
                 if($value[0] != ''){
                     $es_detail[] = array_combine($header, $value);
                 }

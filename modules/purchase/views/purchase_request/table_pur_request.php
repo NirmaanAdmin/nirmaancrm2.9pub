@@ -9,19 +9,37 @@ $aColumns = [
     'requester',
     'department', 
     'request_date',
-    'status',
-    'id',
+    db_prefix() . 'projects.name as project_name',
+    db_prefix() . 'pur_request.status as status',
+    db_prefix() . 'pur_request.id as id',
     ];
 $sIndexColumn = 'id';
 $sTable       = db_prefix().'pur_request';
-$join         = [ 'LEFT JOIN '.db_prefix().'departments ON '.db_prefix().'departments.departmentid = '.db_prefix().'pur_request.department' ];
+$join         = [ 
+    'LEFT JOIN '.db_prefix().'departments ON '.db_prefix().'departments.departmentid = '.db_prefix().'pur_request.department',
+    'LEFT JOIN '.db_prefix().'projects ON '.db_prefix().'projects.id = '.db_prefix().'pur_request.project_id',
+];
 $where = [];
 
 
-$result = data_tables_init($aColumns, $sIndexColumn, $sTable, $join, $where, ['id','name','pur_rq_code']);
+$result = data_tables_init($aColumns, $sIndexColumn, $sTable, $join, $where, [
+    db_prefix() . 'pur_request.id as id',
+    db_prefix() . 'departments.name as name',
+    'pur_rq_code'
+]);
 
 $output  = $result['output'];
 $rResult = $result['rResult'];
+$newColumns = array();
+foreach ($aColumns as $key => $value) {
+    if (strpos($value, ' as ') !== false) {
+        $columnName = trim(strafter($value, ' as'));
+    } else {
+        $columnName = $value;
+    }
+    $newColumns[] = $columnName;
+}
+$aColumns = $newColumns;
 
 foreach ($rResult as $aRow) {
     $row = [];
@@ -38,6 +56,8 @@ foreach ($rResult as $aRow) {
             $_data .= ' <a href="' . admin_url('staff/profile/' . $aRow['requester']) . '">' . get_staff_full_name($aRow['requester']) . '</a>';
         }elseif($aColumns[$i] == 'department'){
             $_data = $aRow['name'];
+        }elseif($aColumns[$i] == 'project_name'){
+            $_data = $aRow['project_name'];
         }elseif ($aColumns[$i] == 'status') {
             $_data = get_status_approve($aRow['status']);
         }elseif($aColumns[$i] == 'pur_rq_name'){

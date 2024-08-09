@@ -212,3 +212,5 @@ $lang['company_name'] = 'Tên công ty';
 $lang['sub_total'] = 'Tổng phụ';
 $lang['add'] = 'Thêm';
 $lang['purchase_quotation'] = 'Báo giá mua hàng';
+$lang['project'] = 'dự án';
+$lang['convert_to_po'] = 'Chuyển đổi sang PO';

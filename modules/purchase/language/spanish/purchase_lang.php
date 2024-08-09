@@ -216,3 +216,5 @@ $lang['company_name'] = 'Nombre Compañía';
 $lang['sub_total'] = 'Sub total';
 $lang['add'] = 'Añadir';
 $lang['purchase_quotation'] = 'Presupuesto de Compra';
+$lang['project'] = 'Proyecto';
+$lang['convert_to_po'] = 'Convertir a orden de compra';

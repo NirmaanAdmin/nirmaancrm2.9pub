@@ -40,7 +40,12 @@
                             <option value="<?php echo html_entity_decode($s['departmentid']); ?>" <?php if(isset($pur_request) && $s['departmentid'] == $pur_request->department){ echo 'selected'; } ?>><?php echo html_entity_decode($s['name']); ?></option>
                             <?php } ?>
                         </select>
-                        <br><br>
+                    </div>
+                    <div class="col-md-12 form-group">
+                      <?php 
+                        $project_selected = (isset($pur_request) && $pur_request->project_id != 0) ? $pur_request->project_id : '';
+                        echo render_select('project_id',$projects,array('id','name'),'project',$project_selected);
+                      ?>
                     </div>
                     <div class="col-md-12">
                       <?php $rq_description = ( isset($pur_request) ? $pur_request->rq_description : '');

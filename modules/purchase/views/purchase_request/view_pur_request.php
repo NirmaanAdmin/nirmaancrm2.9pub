@@ -211,7 +211,11 @@
                   </div>
                   </div>
 
-                  
+                  <?php if($pur_request->status == 2) { ?>
+                    <div class=" col-md-6">
+                      <a href="<?php echo admin_url('purchase/pur_order/0/'.$pur_request->id); ?>" class="btn btn-info save_detail pull-right"><?php echo _l('convert_to_po'); ?></a>
+                    </div>
+                  <?php } ?>
                   
                   <div class="col-md-12">
                     <p class="bold p_style"><?php echo _l('detail'); ?></p>
