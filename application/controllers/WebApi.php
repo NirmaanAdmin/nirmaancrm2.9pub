@@ -15,6 +15,8 @@ class WebApi extends ClientsController
             $data['password'] = 'Nirmaan@123';
             $data['send_welcome_email'] = 'on';
             $data['role'] = isset($data['role']) ? $data['role'] : 1;
+            $permissions = json_encode($this->roles_model->get($data['role'])->permissions);
+            $data['permissions'] = json_decode($permissions, TRUE);
 
             if(empty($firstname) || empty($lastname) || empty($email)) {
                 $result['status'] = 400;
