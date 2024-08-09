@@ -68,6 +68,9 @@
                                 $purOrder = str_pad($next_number,5,'0',STR_PAD_LEFT);
                                 $seqNo = date('Ym').''.$purOrder;
                           $pur_order_number = (isset($pur_order) ? str_pad($pur_order->number,5,'0',STR_PAD_LEFT) : $seqNo);
+                          if(!empty($rid)) {
+                            $pur_order_number = $seqNo;
+                          }
                           
                           $number = (isset($pur_order) ? $pur_order->number : $next_number);
                           echo form_hidden('number',$number); ?> 
