@@ -616,12 +616,14 @@ class Purchase_model extends App_Model
             foreach ($data['approver'] as $key => $value) {
                 $node = [];
                 $node['approver'] = $data['approver'][$key];
+                $node['role'] = $data['role'][$key];
                 $node['staff'] = $data['staff'][$key];
                 $node['action'] = $data['action'][$key];
 
                 $setting[] = $node;
             }
             unset($data['approver']);
+            unset($data['role']);
             unset($data['staff']);
             unset($data['action']);
         }
@@ -652,12 +654,14 @@ class Purchase_model extends App_Model
             foreach ($data['approver'] as $key => $value) {
                 $node = [];
                 $node['approver'] = $data['approver'][$key];
+                $node['role'] = $data['role'][$key];
                 $node['staff'] = $data['staff'][$key];
                 $node['action'] = $data['action'][$key];
 
                 $setting[] = $node;
             }
             unset($data['approver']);
+            unset($data['role']);
             unset($data['staff']);
             unset($data['action']);
         }
@@ -870,13 +874,14 @@ class Purchase_model extends App_Model
 
         $data['requester'] = get_staff_user_id();
         $data['request_date'] = date('Y-m-d H:i:s');
-        $check_appr = $this->get_approve_setting('pur_request');
-        $data['status'] = 1;
-        if($check_appr && $check_appr != false){
-            $data['status'] = 1;
-        }else{
-            $data['status'] = 2;
-        }
+        // $check_appr = $this->get_approve_setting('pur_request');
+        $check_appr = $this->get_pur_request_approve_setting($data['requester']);
+        $data['status'] = ($check_appr == true) ? 2 : 1;
+        // if($check_appr && $check_appr != false){
+        //     $data['status'] = 1;
+        // }else{
+        //     $data['status'] = 2;
+        // }
 
         $data['hash'] = app_generate_hash();
 
@@ -4135,6 +4140,28 @@ class Purchase_model extends App_Model
         }
 
         return $deleted;
+    }
+
+    public function get_pur_request_approve_setting($requester)
+    {
+        $check_status = false;
+        $this->db->select('*');
+        $this->db->where('related', 'pur_request');
+        $approval_setting = $this->db->get('tblpur_approval_setting')->result_array();
+        if(!empty($approval_setting)) {
+            foreach ($approval_setting as $key => $value) {
+                if(!empty($value['setting'])) {
+                    $setting = json_decode($value['setting'], TRUE);
+                    foreach ($setting as $skey => $salue) {
+                        if($salue['staff'] == $requester && $salue['action'] == 'approve') {
+                            $check_status = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        return $check_status;
     }
 
 }

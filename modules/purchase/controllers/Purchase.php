@@ -2728,6 +2728,7 @@ class purchase extends AdminController
                     1 => ['id' => 'approve', 'name' => _l('approve')],
                     0 => ['id' => 'sign', 'name' => _l('sign')],
                 ];
+        $roles = $this->roles_model->get_approval_roles();
         if(is_numeric($id)){
             $approval_setting = $this->purchase_model->get_approval_setting($id);
 
@@ -2740,7 +2741,10 @@ class purchase extends AdminController
                                     <div class="col-md-1 hide"> '.
                                     render_select('approver['.$key.']',$approver,array('id','name'),'task_single_related', 'staff').'
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-4">
+                                    '. render_select('role['.$key.']',$roles,array('id','name'),'role', (isset($value->role) && $value->role != '') ? $value->role : '', [], [], '', 'role-class').'
+                                    </div>
+                                    <div class="col-md-4">
                                     '. render_select('staff['.$key.']',$staffs,array('staffid','full_name'),'staff', $value->staff).'
                                     </div>
                                     <div class="col-md-4">
@@ -2760,7 +2764,10 @@ class purchase extends AdminController
                                         '.
                                     render_select('approver['.$key.']',$approver,array('id','name'),'task_single_related', 'staff').' 
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-4">
+                                        '. render_select('role['.$key.']',$roles,array('id','name'),'role', (isset($value->role) && $value->role != '') ? $value->role : '', [], [], '', 'role-class').' 
+                                    </div>
+                                    <div class="col-md-4">
                                         '. render_select('staff['.$key.']',$staffs,array('staffid','full_name'),'staff', $value->staff).' 
                                     </div>
                                     <div class="col-md-4">
@@ -2781,7 +2788,10 @@ class purchase extends AdminController
                         <div class="col-md-1 hide"> '.
                         render_select('approver[0]',$approver,array('id','name'),'task_single_related', 'staff').'
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-4">
+                        '. render_select('role[0]',$roles,array('id','name'),'role','', [], [], '', 'role-class').'
+                        </div>
+                        <div class="col-md-4">
                         '. render_select('staff[0]',$staffs,array('staffid','full_name'),'staff').'
                         </div>
                         <div class="col-md-4">
@@ -3011,5 +3021,19 @@ class purchase extends AdminController
             echo _l('access_denied');
             die;
         }
+    }
+
+    public function find_role_staff() 
+    {
+        $response = array();
+        if ($this->input->post()) {
+            $data = $this->input->post();
+            if(!empty($data['role_id'])) {
+                $response = $this->staff_model->get('', ['role' => $data['role_id']]);
+            } else {
+                $response = $this->staff_model->get();
+            }
+        }
+        echo json_encode($response);
     }
 }

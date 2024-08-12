@@ -19,6 +19,11 @@
       newattachment.find('select[name="staff[0]"]').attr('name', 'staff[' + addMoreVendorsInputKey + ']');
       newattachment.find('select[id="staff[0]"]').attr('id', 'staff[' + addMoreVendorsInputKey + ']').selectpicker('refresh');
 
+      newattachment.find('button[data-id="role[0]"]').attr('data-id', 'role[' + addMoreVendorsInputKey + ']');
+      newattachment.find('label[for="role[0]"]').attr('for', 'role[' + addMoreVendorsInputKey + ']');
+      newattachment.find('select[name="role[0]"]').attr('name', 'role[' + addMoreVendorsInputKey + ']');
+      newattachment.find('select[id="role[0]"]').attr('id', 'role[' + addMoreVendorsInputKey + ']').selectpicker('refresh');
+
       newattachment.find('button[data-id="action[0]"]').attr('data-id', 'action[' + addMoreVendorsInputKey + ']');
       newattachment.find('label[for="action[0]"]').attr('for', 'action[' + addMoreVendorsInputKey + ']');
       newattachment.find('select[name="action[0]"]').attr('name', 'action[' + addMoreVendorsInputKey + ']');
@@ -35,6 +40,25 @@
 
   $('.account-template-form-submiter').on('click', function() {
     $('input[name="account_template"]').val(account_template.getData());
+  });
+
+  $("body").on('change', '.role-class', function() {
+    var optionSelected = $(this).attr('id');
+    if(optionSelected) {
+        var role_id = $(this).val();
+        var result = optionSelected.replace("role", "staff");
+        $('[name="'+result+'"]').empty().selectpicker('refresh');
+
+        $.post(admin_url+'purchase/find_role_staff',{'role_id':role_id}).done(function(response){
+            response = JSON.parse(response);
+            if(response) {
+                $.each(response, function(idx, role) {
+                    $('[name="'+result+'"]').append($('<option>').text(role.full_name).attr('value', role.staffid));
+                });
+                $('[name="'+result+'"]').selectpicker('refresh');
+            }
+        });
+    }
   });
 })(jQuery);
 

@@ -155,4 +155,9 @@ class Roles_model extends App_Model
 
         return $this->db->get(db_prefix() . 'staff')->result_array();
     }
+
+    public function get_approval_roles()
+    {
+       return $this->db->query('select roleid as id, name from '.db_prefix().'roles where roleid in (2,4,5,7,8,9)')->result_array();
+    }
 }
