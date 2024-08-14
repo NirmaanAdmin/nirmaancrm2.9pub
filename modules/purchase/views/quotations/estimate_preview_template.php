@@ -47,12 +47,14 @@
                </div>
              <?php } ?>
 
+               <?php if($check_approval_setting == true) {?>
                <select name="status" id="status" class="selectpicker pull-right mright10" onchange="change_status_pur_estimate(this,<?php echo html_entity_decode($estimate->id); ?>); return false;" data-live-search="true" data-width="35%" data-none-selected-text="<?php echo _l('change_status_to'); ?>">
                  <option value=""></option>
                  <option value="1" class="<?php if($estimate->status == 1) { echo 'hide';}?>"><?php echo _l('not_yet_approve'); ?></option>
                  <option value="2" class="<?php if($estimate->status == 2) { echo 'hide';}?>"><?php echo _l('approved'); ?></option>
                  <option value="3" class="<?php if($estimate->status == 3) { echo 'hide';}?>"><?php echo _l('reject'); ?></option>
                </select>
+               <?php } ?>
                
                <div class="pull-right mright5">
                             <?php if($check_appr && $check_appr != false){

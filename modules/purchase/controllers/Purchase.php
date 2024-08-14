@@ -552,6 +552,7 @@ class purchase extends AdminController
         $data['get_staff_sign'] = $this->purchase_model->get_staff_sign($id,'pur_request');
         $data['check_approve_status'] = $this->purchase_model->check_approval_details($id,'pur_request');
         $data['list_approve_status'] = $this->purchase_model->get_list_approval_details($id,'pur_request');
+        $data['check_approval_setting'] = $this->purchase_model->check_approval_setting($response['project_id'] = $data['pur_request']->project_id,'pur_request',0);
 
         $this->load->view('purchase_request/view_pur_request', $data);
 
@@ -770,6 +771,7 @@ class purchase extends AdminController
         $data['pur_request'] = $this->purchase_model->get_pur_request_by_status(2);
         $data['units'] = $this->purchase_model->get_units();
         $data['items'] = $this->purchase_model->get_items();
+        $data['projects']    = $this->projects_model->get_items();
         $data['title']             = $title;
         $this->load->view('quotations/estimate', $data);
     }
@@ -854,6 +856,7 @@ class purchase extends AdminController
         $data['get_staff_sign'] = $this->purchase_model->get_staff_sign($id,'pur_quotation');
         $data['check_approve_status'] = $this->purchase_model->check_approval_details($id,'pur_quotation');
         $data['list_approve_status'] = $this->purchase_model->get_list_approval_details($id,'pur_quotation');
+        $data['check_approval_setting'] = $this->purchase_model->check_approval_setting($response['project_id'] = $estimate->project_id,'pur_quotation',0);
         
         if ($to_return == false) {
             $this->load->view('quotations/estimate_preview_template', $data);
@@ -1057,6 +1060,7 @@ class purchase extends AdminController
         $data['estimate_detail'] = $this->purchase_model->get_pur_order_detail($id);
         $data['estimate']          = $estimate;
         $data['members']           = $this->staff_model->get('', ['active' => 1]);
+        $data['check_approval_setting'] = $this->purchase_model->check_approval_setting($response['project_id'] = $estimate->project_id,'pur_request',0);
         
         if ($to_return == false) {
             $this->load->view('purchase_order/pur_order_preview', $data);
@@ -3032,6 +3036,18 @@ class purchase extends AdminController
                 $response = $this->staff_model->get('', ['role' => $data['role_id']]);
             } else {
                 $response = $this->staff_model->get();
+            }
+        }
+        echo json_encode($response);
+    }
+
+    public function get_purchase_request() 
+    {
+        $response = array();
+        if ($this->input->post()) {
+            $data = $this->input->post();
+            if(!empty($data['id'])) {
+                $response = $this->purchase_model->get_purchase_request($data['id']);
             }
         }
         echo json_encode($response);

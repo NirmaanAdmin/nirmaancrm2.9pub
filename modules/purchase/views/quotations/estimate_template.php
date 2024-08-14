@@ -120,6 +120,13 @@
                         echo render_select('buyer',$staff,array('staffid',array('firstname','lastname')),'buyer',$selected);
                         ?>
             </div>
+
+            <div class="col-md-6">
+                <?php
+                $project_selected = (isset($estimate) && $estimate->project_id != 0) ? $estimate->project_id : '';
+                echo render_select('project_id',$projects,array('id','name'),'project',$project_selected);
+                ?>
+            </div>
             
             <div class="clearfix mbot15"></div>
             <?php $rel_id = (isset($estimate) ? $estimate->id : false); ?>
