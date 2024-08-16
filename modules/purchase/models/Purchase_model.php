@@ -813,6 +813,8 @@ class Purchase_model extends App_Model
         $this->db->select('unit_price');
         $this->db->select('quantity');
         $this->db->select('into_money');
+        $this->db->select('into_money as total');
+        $this->db->select('into_money as total_money');
         return $this->db->get(db_prefix().'pur_request_detail')->result_array();
     }
 

@@ -14,7 +14,7 @@
               </select>
               <br><br>
             </div>
-            <div class="col-md-5 form-group">
+            <div class="col-md-6 form-group">
               <label for="pur_request"><?php echo _l('pur_request'); ?></label>
               <select name="pur_request" id="pur_request" class="selectpicker"  data-live-search="true" data-width="100%" data-none-selected-text="<?php echo _l('ticket_settings_none_assigned'); ?>" >
                 <option value=""></option>
@@ -24,11 +24,11 @@
               </select>
               <br><br>
             </div>
-            <div class="col-md-1 pad_div_0">
+            <?php /* <div class="col-md-1 pad_div_0">
               <a href="#" onclick="coppy_pur_request(); return false;" class="btn btn-success mtop25" data-toggle="tooltip" title="<?php echo _l('coppy_pur_request'); ?>">
               <i class="fa fa-clone"></i>
               </a>
-            </div>
+            </div> */ ?>
 
             <?php
                $next_estimate_number = max_number_estimates()+1;

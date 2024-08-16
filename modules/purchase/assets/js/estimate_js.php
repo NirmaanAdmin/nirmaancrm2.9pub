@@ -54,6 +54,24 @@
             $('button[data-id="project_id"]').attr('disabled', false);
           }
          });
+
+         // Display the purchase request details data
+         hot.alter('remove_row',0,hot.countRows ());
+         $.post(admin_url + 'purchase/coppy_pur_request/'+id).done(function(response){
+           response = JSON.parse(response);
+           hot.updateSettings({
+              data: response.result,
+           });
+           var total_money = 0;
+           for (var row_index = 0; row_index <= response.result.length; row_index++) {
+              if (typeof response.result[row_index] != "undefined") {
+                if (typeof response.result[row_index].total != "undefined") {
+                  total_money += (parseFloat(response.result[row_index].total));
+                }
+              }
+           }
+           $('input[name="total_mn"]').val(numberWithCommas(total_money));
+         });
        } else {
          $('#project_id').val('').change();
          $('button[data-id="project_id"]').attr('disabled', false);

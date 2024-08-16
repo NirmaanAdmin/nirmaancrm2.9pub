@@ -1146,6 +1146,7 @@ class purchase extends AdminController
         $data['units'] = $this->purchase_model->get_units();
         $data['items'] = $this->purchase_model->get_items();
         $data['projects'] = $this->projects_model->get_items();
+        $data['pur_request'] = $this->purchase_model->get_pur_request_by_status(2);
         $data['rid'] = $rid;
         $data['project_id'] = $project_id;
         $data['title'] = $title;

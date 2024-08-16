@@ -572,4 +572,41 @@ function customDropdownRenderer(instance, td, row, col, prop, value, cellPropert
 	  return td;
 }
 
+$("body").on('change', '#pur_request', function() {
+   var id = $(this).val();
+   if(id) {
+     $.post(admin_url+'purchase/get_purchase_request',{'id':id}).done(function(response){
+      response = JSON.parse(response);
+      if(response.project_id != 0) {
+        $('#project_id').val(response.project_id).change();
+        $('button[data-id="project_id"]').attr('disabled', true);
+      } else {
+        $('#project_id').val('').change();
+        $('button[data-id="project_id"]').attr('disabled', false);
+      }
+     });
+
+     // Display the purchase request details data
+     hot.alter('remove_row',0,hot.countRows ());
+     $.post(admin_url + 'purchase/coppy_pur_request/'+id).done(function(response){
+       response = JSON.parse(response);
+       hot.updateSettings({
+          data: response.result,
+       });
+       var total_money = 0;
+       for (var row_index = 0; row_index <= response.result.length; row_index++) {
+          if (typeof response.result[row_index] != "undefined") {
+            if (typeof response.result[row_index].total != "undefined") {
+              total_money += (parseFloat(response.result[row_index].total));
+            }
+          }
+       }
+       $('input[name="total_mn"]').val(numberWithCommas(total_money));
+     });
+   } else {
+     $('#project_id').val('').change();
+     $('button[data-id="project_id"]').attr('disabled', false);
+   }
+});
+
 </script>

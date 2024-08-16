@@ -110,7 +110,19 @@
                            <label for="tags" class="control-label"><i class="fa fa-tag" aria-hidden="true"></i> <?php echo _l('tags'); ?></label>
                            <input type="text" class="tagsinput" id="tags" name="tags" value="<?php echo (isset($pur_order) ? prep_tags_input(get_tags_in($pur_order->id,'pur_order')) : ''); ?>" data-role="tagsinput">
                         </div>
+                        <br>
                      </div>
+
+                     <div class="col-md-6 form-group">
+                      <label for="pur_request"><?php echo _l('pur_request'); ?></label>
+                      <select name="pur_request" id="pur_request" class="selectpicker"  data-live-search="true" data-width="100%" data-none-selected-text="<?php echo _l('ticket_settings_none_assigned'); ?>" >
+                        <option value=""></option>
+                          <?php foreach($pur_request as $s) { ?>
+                          <option value="<?php echo html_entity_decode($s['id']); ?>" <?php if(isset($estimate) && $estimate->pur_request != '' && $estimate->pur_request->id == $s['id']){ echo 'selected'; } ?> ><?php echo html_entity_decode($s['pur_rq_code'].' - '.$s['pur_rq_name']); ?></option>
+                            <?php } ?>
+                      </select>
+                      <br><br>
+                    </div>
                      
                    </div>
                    <div class="col-md-6">
