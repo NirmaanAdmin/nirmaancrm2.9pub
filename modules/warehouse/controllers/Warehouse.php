@@ -1456,6 +1456,7 @@ class warehouse extends AdminController {
 
 		//edit note after approval
 		$data['edit_approval'] = $edit_approval;
+		$data['projects']    = $this->projects_model->get_items();
 
 		$this->load->view('manage_goods_delivery/delivery', $data);
 

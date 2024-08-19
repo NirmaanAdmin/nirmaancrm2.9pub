@@ -2997,7 +2997,7 @@ class Warehouse_model extends App_Model {
 	 */
 	public function get_vendor_ajax($pur_orders_id) {
 		$data = [];
-		$sql = 'SELECT *, ' . db_prefix() . 'pur_orders.project, ' . db_prefix() . 'pur_orders.type, ' . db_prefix() . 'pur_orders.department, ' . db_prefix() . 'pur_request.requester FROM ' . db_prefix() . 'pur_vendor
+		$sql = 'SELECT *, ' . db_prefix() . 'pur_orders.project_id as project, ' . db_prefix() . 'pur_request.department, ' . db_prefix() . 'pur_request.requester FROM ' . db_prefix() . 'pur_vendor
 		left join ' . db_prefix() . 'pur_orders on ' . db_prefix() . 'pur_vendor.userid = ' . db_prefix() . 'pur_orders.vendor
 		left join ' . db_prefix() . 'pur_request on ' . db_prefix() . 'pur_orders.pur_request = ' . db_prefix() . 'pur_request.id
 		where ' . db_prefix() . 'pur_orders.id = ' . $pur_orders_id;

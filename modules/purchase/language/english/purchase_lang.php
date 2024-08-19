@@ -28,6 +28,7 @@ $lang['into_money'] = 'Into money';
 $lang['inventory_quantity'] = 'Inventory quantity';
 $lang['related'] = 'Related';
 $lang['pur_request'] = 'Purchase request';
+$lang['pur_request_order'] = 'Purchase request/order';
 $lang['pur_quotation'] = 'Quotation';
 $lang['minutes_on_hand_over'] = 'Minutes on hand over';
 $lang['pur_contract'] = 'Contract';

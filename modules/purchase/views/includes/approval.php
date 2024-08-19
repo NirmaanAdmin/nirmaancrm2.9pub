@@ -45,7 +45,7 @@
 					<div class="col-md-12">
 						<?php echo render_input('name','subject','','text'); ?>
 						<?php $related = [ 
-								0 => ['id' => 'pur_request', 'name' => _l('pur_request')],
+								0 => ['id' => 'pur_request', 'name' => _l('pur_request_order')],
 								1 => ['id' => 'pur_quotation', 'name' => _l('pur_quotation')],
 								
 							]; ?>

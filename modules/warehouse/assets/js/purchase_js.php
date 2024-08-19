@@ -619,7 +619,8 @@
                 $('#add_goods_receipt').submit(); 
 
               }else{
-                alert_float('danger', "<?php echo _l('data_invalid') ; ?>");
+                $('#warehouse_id-error').empty();
+                $('#warehouse_id').parent().parent().append('<p id="project-error" class="text-danger">This field is required.</p>');
               }
 
             });
@@ -654,7 +655,8 @@
                 $('#add_goods_receipt').submit(); 
 
               }else{
-                alert_float('danger', "<?php echo _l('data_invalid') ; ?>");
+                $('#warehouse_id-error').empty();
+                $('#warehouse_id').parent().parent().append('<p id="project-error" class="text-danger">This field is required.</p>');
               }
 
             });
