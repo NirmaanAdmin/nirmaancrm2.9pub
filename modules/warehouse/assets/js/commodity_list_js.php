@@ -60,7 +60,7 @@
     };
 
     var table_commodity_list = $('table.table-table_commodity_list');
-    var _table_api = initDataTable(table_commodity_list, admin_url+'warehouse/table_commodity_list', [0], [0], ProposalServerParams,  [1, 'desc']);
+    var _table_api = initDataTable(table_commodity_list, admin_url+'warehouse/table_commodity_list', [0], [0], ProposalServerParams,  [2, 'desc']);
     $.each(ProposalServerParams, function(i, obj) {
       $('select' + obj).on('change', function() {  
         table_commodity_list.DataTable().ajax.reload()

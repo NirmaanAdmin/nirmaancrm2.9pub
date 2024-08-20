@@ -67,7 +67,7 @@ var hidden_columns = [3,7];
 
      
     table_item_list = $('table.table-table_item_list');
-    _table_api = initDataTable(table_item_list, admin_url+'purchase/table_item_list', [0], [0], '',  [1, 'desc']);
+    _table_api = initDataTable(table_item_list, admin_url+'purchase/table_item_list', [0], [0], '',  [2, 'asc']);
 
 
   init_commodity_detail();
