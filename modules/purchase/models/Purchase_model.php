@@ -911,6 +911,10 @@ class Purchase_model extends App_Model
       
         $this->db->insert(db_prefix().'pur_request',$data);
         $insert_id = $this->db->insert_id();
+        $this->send_mail_to_approver($data, 'pur_request', 'purchase_request', $insert_id);
+        if($data['status'] == 2) {
+            $this->send_mail_to_sender('purchase_request', $data['status'], $insert_id);
+        }
         if($insert_id){
             foreach($rq_detail as $key => $rqd){
                 $rq_detail[$key]['pur_request'] = $insert_id;
@@ -1044,6 +1048,9 @@ class Purchase_model extends App_Model
         $this->db->where('id',$id);
         $this->db->update(db_prefix().'pur_request',['status' => $status]);
         if($this->db->affected_rows() > 0){
+            if($status == 2 || $status == 3) {
+                $this->send_mail_to_sender('purchase_request', $status, $id);
+            }
             return true;
         }
         return false;
@@ -1244,6 +1251,10 @@ class Purchase_model extends App_Model
 
         $this->db->insert(db_prefix() . 'pur_estimates', $data);
         $insert_id = $this->db->insert_id();
+        $this->send_mail_to_approver($data, 'pur_quotation', 'quotation', $insert_id);
+        if($data['status'] == 2) {
+            $this->send_mail_to_sender('quotation', $data['status'], $insert_id);
+        }
 
         if ($insert_id) {
             $total = [];
@@ -1531,6 +1542,9 @@ class Purchase_model extends App_Model
         $this->db->where('id',$id);
         $this->db->update(db_prefix().'pur_estimates',['status' => $status]);
         if($this->db->affected_rows() > 0){
+            if($status == 2 || $status == 3) {
+                $this->send_mail_to_sender('quotation', $status, $id);
+            }
             return true;
         }
         return false;
@@ -1550,6 +1564,9 @@ class Purchase_model extends App_Model
         if($this->db->affected_rows() > 0){
 
             hooks()->apply_filters('create_goods_receipt',['status' => $status,'id' => $id]);
+            if($status == 2 || $status == 3) {
+                $this->send_mail_to_sender('purchase_order', $status, $id);
+            }
             return true;
         }
         return false;
@@ -1672,6 +1689,10 @@ class Purchase_model extends App_Model
 
         $this->db->insert(db_prefix() . 'pur_orders', $data);
         $insert_id = $this->db->insert_id();
+        $this->send_mail_to_approver($data, 'pur_request', 'purchase_order', $insert_id);
+        if($data['approve_status'] == 2) {
+            $this->send_mail_to_sender('purchase_order', $data['approve_status'], $insert_id);
+        }
         if ($insert_id) {
             // Update next estimate number in settings
             $total = [];
@@ -4214,6 +4235,7 @@ class Purchase_model extends App_Model
             $staffs = $this->db->get('tblstaff')->result_array();
             $intersect = array_merge($intersect, $staffs);
             $intersect = array_unique($intersect, SORT_REGULAR);
+            $intersect = array_values($intersect);
             return $intersect;
         } else {
             if(!empty($intersect)) {
@@ -4234,6 +4256,135 @@ class Purchase_model extends App_Model
             $check_status = true;
         }
         return $check_status;
+    }
+
+    public function send_mail_to_approver($fdata, $related, $type, $id)
+    {
+        $approver_list = $this->check_approval_setting($fdata, $related, 1);
+        $this->db->select('staffid as id, "approve" as action', FALSE);
+        $this->db->where('admin', 1);
+        $this->db->or_where('staffid', $fdata['requester']);
+        $this->db->order_by('staffid','desc');
+        $staffs = $this->db->get('tblstaff')->result_array();
+        $approver_list = array_merge($approver_list, $staffs);
+        $approver_list = array_unique($approver_list, SORT_REGULAR);
+        $approver_list = array_values($approver_list);
+
+        if(!empty($approver_list)) {
+            $approver_list = array_column($approver_list, 'id');
+            $this->db->select('staffid as id, email, firstname, lastname');
+            $this->db->where_in('staffid', $approver_list);
+            $approver_list = $this->db->get('tblstaff')->result_array();
+
+            $this->db->where('staffid', get_staff_user_id());
+            $login_staff = $this->db->get('tblstaff')->row();
+            
+            foreach ($approver_list as $key => $value) {
+                $data = array();
+                $data['contact_firstname'] = $login_staff->firstname;
+                $data['contact_lastname'] = $login_staff->lastname;
+
+                if($type == 'purchase_request') {
+                    $data['mail_to'] = $value['email'];
+                    $data['pur_request_id'] = $id;
+                    $data = (object) $data;
+                    send_mail_template('purchase_request_to_approver', $data);
+                }
+
+                if($type == 'purchase_order') {
+                    $data['mail_to'] = $value['email'];
+                    $data['po_id'] = $id;
+                    $data = (object) $data;
+                    send_mail_template('purchase_order_to_approver', $data);
+                }
+
+                if($type == 'quotation') {
+                    $data['mail_to'] = $value['email'];
+                    $data['pur_estimate_id'] = $id;
+                    $data = (object) $data;
+                    send_mail_template('purchase_quotation_to_approver', $data);
+                }
+            }
+        }
+    }
+
+    public function send_mail_to_sender($type, $status, $id)
+    {
+        $requester = 0;
+        $vendor_id = 0;
+        $vendor_name = '';
+        if($type == 'purchase_request') {
+            $this->db->where('id', $id);
+            $row = $this->db->get(db_prefix() . 'pur_request')->row();
+            $requester = $row->requester;
+        }
+
+        if($type == 'purchase_order') {
+            $this->db->where('id', $id);
+            $row = $this->db->get(db_prefix() . 'pur_orders')->row();
+            $requester = $row->addedfrom;
+            $vendor_id = $row->vendor;
+            if($vendor_id != 0) {
+                $this->db->where('userid', $vendor_id);
+                $vendor_detail = $this->db->get(db_prefix() . 'pur_vendor')->row();
+                $vendor_name = $vendor_detail->company;
+            }
+        }
+
+        if($type == 'quotation') {
+            $this->db->where('id', $id);
+            $row = $this->db->get(db_prefix() . 'pur_estimates')->row();
+            $requester = $row->addedfrom;
+        }
+
+        $this->db->select('email, firstname, lastname');
+        $this->db->where('admin', 1);
+        $this->db->or_where('staffid', $requester);
+        $this->db->or_where('staffid', get_staff_user_id());
+        $staffs = $this->db->get('tblstaff')->result_array();
+
+        if($type == 'purchase_order') {
+            $this->db->select('email, firstname, lastname');
+            $this->db->where('userid', $vendor_id);
+            $this->db->where('is_primary', 1);
+            $vendors = $this->db->get(db_prefix() . 'pur_contacts')->result_array();
+            $staffs = array_merge($staffs, $vendors);
+            $staffs = array_values($staffs);
+        }
+
+        if(!empty($staffs)) {
+
+            $this->db->where('staffid', get_staff_user_id());
+            $login_staff = $this->db->get('tblstaff')->row();
+
+            foreach ($staffs as $key => $value) {
+                $data = array();
+                $data['contact_firstname'] = $login_staff->firstname;
+                $data['contact_lastname'] = $login_staff->lastname;
+
+                if($type == 'purchase_request') {
+                    $data['mail_to'] = $value['email'];
+                    $data['pur_request_id'] = $id;
+                    $data = (object) $data;
+                    send_mail_template('purchase_request_to_sender', $data);
+                }
+
+                if($type == 'purchase_order') {
+                    $data['mail_to'] = $value['email'];
+                    $data['po_id'] = $id;
+                    $data['vendor_name'] = $vendor_name;
+                    $data = (object) $data;
+                    send_mail_template('purchase_order_to_sender', $data);
+                }
+
+                if($type == 'quotation') {
+                    $data['mail_to'] = $value['email'];
+                    $data['pur_estimate_id'] = $id;
+                    $data = (object) $data;
+                    send_mail_template('purchase_quotation_to_sender', $data);
+                }
+            }
+        }
     }
 
 }

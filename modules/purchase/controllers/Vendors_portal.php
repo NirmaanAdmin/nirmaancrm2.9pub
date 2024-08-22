@@ -521,7 +521,7 @@ class Vendors_portal extends App_Controller
         } else {
             $estimate = $this->purchase_model->get_estimate($id);
 
-            $data['items'] = $this->purchase_model->get_items_hs_vendor(get_client_user_id());
+            $data['items'] = $this->purchase_model->get_items_hs_vendor($id);
 
             $data['etm_detail'] = $this->purchase_model->get_pur_estimate_detail($id);
 

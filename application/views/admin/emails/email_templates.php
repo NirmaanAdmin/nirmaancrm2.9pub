@@ -471,6 +471,41 @@
                                     </table>
                                 </div>
                             </div>
+                            <?php hooks()->do_action('before_purchase_email_templates'); ?>
+                            <div class="col-md-12">
+                                <h4 class="bold well email-template-heading">
+                                    <?php echo _l('purchase'); ?>
+                                    <?php if($hasPermissionEdit){ ?>
+                                        <a href="<?php echo admin_url('emails/disable_by_type/purchase'); ?>" class="pull-right mleft5 mright25"><small><?php echo _l('disable_all'); ?></small></a>
+                                        <a href="<?php echo admin_url('emails/enable_by_type/purchase'); ?>" class="pull-right"><small><?php echo _l('enable_all'); ?></small></a>
+                                    <?php } ?>
+
+                                </h4>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th><?php echo _l('email_templates_table_heading_name'); ?></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php foreach($purchase as $purchase){ ?>
+                                            <tr>
+                                                <td class="<?php if($purchase['active'] == 0){echo 'text-throught';} ?>">
+                                                    <a href="<?php echo admin_url('emails/email_template/'.$purchase['emailtemplateid']); ?>"><?php echo $purchase['name']; ?></a>
+                                                    <?php if(ENVIRONMENT !== 'production'){ ?>
+                                                        <br/><small><?php echo $purchase['slug']; ?></small>
+                                                    <?php } ?>
+                                                    <?php if($hasPermissionEdit){ ?>
+                                                        <a href="<?php echo admin_url('emails/'.($purchase['active'] == '1' ? 'disable/' : 'enable/').$purchase['emailtemplateid']); ?>" class="pull-right"><small><?php echo _l($purchase['active'] == 1 ? 'disable' : 'enable'); ?></small></a>
+                                                    <?php } ?>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                             <?php hooks()->do_action('before_gdpr_email_templates'); ?>
                             <div class="col-md-12<?php if(!is_gdpr()){echo ' hide';} ?>">
                                 <h4 class="bold well email-template-heading">
