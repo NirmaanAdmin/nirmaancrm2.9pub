@@ -148,13 +148,15 @@ function purchase_module_init_menu_items()
             'position' => 8,
         ]);
 
-        $CI->app_menu->add_sidebar_children_item('purchase', [
-            'slug'     => 'purchase-settings',
-            'name'     => _l('setting'),
-            'icon'     => 'fa fa-gears',
-            'href'     => admin_url('purchase/setting'),
-            'position' => 9,
-        ]);
+        if(is_admin() || is_pm()) {
+            $CI->app_menu->add_sidebar_children_item('purchase', [
+                'slug'     => 'purchase-settings',
+                'name'     => _l('setting'),
+                'icon'     => 'fa fa-gears',
+                'href'     => admin_url('purchase/setting'),
+                'position' => 9,
+            ]);
+        }
     }
     
 }

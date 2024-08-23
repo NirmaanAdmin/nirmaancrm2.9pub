@@ -264,6 +264,31 @@ function is_admin($staffid = '')
     return is_admin($staffid);
 }
 
+/**
+ * @since  1.0.0
+ * Check if current user is pm
+ * @param  mixed $staffid
+ * @return boolean if user is not pm
+ */
+function is_pm($staffid = '')
+{
+
+    /**
+     * Checking for current user?
+     */
+    $staffid = get_staff_user_id();
+
+    $CI = & get_instance();
+
+    $CI->db->select('1')
+    ->where('role', 8)
+    ->where('staffid', $staffid);
+
+    $result = $CI->db->count_all_results(db_prefix() . 'staff') > 0 ? true : false;
+
+    return $result;
+}
+
 function admin_body_class($class = '')
 {
     echo 'class="' . join(' ', get_admin_body_class($class)) . '"';

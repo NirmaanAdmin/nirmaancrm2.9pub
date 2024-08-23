@@ -202,6 +202,9 @@ class purchase extends AdminController
     	if (!has_permission('purchase', '', 'edit') && !is_admin()) {
             access_denied('purchase');
         }
+        if(!is_admin() && !is_pm()) {
+            access_denied('purchase');
+        }
         $data['group'] = $this->input->get('group');
 
         $data['title']                 = _l('setting');
