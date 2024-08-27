@@ -1264,6 +1264,9 @@ class Warehouse_model extends App_Model {
 			}
 		}
 
+		$email_list = $this->get_inventory_user_emails(true, $data['project']);
+		$this->sender_inventory_receiving_voucher($email_list, $insert_id);
+
 		return $insert_id > 0 ? $insert_id : false;
 
 	}
@@ -2891,6 +2894,8 @@ class Warehouse_model extends App_Model {
 			}
 		}
 
+		$email_list = $this->get_inventory_user_emails(true, $data['project_id']);
+		$this->sender_inventory_delivery_voucher($email_list, $insert_id);
 		return $insert_id > 0 ? $insert_id : false;
 
 	}
@@ -5299,6 +5304,8 @@ class Warehouse_model extends App_Model {
 				}
 			}
 
+			$email_list = $this->get_inventory_user_emails(false, 0);
+			$this->sender_loss_adjustment($email_list, $insert_id);
 			return $insert_id;
 		}
 		return false;
@@ -9371,6 +9378,8 @@ public function delete_goods_receipt($id) {
     		}
     	}
 
+    	$email_list = $this->get_inventory_user_emails(false, 0);
+    	$this->sender_site_transfer_entry($email_list, $insert_id);
     	return $insert_id > 0 ? $insert_id : false;
 
     }
@@ -11514,6 +11523,234 @@ public function delete_goods_receipt($id) {
     			//parent item
     		}
     	
+    	}
+    }
+
+    public function get_inventory_user_emails($pro_member, $project_id) 
+    {
+    	$this->db->select('email, firstname, lastname');
+    	$this->db->where('admin', 1);
+    	$this->db->or_where('staffid', get_staff_user_id());
+        $staffs = $this->db->get(db_prefix() . 'staff')->result_array();
+
+        $this->db->select('staff_id');
+        $this->db->where('project_id', $project_id);
+        $project_members = $this->db->get(db_prefix() . 'project_members')->result_array();
+
+        if(!empty($project_members) && $pro_member == true) {
+        	$project_members = array_column($project_members, 'staff_id');
+
+        	$this->db->select('email, firstname, lastname');
+        	$this->db->where_in('staffid', $project_members);
+        	$project_members = $this->db->get(db_prefix() . 'staff')->result_array();
+
+        	$staffs = array_merge($staffs, $project_members);
+        	$staffs = array_unique($staffs, SORT_REGULAR);
+        	$staffs = array_values($staffs);
+        }
+        return $staffs;
+    }
+
+    public function sender_inventory_receiving_voucher($email_list, $id)
+    {
+    	$commodity_name = 'Multiple items';
+
+    	$this->db->select(db_prefix() . 'items.description');
+    	$this->db->where('goods_receipt_id', $id);
+    	$this->db->join('tblitems', 'tblitems.id = goods_receipt_detail.commodity_code', 'left');
+    	$this->db->order_by("goods_receipt_detail.id", "asc");
+    	$goods_receipt_detail = $this->db->get(db_prefix() . 'goods_receipt_detail')->result_array();
+    	if(count($goods_receipt_detail) == 1) {
+    		$commodity_name = $goods_receipt_detail[0]['description'];
+    	}
+    	if(count($goods_receipt_detail) == 0) {
+    		return true;
+    	}
+
+    	$this->db->where('id', $id);
+    	$goods_receipt = $this->db->get(db_prefix() . 'goods_receipt')->row();
+
+    	$project_name = get_project_name_by_id($goods_receipt->project);
+
+    	$this->db->where('id', $goods_receipt->pr_order_id);
+    	$pur_orders = $this->db->get(db_prefix() . 'pur_orders')->row();
+
+    	$po_name = $pur_orders->pur_order_name;
+    	$po_no = $pur_orders->pur_order_number;
+    	$po_link = site_url('purchase/vendors_portal/pur_order/' . $pur_orders->id.'/'.$pur_orders->hash);
+    	$po_link_title = site_url('purchase/vendors_portal/pur_order/' . $pur_orders->id.'/'.$pur_orders->hash);
+    	$stock_recieving_docket_title = site_url('warehouse/edit_purchase/'.$id);
+    	$stock_recieving_docket_link = site_url('warehouse/edit_purchase/'.$id);
+
+    	$this->db->where('staffid', get_staff_user_id());
+        $login_staff = $this->db->get(db_prefix() . 'staff')->row();
+
+    	if(!empty($email_list)) {
+    		foreach ($email_list as $key => $value) {
+    			$data = array();
+    			$data['contact_firstname'] = $login_staff->firstname;
+                $data['contact_lastname'] = $login_staff->lastname;
+                $data['commodity_name'] = $commodity_name;
+                $data['project_name'] = $project_name;
+                $data['po_name'] = $po_name;
+                $data['po_no'] = $po_no;
+                $data['po_link'] = $po_link;
+                $data['po_link_title'] = $po_link_title;
+                $data['stock_recieving_docket_title'] = $stock_recieving_docket_title;
+                $data['stock_recieving_docket_link'] = $stock_recieving_docket_link;
+                $data['mail_to'] = $value['email'];
+                $data = (object) $data;
+                send_mail_template('inventory_receiving_voucher_sender', $data);
+    		}
+    	}
+    }
+
+    public function sender_inventory_delivery_voucher($email_list, $id)
+    {
+    	$commodity_name = 'Multiple items';
+
+    	$this->db->select(db_prefix() . 'items.description');
+    	$this->db->where('goods_delivery_id', $id);
+    	$this->db->join('tblitems', 'tblitems.id = goods_delivery_detail.commodity_code', 'left');
+    	$this->db->order_by("goods_delivery_detail.id", "asc");
+    	$goods_delivery_detail = $this->db->get(db_prefix() . 'goods_delivery_detail')->result_array();
+    	if(count($goods_delivery_detail) == 1) {
+    		$commodity_name = $goods_delivery_detail[0]['description'];
+    	}
+    	if(count($goods_delivery_detail) == 0) {
+    		return true;
+    	}
+
+    	$this->db->where('id', $id);
+    	$goods_delivery = $this->db->get(db_prefix() . 'goods_delivery')->row();
+
+    	$project_name = get_project_name_by_id($goods_delivery->project_id);
+
+    	$this->db->where('id', $goods_delivery->invoice_id);
+    	$invoice = $this->db->get(db_prefix() . 'invoices')->row();
+
+    	$invoice_no = format_invoice_number($invoice->id);
+    	$invoice_link = site_url('invoice/' . $invoice->id . '/' . $invoice->hash);
+    	$invoice_link_title = site_url('invoice/' . $invoice->id . '/' . $invoice->hash);
+    	$delivery_voucher_link_title = site_url('warehouse/edit_delivery/'.$id);
+    	$delivery_voucher_link = site_url('warehouse/edit_delivery/'.$id);
+
+    	$this->db->where('staffid', get_staff_user_id());
+        $login_staff = $this->db->get(db_prefix() . 'staff')->row();
+
+    	if(!empty($email_list)) {
+    		foreach ($email_list as $key => $value) {
+    			$data = array();
+    			$data['contact_firstname'] = $login_staff->firstname;
+                $data['contact_lastname'] = $login_staff->lastname;
+                $data['commodity_name'] = $commodity_name;
+                $data['project_name'] = $project_name;
+                $data['invoice_no'] = $invoice_no;
+                $data['invoice_link'] = $invoice_link;
+                $data['invoice_link_title'] = $invoice_link_title;
+                $data['delivery_voucher_link_title'] = $delivery_voucher_link_title;
+                $data['delivery_voucher_link'] = $delivery_voucher_link;
+                $data['mail_to'] = $value['email'];
+                $data = (object) $data;
+                send_mail_template('inventory_delivery_voucher_sender', $data);
+    		}
+    	}
+    }
+
+    public function sender_site_transfer_entry($email_list, $id)
+    {
+    	$commodity_name = 'Multiple items';
+    	$from_stock_name = 'one warehouses';
+    	$to_stock_name = 'another warehouses';
+
+    	$this->db->select(db_prefix() . 'items.description, internal_delivery_note_detail.from_stock_name, internal_delivery_note_detail.to_stock_name');
+    	$this->db->where('internal_delivery_id', $id);
+    	$this->db->join('tblitems', 'tblitems.id = internal_delivery_note_detail.commodity_code', 'left');
+    	$this->db->order_by("internal_delivery_note_detail.id", "asc");
+    	$internal_delivery_note_detail = $this->db->get(db_prefix() . 'internal_delivery_note_detail')->result_array();
+    	if(count($internal_delivery_note_detail) == 1) {
+    		$commodity_name = $internal_delivery_note_detail[0]['description'];
+
+    		$this->db->where('warehouse_id', $internal_delivery_note_detail[0]['from_stock_name']);
+    		$warehouse = $this->db->get(db_prefix() . 'warehouse')->row();
+    		$from_stock_name = $warehouse->warehouse_name;
+
+    		$this->db->where('warehouse_id', $internal_delivery_note_detail[0]['to_stock_name']);
+    		$warehouse = $this->db->get(db_prefix() . 'warehouse')->row();
+    		$to_stock_name = $warehouse->warehouse_name;
+    	}
+    	if(count($internal_delivery_note_detail) == 0) {
+    		return true;
+    	}
+
+    	$site_transfer_link_title = site_url('warehouse/manage_internal_delivery#'.$id);
+    	$site_transfer_link = site_url('warehouse/manage_internal_delivery#'.$id);
+
+    	$this->db->where('staffid', get_staff_user_id());
+        $login_staff = $this->db->get(db_prefix() . 'staff')->row();
+
+    	if(!empty($email_list)) {
+    		foreach ($email_list as $key => $value) {
+    			$data = array();
+    			$data['contact_firstname'] = $login_staff->firstname;
+                $data['contact_lastname'] = $login_staff->lastname;
+                $data['commodity_name'] = $commodity_name;
+                $data['from_stock_name'] = $from_stock_name;
+                $data['to_stock_name'] = $to_stock_name;
+                $data['site_transfer_link_title'] = $site_transfer_link_title;
+                $data['site_transfer_link'] = $site_transfer_link;
+                $data['mail_to'] = $value['email'];
+                $data = (object) $data;
+                send_mail_template('site_transfer_entry_sender', $data);
+    		}
+    	}
+    }
+
+    public function sender_loss_adjustment($email_list, $id)
+    {
+    	$commodity_name = 'Multiple items';
+
+    	$this->db->select(db_prefix() . 'items.description');
+    	$this->db->where('loss_adjustment', $id);
+    	$this->db->join('tblitems', 'tblitems.id = wh_loss_adjustment_detail.items', 'left');
+    	$this->db->order_by("wh_loss_adjustment_detail.id", "asc");
+    	$wh_loss_adjustment_detail = $this->db->get(db_prefix() . 'wh_loss_adjustment_detail')->result_array();
+    	if(count($wh_loss_adjustment_detail) == 1) {
+    		$commodity_name = $wh_loss_adjustment_detail[0]['description'];
+    	}
+    	if(count($wh_loss_adjustment_detail) == 0) {
+    		return true;
+    	}
+
+    	$this->db->where('id', $id);
+    	$loss_adjustment = $this->db->get(db_prefix() . 'wh_loss_adjustment')->row();
+    	$type = $loss_adjustment->type;
+
+    	$this->db->where('warehouse_id', $loss_adjustment->warehouses);
+		$warehouse = $this->db->get(db_prefix() . 'warehouse')->row();
+		$warehouse_name = $warehouse->warehouse_name;
+
+    	$loss_adjusment_link_title = site_url('warehouse/view_lost_adjustment/'.$id);
+    	$loss_adjusment_link = site_url('warehouse/view_lost_adjustment/'.$id);
+
+    	$this->db->where('staffid', get_staff_user_id());
+        $login_staff = $this->db->get(db_prefix() . 'staff')->row();
+
+    	if(!empty($email_list)) {
+    		foreach ($email_list as $key => $value) {
+    			$data = array();
+    			$data['contact_firstname'] = $login_staff->firstname;
+                $data['contact_lastname'] = $login_staff->lastname;
+                $data['commodity_name'] = $commodity_name;
+                $data['item_name'] = $commodity_name;
+                $data['type'] = $type;
+                $data['warehouse_name'] = $warehouse_name;
+                $data['loss_adjusment_link_title'] = $loss_adjusment_link_title;
+                $data['loss_adjusment_link'] = $loss_adjusment_link;
+                $data['mail_to'] = $value['email'];
+                $data = (object) $data;
+                send_mail_template('loss_adjustment_sender', $data);
+    		}
     	}
     }
 }
