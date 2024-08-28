@@ -44,4 +44,33 @@ class WebApi extends ClientsController
         }
         echo json_encode($result);
     }
+
+    public function save_vendor()
+    {
+        $this->db->query("ALTER TABLE `tblpur_vendor` CHANGE `address` `address` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL");
+        $path = base_url('assets/uploads/vendors.csv');
+
+        $file = fopen($path, 'r');
+        while (($line = fgetcsv($file)) !== FALSE) {
+          $single = array();
+          $single = $line;
+          if(!empty($single)) {
+            $data = array();
+            $data['company'] = $single[1];
+            $data['address'] = $single[2];
+            $data['vat'] = $single[5];
+            $data['country'] = 102;
+            $pos = strpos($single[3], 'Applicable');
+            if ($pos === false) {
+                $data['state'] = $single[3];
+            }
+            $data['datecreated'] = date('Y-m-d H:i:s');
+            $data['addedfrom'] = 1;
+            $this->db->insert(db_prefix() . 'pur_vendor', $data);
+          }
+        }
+        fclose($file);
+        echo "Success";
+        die();
+    }
 }
