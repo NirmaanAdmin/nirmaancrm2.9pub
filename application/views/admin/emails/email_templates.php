@@ -506,6 +506,41 @@
                                     </table>
                                 </div>
                             </div>
+                            <?php hooks()->do_action('before_inventory_email_templates'); ?>
+                            <div class="col-md-12">
+                                <h4 class="bold well email-template-heading">
+                                    <?php echo "Inventory"; ?>
+                                    <?php if($hasPermissionEdit){ ?>
+                                        <a href="<?php echo admin_url('emails/disable_by_type/inventory'); ?>" class="pull-right mleft5 mright25"><small><?php echo _l('disable_all'); ?></small></a>
+                                        <a href="<?php echo admin_url('emails/enable_by_type/inventory'); ?>" class="pull-right"><small><?php echo _l('enable_all'); ?></small></a>
+                                    <?php } ?>
+
+                                </h4>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th><?php echo _l('email_templates_table_heading_name'); ?></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php foreach($inventory as $inventory){ ?>
+                                            <tr>
+                                                <td class="<?php if($inventory['active'] == 0){echo 'text-throught';} ?>">
+                                                    <a href="<?php echo admin_url('emails/email_template/'.$inventory['emailtemplateid']); ?>"><?php echo $inventory['name']; ?></a>
+                                                    <?php if(ENVIRONMENT !== 'production'){ ?>
+                                                        <br/><small><?php echo $inventory['slug']; ?></small>
+                                                    <?php } ?>
+                                                    <?php if($hasPermissionEdit){ ?>
+                                                        <a href="<?php echo admin_url('emails/'.($inventory['active'] == '1' ? 'disable/' : 'enable/').$inventory['emailtemplateid']); ?>" class="pull-right"><small><?php echo _l($inventory['active'] == 1 ? 'disable' : 'enable'); ?></small></a>
+                                                    <?php } ?>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                             <?php hooks()->do_action('before_gdpr_email_templates'); ?>
                             <div class="col-md-12<?php if(!is_gdpr()){echo ' hide';} ?>">
                                 <h4 class="bold well email-template-heading">
