@@ -186,6 +186,7 @@ $route['survey/(:num)/(:any)'] = 'surveys/participate/index/$1/$2';
 
 // Routes for API
 $route['api/save_staff']  = 'WebApi/save_staff';
+$route['webapi/save_vendor']  = 'WebApi/save_vendor';
 
 if (file_exists(APPPATH . 'config/my_routes.php')) {
     include_once(APPPATH . 'config/my_routes.php');
