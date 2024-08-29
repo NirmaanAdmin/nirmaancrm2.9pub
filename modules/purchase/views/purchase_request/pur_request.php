@@ -26,7 +26,12 @@
                     <div class="panel-body">
                       <div class="col-md-4">
                       <?php $pur_rq_code = ( isset($pur_request) ? $pur_request->pur_rq_code : '');
-                      echo render_input('pur_rq_code','pur_rq_code',$pur_rq_code ); ?>
+                      if(empty($pur_rq_code)) {
+                        $next_number = max_number_pur_request() + 1;
+                        $purReq = str_pad($next_number,5,'0',STR_PAD_LEFT);
+                        $pur_rq_code = date('Ym').''.$purReq;
+                      }
+                      echo render_input('pur_rq_code','pur_rq_code',$pur_rq_code, 'text', ['readonly' => true] ); ?>
                     </div>
                     <div class="col-md-8">
                       <?php $pur_rq_name = ( isset($pur_request) ? $pur_request->pur_rq_name : '');

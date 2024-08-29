@@ -570,6 +570,17 @@ function max_number_pur_order(){
 }
 
 /**
+ * { function_description }
+ *
+ * @return     <type>  ( description_of_the_return_value )
+ */
+function max_number_pur_request(){
+    $CI           = & get_instance();
+    $max = $CI->db->query('select COUNT(id) as count from '.db_prefix().'pur_request')->row();
+    return $max->count;
+}
+
+/**
  * Gets all pur vendor attachments.
  *
  * @param      <type>  $id     The identifier
