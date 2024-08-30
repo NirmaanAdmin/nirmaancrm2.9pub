@@ -4,7 +4,7 @@
 	<div class="content">
 		<div class="row">
 			<?php
-			echo form_open($this->uri->uri_string(),array('id'=>'estimate-form','class'=>'_transaction_form'));
+			echo form_open_multipart($this->uri->uri_string(),array('id'=>'estimate-form','class'=>'_transaction_form'));
 			if(isset($estimate)){
 				echo form_hidden('isedit');
 			}

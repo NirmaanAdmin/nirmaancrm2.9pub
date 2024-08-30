@@ -162,6 +162,10 @@ define('CONTRACTS_UPLOADS_FOLDER', FCPATH . 'uploads/contracts' . '/');
  */
 define('TASKS_ATTACHMENTS_FOLDER', FCPATH . 'uploads/tasks' . '/');
 /**
+ * Purchase attachments
+ */
+define('PURCHASE_ATTACHMENTS_FOLDER', FCPATH . 'uploads/purchase' . '/');
+/**
  * Invoice attachments
  */
 define('INVOICE_ATTACHMENTS_FOLDER', FCPATH . 'uploads/invoices' . '/');

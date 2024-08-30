@@ -189,6 +189,52 @@
            
       </div>
    </div>
+
+   <div class="panel-body mtop10">
+      <div class="col-md-12">
+        <div class="panel panel-success">
+          <div class="panel-heading"><?php echo _l('attachment'); ?></div>
+            <div class="panel-body">
+                <div class="attachments">
+                  <div class="attachment">
+                    <div class="col-md-5 form-group">
+                      <div class="input-group">
+                         <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachments[0]" accept="<?php echo get_ticket_form_accepted_mimes(); ?>">
+                         <span class="input-group-btn">
+                         <button class="btn btn-success add_more_attachments p8" type="button"><i class="fa fa-plus"></i></button>
+                         </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br /> <br />
+
+                <?php
+                if(isset($attachments) && count($attachments) > 0) { 
+                  foreach($attachments as $value){
+                    echo '<div class="col-md-3">';
+                    $path = get_upload_path_by_type('purchase').'pur_quotation/'.$value['rel_id'].'/'.$value['file_name'];
+                    $is_image = is_image($path);
+                    if($is_image){
+                       echo '<div class="preview_image">';
+                    }
+                    ?>
+                    <a href="<?php echo site_url('download/file/purchase/'. $value['id']); ?>" class="display-block mbot5"<?php if($is_image){ ?> data-lightbox="attachment-purchase-<?php echo $value['rel_id']; ?>" <?php } ?>>
+                      <i class="<?php echo get_mime_class($value['filetype']); ?>"></i> <?php echo $value['file_name']; ?>
+                      <?php if($is_image){ ?>
+                         <img class="mtop5" src="<?php echo site_url('download/preview_image?path='.protected_file_url_by_path($path).'&type='.$value['filetype']); ?>" style="height: 165px;">
+                      <?php } ?>
+                    </a>
+                    <?php if($is_image){
+                      echo '</div>';
+                      echo '<a href="'.admin_url('purchase/delete_attachment/'.$value['id']).'" class="text-danger _delete">'._l('delete').'</a>';
+                    } ?>
+                <?php echo '</div>'; } } ?>
+              </div>
+          </div>
+      </div>
+    </div>
+        
    <div class="panel-body mtop10">
   <div class="row">
    <div class="col-md-12">

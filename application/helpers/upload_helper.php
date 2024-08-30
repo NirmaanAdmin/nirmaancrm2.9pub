@@ -414,6 +414,68 @@ function handle_task_attachments_array($taskid, $index_name = 'attachments')
 }
 
 /**
+ * Purchase attachments upload array
+ * Multiple purchase attachments can be upload if input type is array or dropzone plugin is used
+ * @param  mixed $related related
+ * @param  mixed $id id
+ * @param  string $index_name attachments index, in different forms different index name is used
+ * @return mixed
+ */
+function handle_purchase_attachments_array($related, $id, $index_name = 'attachments')
+{
+    $uploaded_files = [];
+    $path           = get_upload_path_by_type('purchase') . $related . '/'. $id . '/';
+    $CI             = &get_instance();
+
+    if (isset($_FILES[$index_name]['name'])
+        && ($_FILES[$index_name]['name'] != '' || is_array($_FILES[$index_name]['name']) && count($_FILES[$index_name]['name']) > 0)) {
+        if (!is_array($_FILES[$index_name]['name'])) {
+            $_FILES[$index_name]['name']     = [$_FILES[$index_name]['name']];
+            $_FILES[$index_name]['type']     = [$_FILES[$index_name]['type']];
+            $_FILES[$index_name]['tmp_name'] = [$_FILES[$index_name]['tmp_name']];
+            $_FILES[$index_name]['error']    = [$_FILES[$index_name]['error']];
+            $_FILES[$index_name]['size']     = [$_FILES[$index_name]['size']];
+        }
+
+        _file_attachments_index_fix($index_name);
+        for ($i = 0; $i < count($_FILES[$index_name]['name']); $i++) {
+            // Get the temp file path
+            $tmpFilePath = $_FILES[$index_name]['tmp_name'][$i];
+
+            // Make sure we have a filepath
+            if (!empty($tmpFilePath) && $tmpFilePath != '') {
+                if (_perfex_upload_error($_FILES[$index_name]['error'][$i])
+                    || !_upload_extension_allowed($_FILES[$index_name]['name'][$i])) {
+                    continue;
+                }
+
+                _maybe_create_upload_path($path);
+                $filename    = unique_filename($path, $_FILES[$index_name]['name'][$i]);
+                $newFilePath = $path . $filename;
+
+                // Upload the file into the temp dir
+                if (move_uploaded_file($tmpFilePath, $newFilePath)) {
+                    array_push($uploaded_files, [
+                        'file_name' => $filename,
+                        'filetype'  => $_FILES[$index_name]['type'][$i],
+                    ]);
+
+                    if (is_image($newFilePath)) {
+                        // create_img_thumb($path, $filename);
+                    }
+                }
+            }
+        }
+    }
+
+    if (count($uploaded_files) > 0) {
+        return $uploaded_files;
+    }
+
+    return false;
+}
+
+/**
  * Invoice attachments
  * @param  mixed $invoiceid invoice ID to add attachments
  * @return array  - Result values
@@ -1109,6 +1171,10 @@ function get_upload_path_by_type($type)
         break;
         case 'task':
             $path = TASKS_ATTACHMENTS_FOLDER;
+
+        break;
+        case 'purchase':
+            $path = PURCHASE_ATTACHMENTS_FOLDER;
 
         break;
         case 'contract':

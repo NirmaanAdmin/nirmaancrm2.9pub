@@ -519,6 +519,7 @@ class purchase extends AdminController
 
     		$data['pur_request_detail'] = json_encode($this->purchase_model->get_pur_request_detail($id));
     		$data['pur_request'] = $this->purchase_model->get_purchase_request($id);
+            $data['attachments'] = $this->purchase_model->get_attachments('pur_request', $id);
     		$data['title'] = _l('edit');
     	}
 
@@ -745,6 +746,7 @@ class purchase extends AdminController
 
             $data['estimate_detail'] = json_encode($this->purchase_model->get_pur_estimate_detail($id));
             $data['estimate'] = $estimate;
+            $data['attachments'] = $this->purchase_model->get_attachments('pur_quotation', $id);
             $data['edit']     = true;
             $title            = _l('edit', _l('estimate_lowercase'));
         }
@@ -1111,6 +1113,7 @@ class purchase extends AdminController
         } else {
             $data['pur_order_detail'] = json_encode($this->purchase_model->get_pur_order_detail($id));
             $data['pur_order'] = $this->purchase_model->get_pur_order($id);
+            $data['attachments'] = $this->purchase_model->get_attachments('pur_order', $id);
             $project_id = $data['pur_order']->project_id != 0 ? $data['pur_order']->project_id : '';
             $title = _l('pur_order_detail');
         }
@@ -3055,5 +3058,11 @@ class purchase extends AdminController
             }
         }
         echo json_encode($response);
+    }
+
+    public function delete_attachment($id)
+    {
+        $this->purchase_model->delete_attachment($id);
+        redirect($_SERVER['HTTP_REFERER']);
     }
 }

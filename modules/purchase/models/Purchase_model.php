@@ -915,6 +915,7 @@ class Purchase_model extends App_Model
         if($data['status'] == 2) {
             $this->send_mail_to_sender('purchase_request', $data['status'], $insert_id);
         }
+        $this->save_purchase_files('pur_request', $insert_id);
         if($insert_id){
             foreach($rq_detail as $key => $rqd){
                 $rq_detail[$key]['pur_request'] = $insert_id;
@@ -962,6 +963,7 @@ class Purchase_model extends App_Model
         
         $this->db->where('id',$id);
         $this->db->update(db_prefix().'pur_request',$data);
+        $this->save_purchase_files('pur_request', $id);
         if($this->db->affected_rows() > 0){
             $affectedRows++;
         }
@@ -1255,6 +1257,7 @@ class Purchase_model extends App_Model
         if($data['status'] == 2) {
             $this->send_mail_to_sender('quotation', $data['status'], $insert_id);
         }
+        $this->save_purchase_files('pur_quotation', $insert_id);
 
         if ($insert_id) {
             $total = [];
@@ -1358,6 +1361,7 @@ class Purchase_model extends App_Model
 
         $this->db->where('id', $id);
         $this->db->update(db_prefix() . 'pur_estimates', $data);
+        $this->save_purchase_files('pur_quotation', $id);
 
         if ($this->db->affected_rows() > 0) {
             if ($original_status != $data['status']) {
@@ -1693,6 +1697,7 @@ class Purchase_model extends App_Model
         if($data['approve_status'] == 2) {
             $this->send_mail_to_sender('purchase_order', $data['approve_status'], $insert_id);
         }
+        $this->save_purchase_files('pur_order', $insert_id);
         if ($insert_id) {
             // Update next estimate number in settings
             $total = [];
@@ -1810,6 +1815,7 @@ class Purchase_model extends App_Model
 
         $this->db->where('id', $id);
         $this->db->update(db_prefix() . 'pur_orders', $data);
+        $this->save_purchase_files('pur_order', $id);
 
         if ($this->db->affected_rows() > 0) {
             $affectedRows++;
@@ -4385,6 +4391,60 @@ class Purchase_model extends App_Model
                 }
             }
         }
+    }
+
+    public function save_purchase_files($related, $id)
+    {
+        $uploadedFiles = handle_purchase_attachments_array($related, $id);
+        if ($uploadedFiles && is_array($uploadedFiles)) {
+            foreach ($uploadedFiles as $file) {
+                $data = array();
+                $data['dateadded'] = date('Y-m-d H:i:s');
+                $data['rel_type'] = $related;
+                $data['rel_id'] = $id;
+                $data['staffid'] = get_staff_user_id();
+                $data['attachment_key'] = app_generate_hash();
+                $data['file_name'] = $file['file_name'];
+                $data['filetype']  = $file['filetype'];
+                $this->db->insert(db_prefix() . 'purchase_files', $data);
+            }
+        }
+        return true;
+    }
+
+    public function get_attachments($related, $id)
+    {
+        $this->db->where('rel_id', $id);
+        $this->db->where('rel_type', $related);
+        $this->db->order_by('dateadded', 'desc');
+        $attachments = $this->db->get(db_prefix() . 'purchase_files')->result_array();
+        return $attachments;
+    }
+
+    /**
+     * Remove attachment by id
+     * @param  mixed $id attachment id
+     * @return boolean
+     */
+    public function delete_attachment($id)
+    {
+        $deleted = false;
+        $this->db->where('id', $id);
+        $attachment = $this->db->get(db_prefix() . 'purchase_files')->row();
+        if ($attachment) {
+            if (unlink(get_upload_path_by_type('purchase') . $attachment->rel_type . '/' . $attachment->rel_id . '/' . $attachment->file_name)) {
+                $this->db->where('id', $attachment->id);
+                $this->db->delete(db_prefix() . 'purchase_files');
+                $deleted = true;
+            }
+            // Check if no attachments left, so we can delete the folder also
+            $other_attachments = list_files(get_upload_path_by_type('purchase') . $attachment->rel_type . '/' . $attachment->rel_id);
+            if (count($other_attachments) == 0) {
+                delete_dir(get_upload_path_by_type('purchase') . $attachment->rel_type . '/' . $attachment->rel_id);
+            }
+        }
+
+        return $deleted;
     }
 
 }
