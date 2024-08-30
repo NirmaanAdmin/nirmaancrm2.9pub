@@ -557,6 +557,7 @@ class purchase extends AdminController
         $data['check_approve_status'] = $this->purchase_model->check_approval_details($id,'pur_request');
         $data['list_approve_status'] = $this->purchase_model->get_list_approval_details($id,'pur_request');
         $data['check_approval_setting'] = $this->purchase_model->check_approval_setting($response['project_id'] = $data['pur_request']->project_id,'pur_request',0);
+        $data['attachments'] = $this->purchase_model->get_attachments('pur_request', $id);
 
         $this->load->view('purchase_request/view_pur_request', $data);
 

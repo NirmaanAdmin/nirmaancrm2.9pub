@@ -222,6 +222,36 @@
                       <a href="<?php echo admin_url('purchase/pur_order/0/'.$pur_request->id); ?>" class="btn btn-info save_detail pull-right"><?php echo _l('convert_to_po'); ?></a>
                     </div>
                   <?php } ?>
+
+                  <div class="col-md-12">
+                    <div class="panel panel-warning">
+                      <div class="panel-heading"><?php echo _l('attachment'); ?></div>
+                        <div class="panel-body">
+
+                            <?php
+                            if(isset($attachments) && count($attachments) > 0) { 
+                              foreach($attachments as $value){
+                                echo '<div class="col-md-3">';
+                                $path = get_upload_path_by_type('purchase').'pur_request/'.$value['rel_id'].'/'.$value['file_name'];
+                                $is_image = is_image($path);
+                                if($is_image){
+                                   echo '<div class="preview_image">';
+                                }
+                                ?>
+                                <a href="<?php echo site_url('download/file/purchase/'. $value['id']); ?>" class="display-block mbot5"<?php if($is_image){ ?> data-lightbox="attachment-purchase-<?php echo $value['rel_id']; ?>" <?php } ?>>
+                                  <i class="<?php echo get_mime_class($value['filetype']); ?>"></i> <?php echo $value['file_name']; ?>
+                                  <?php if($is_image){ ?>
+                                     <img class="mtop5" src="<?php echo site_url('download/preview_image?path='.protected_file_url_by_path($path).'&type='.$value['filetype']); ?>" style="height: 165px;">
+                                  <?php } ?>
+                                </a>
+                                <?php if($is_image){
+                                  echo '</div>';
+                                  echo '<a href="'.admin_url('purchase/delete_attachment/'.$value['id']).'" class="text-danger _delete">'._l('delete').'</a>';
+                                } ?>
+                            <?php echo '</div>'; } } ?>
+                          </div>
+                      </div>
+                  </div>
                   
                   <div class="col-md-12">
                     <p class="bold p_style"><?php echo _l('detail'); ?></p>
