@@ -296,6 +296,56 @@
       </div>
    </div>
 </div>
+
+<?php if(isset($attachments) && count($attachments) > 0) { ?>
+<div class="col-md-12 no-padding">
+   <div class="panel_s">
+      <div class="panel-body">
+         <div class="horizontal-scrollable-tabs preview-tabs-top">
+            <div class="scroller arrow-left"><i class="fa fa-angle-left"></i></div>
+            <div class="scroller arrow-right"><i class="fa fa-angle-right"></i></div>
+            <div class="horizontal-tabs">
+               <ul class="nav nav-tabs nav-tabs-horizontal mbot15" role="tablist">
+                  <li role="presentation" class="active">
+                     <a href="#attachment" aria-controls="attachment" role="tab" data-toggle="tab">
+                     <?php echo _l('attachment'); ?>
+                     </a>
+                  </li>  
+               </ul>
+            </div>
+         </div>
+
+         <div class="clearfix"></div>
+         <hr class="hr-panel-heading" />
+         <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="attachment">
+               <?php
+                if(isset($attachments) && count($attachments) > 0) { 
+                  foreach($attachments as $value){
+                    echo '<div class="col-md-4" style="padding-bottom: 10px">';
+                    $path = get_upload_path_by_type('purchase').'pur_quotation/'.$value['rel_id'].'/'.$value['file_name'];
+                    $is_image = is_image($path);
+                    if($is_image){
+                       echo '<div class="preview_image">';
+                    }
+                    ?>
+                    <a href="<?php echo site_url('download/file/purchase/'. $value['id']); ?>" class="display-block mbot5"<?php if($is_image){ ?> data-lightbox="attachment-purchase-<?php echo $value['rel_id']; ?>" <?php } ?>>
+                      <i class="<?php echo get_mime_class($value['filetype']); ?>"></i> <?php echo $value['file_name']; ?>
+                      <?php if($is_image){ ?>
+                         <img class="mtop5" src="<?php echo site_url('download/preview_image?path='.protected_file_url_by_path($path).'&type='.$value['filetype']); ?>" style="height: 165px;">
+                      <?php } ?>
+                    </a>
+                    <?php if($is_image){
+                      echo '</div>';
+                    } ?>
+               <?php echo '</div>'; } } ?>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<?php } ?>
+
 <div class="modal fade" id="add_action" tabindex="-1" role="dialog">
    <div class="modal-dialog">
       <div class="modal-content">

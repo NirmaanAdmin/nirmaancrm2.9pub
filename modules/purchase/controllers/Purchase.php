@@ -863,6 +863,7 @@ class purchase extends AdminController
         $data['check_approve_status'] = $this->purchase_model->check_approval_details($id,'pur_quotation');
         $data['list_approve_status'] = $this->purchase_model->get_list_approval_details($id,'pur_quotation');
         $data['check_approval_setting'] = $this->purchase_model->check_approval_setting($response['project_id'] = $estimate->project_id,'pur_quotation',0);
+        $data['attachments'] = $this->purchase_model->get_attachments('pur_quotation', $id);
         
         if ($to_return == false) {
             $this->load->view('quotations/estimate_preview_template', $data);
@@ -1067,6 +1068,7 @@ class purchase extends AdminController
         $data['estimate']          = $estimate;
         $data['members']           = $this->staff_model->get('', ['active' => 1]);
         $data['check_approval_setting'] = $this->purchase_model->check_approval_setting($response['project_id'] = $estimate->project_id,'pur_request',0);
+        $data['attachments'] = $this->purchase_model->get_attachments('pur_order', $id);
         
         if ($to_return == false) {
             $this->load->view('purchase_order/pur_order_preview', $data);
