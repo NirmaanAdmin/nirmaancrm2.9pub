@@ -2651,47 +2651,37 @@ class Purchase_model extends App_Model
         $month = date('m',strtotime($pur_request->request_date));
         $year = date('Y',strtotime($pur_request->request_date));
         $list_approve_status = $this->get_list_approval_details($pur_request_id,'pur_request');
+        $logo = '';
+        $company_logo = get_option('company_logo_dark');
+        if(!empty($company_logo)) {
+            $logo = '<img src="' . base_url('uploads/company/' . $company_logo) . '" width="230" height="100">';
+        }
 
     $html = '<table class="table">
         <tbody>
           <tr>
-            <td class="font_td_cpn">'. _l('company_name').': '. $company_name.'</td>
-            <td class="width_20"></td>
-            
+            <td>
+                '.$logo.'
+                '.format_organization_info().'
+            </td>
+            <td style="position: absolute; float: right;">
+                <span style="text-align: right; font-size: 25px"><b>'.mb_strtoupper(_l('request_quotation')).'</b></span><br />
+                <span style="text-align: right;"># '.$pur_request->pur_rq_code.'</span><br />
+                <span style="text-align: right;">'.get_status_approve($pur_request->status).'</span>
+            </td>
           </tr>
+        </tbody>
+      </table>
+      <table class="table">
+        <tbody>
           <tr>
-            <td class="font_500">'. _l('address').': '. $address.'</td>
             <td></td>
-            
+            <td style="position: absolute; float: right;">
+                <span style="text-align: right;"><b>'. _l('date_request').':</b> '. date('d-m-Y', strtotime($pur_request->request_date)).'</span><br />
+                <span style="text-align: right;"><b>'. _l('project').':</b> '. get_project_name_by_id($pur_request->project_id).'</span><br />
+                <span style="text-align: right;"><b>'. _l('requester').':</b> '. get_staff_full_name($pur_request->requester).'</span><br />
+            </td>
           </tr>
-        </tbody>
-      </table>
-      <table class="table">
-        <tbody>
-          <tr>
-            
-            <td class="td_ali_font"><h2 class="h2_style">'.mb_strtoupper(_l('request_quotation')).'</h2></td>
-           
-          </tr>
-          <tr>
-            
-            <td class="align_cen">'. _l('days').' '.$day.' '._l('month').' '.$month.' '._l('year') .' '.$year.'</td>
-            
-          </tr>
-          
-        </tbody>
-      </table>
-      <table class="table">
-        <tbody>
-          <tr>
-            <td class="td_width_25"><h4>'. _l('requester').':</h4></td>
-            <td class="td_width_75">'. get_staff_full_name($pur_request->requester).'</td>
-          </tr>
-          <tr>
-            <td class="font_500"><h4>'. _l('department').':</h4></td>
-            <td>'. $dpm_name.'</td>
-          </tr>
-          
         </tbody>
       </table>
       <br><br>
