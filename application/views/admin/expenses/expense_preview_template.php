@@ -223,12 +223,22 @@
                   <?php }  else { ?>
                   <div class="row">
                      <div class="col-md-10">
-                        <i class="<?php echo get_mime_class($expense->filetype); ?>"></i> <a href="<?php echo site_url('download/file/expense/'.$expense->expenseid); ?>"> <?php echo $expense->attachment; ?></a>
+                        <?php 
+                        $path = get_upload_path_by_type('expense').$expense->expenseid.'/'.$expense->attachment;
+                        $is_image = is_image($path);
+                        if($is_image){
+                          echo '<div class="preview_image">';
+                        }
+                        ?>
+                        <a href="<?php echo site_url('download/file/expense/'. $expense->expenseid); ?>" class="display-block mbot5"<?php if($is_image){ ?> data-lightbox="attachment-expense-<?php echo $expense->expenseid; ?>" <?php } ?>>
+                           <i class="<?php echo get_mime_class($expense->filetype); ?>"></i> <?php echo $expense->attachment; ?>
+                           <?php if($is_image){ ?>
+                               <img class="mtop5" src="<?php echo site_url('download/preview_image?path='.protected_file_url_by_path($path).'&type='.$expense->filetype); ?>" style="height: 165px;">
+                           <?php } ?>
+                        </a>
                      </div>
                      <?php if($expense->attachment_added_from == get_staff_user_id() || is_admin()){ ?>
-                     <div class="col-md-2 text-right">
                         <a class="_delete text-danger" href="<?php echo admin_url('expenses/delete_expense_attachment/'.$expense->expenseid .'/'.'preview'); ?>" class="text-danger"><i class="fa fa fa-times"></i></a>
-                     </div>
                      <?php } ?>
                   </div>
                   <?php } ?>
