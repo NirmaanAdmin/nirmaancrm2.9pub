@@ -2509,47 +2509,37 @@ class Purchase_model extends App_Model
         $month = date('m',strtotime($pur_request->request_date));
         $year = date('Y',strtotime($pur_request->request_date));
         $list_approve_status = $this->get_list_approval_details($pur_request_id,'pur_request');
+        $logo = '';
+        $company_logo = get_option('company_logo_dark');
+        if(!empty($company_logo)) {
+            $logo = '<img src="' . base_url('uploads/company/' . $company_logo) . '" width="230" height="100">';
+        }
 
     $html = '<table class="table">
         <tbody>
           <tr>
-            <td class="font_td_cpn">'. _l('company_name').': '. $company_name.'</td>
-            <td class="width_20"></td>
-            
+            <td>
+                '.$logo.'
+                '.format_organization_info().'
+            </td>
+            <td style="position: absolute; float: right;">
+                <span style="text-align: right; font-size: 25px"><b>'.mb_strtoupper(_l('request_quotation')).'</b></span><br />
+                <span style="text-align: right;"># '.$pur_request->pur_rq_code.'</span><br />
+                <span style="text-align: right;">'.get_status_approve($pur_request->status).'</span>
+            </td>
           </tr>
+        </tbody>
+      </table>
+      <table class="table">
+        <tbody>
           <tr>
-            <td class="font_500">'. _l('address').': '. $address.'</td>
             <td></td>
-            
+            <td style="position: absolute; float: right;">
+                <span style="text-align: right;"><b>'. _l('date_request').':</b> '. date('d-m-Y', strtotime($pur_request->request_date)).'</span><br />
+                <span style="text-align: right;"><b>'. _l('project').':</b> '. get_project_name_by_id($pur_request->project_id).'</span><br />
+                <span style="text-align: right;"><b>'. _l('requester').':</b> '. get_staff_full_name($pur_request->requester).'</span><br />
+            </td>
           </tr>
-        </tbody>
-      </table>
-      <table class="table">
-        <tbody>
-          <tr>
-            
-            <td class="td_ali_font"><h2 class="h2_style">'.mb_strtoupper(_l('purchase_request')).'</h2></td>
-           
-          </tr>
-          <tr>
-            
-            <td class="align_cen">'. _l('days').' '.$day.' '._l('month').' '.$month.' '._l('year') .' '.$year.'</td>
-            
-          </tr>
-          
-        </tbody>
-      </table>
-      <table class="table">
-        <tbody>
-          <tr>
-            <td class="td_width_25"><h4>'. _l('requester').':</h4></td>
-            <td class="td_width_75">'. get_staff_full_name($pur_request->requester).'</td>
-          </tr>
-          <tr>
-            <td class="font_500"><h4>'. _l('department').':</h4></td>
-            <td>'. $dpm_name.'</td>
-          </tr>
-          
         </tbody>
       </table>
       <br><br>
@@ -2974,53 +2964,65 @@ class Purchase_model extends App_Model
         $day = date('d',strtotime($pur_order->order_date));
         $month = date('m',strtotime($pur_order->order_date));
         $year = date('Y',strtotime($pur_order->order_date));
+        $logo = '';
+        $delivery_date = '';
+        $project_name = '';
+        $buyer = '';
+        $company_logo = get_option('company_logo_dark');
+        if(!empty($company_logo)) {
+            $logo = '<img src="' . base_url('uploads/company/' . $company_logo) . '" width="230" height="100">';
+        }
+        if(!empty($pur_order->delivery_date)) {
+            $delivery_date = '<span style="text-align: right;"><b>'. _l('delivery_date').':</b> '. date('d-m-Y', strtotime($pur_order->delivery_date)).'</span><br />';
+        }
+        if(!empty(get_project_name_by_id($pur_order->project_id))) {
+            $project_name = '<span style="text-align: right;"><b>'. _l('project').':</b> '. get_project_name_by_id($pur_order->project_id).'</span><br />';
+        }
+        if(!empty($pur_order->buyer)) {
+            $buyer = '<span style="text-align: right;"><b>'. _l('buyer').':</b> '. get_staff_full_name($pur_order->buyer).'</span><br />';
+        }
+        $pur_request = $this->get_purchase_request($pur_order->pur_request);
+        $pur_request_name = '';
+        if(!empty($pur_request)) {
+            $pur_request_name = '<span style="text-align: right;"><b>'. _l('pur_request').':</b> #'. $pur_request->pur_rq_code.'</span><br />';
+        }
         
     $html = '<table class="table">
         <tbody>
           <tr>
-            <td class="font_td_cpn">'. _l('company_name').': '. $company_name.'</td>
-            <td class="width_20"></td>
-            
+            <td>
+                '.$logo.'
+                '.format_organization_info().'
+            </td>
+            <td style="position: absolute; float: right;">
+                <span style="text-align: right; font-size: 25px"><b>'.mb_strtoupper(_l('purchase_order')).'</b></span><br />
+                <span style="text-align: right;">'.$pur_order->pur_order_number.' - '.$pur_order->pur_order_name.'</span><br />
+            </td>
           </tr>
-          <tr>
-            <td class="font_500">'. _l('address').': '. $address.'</td>
-            <td></td>
-            
-          </tr>
-        </tbody>
-      </table>
-      <table class="table">
-        <tbody>
-          <tr>
-            
-            <td class="td_ali_font"><h2 class="h2_style">'.mb_strtoupper(_l('purchase_order')).'</h2></td>
-           
-          </tr>
-          <tr>
-            
-            <td class="align_cen">'. _l('days').' '.$day.' '._l('month').' '.$month.' '._l('year') .' '.$year.'</td>
-            
-          </tr>
-          
-        </tbody>
-      </table>
-      <table class="table">
-        <tbody>
-          <tr>
-            <td class="td_width_25"><h4>'. _l('add_from').':</h4></td>
-            <td class="td_width_75">'. get_staff_full_name($pur_order->addedfrom).'</td>
-          </tr>
-          <tr>
-            <td class="td_width_25"><h4>'. _l('vendor').':</h4></td>
-            <td class="td_width_75">'. get_vendor_company_name($pur_order->vendor).'</td>
-          </tr>
-          
         </tbody>
       </table>
 
-      <h3>
-       '. html_entity_decode($pur_order->pur_order_number.' - '.$pur_order->pur_order_name).'
-       </h3>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td></td>
+            <td style="position: absolute; float: right;">
+                <span style="text-align: right;">'.format_vendor_info($pur_order->vendor).'</span><br />
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td style="position: absolute; float: right;">
+                '.$delivery_date.'
+                '.$project_name.'
+                '.$buyer.'
+                '.$pur_request_name.'
+                <span style="text-align: right;"><b>'. _l('add_from').':</b> '. get_staff_full_name($pur_order->addedfrom).'</span><br />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
       <br><br>
       ';
 

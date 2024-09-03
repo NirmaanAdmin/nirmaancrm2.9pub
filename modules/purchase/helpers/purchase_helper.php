@@ -1169,3 +1169,55 @@ function handle_pur_contract_file($id){
 
     return (bool) $totalUploaded;
 }
+
+function format_vendor_info($vendor_id) {
+    $html = '';
+    $CI = & get_instance();
+
+    if(!empty($vendor_id)) {
+        $vendor = $CI->db->select('*')
+        ->where('userid', $vendor_id)
+        ->from(db_prefix() . 'pur_vendor')
+        ->get()
+        ->row();
+
+        if(!empty($vendor)) {
+            $html .= '<b>'._l('vendor').'</b>';
+            $html .= '<br /><b>'.$vendor->company.'</b>';
+            if(!empty($vendor->address)) {
+                $html .= '<br />'.$vendor->address;
+            }
+            if(!empty($vendor->city) || !empty($vendor->state)) {
+                $html .= '<br />';
+                if(!empty($vendor->city)) {
+                    $html .= $vendor->city." ";
+                }
+                if(!empty($vendor->state)) {
+                    $html .= $vendor->state;
+                }
+            }
+            if(!empty($vendor->country) || !empty($vendor->zip)) {
+                $html .= '<br />';
+                if(!empty($vendor->country)) {
+                    $country = $CI->db->select('short_name')
+                    ->where('country_id', $vendor->country)
+                    ->from(db_prefix() . 'countries')
+                    ->get()
+                    ->row();
+                    $html .= $country->short_name." ";
+                }
+                if(!empty($vendor->zip)) {
+                    $html .= $vendor->zip;
+                }
+            }
+            if(!empty($vendor->vat)) {
+                $html .= '<br />'._l('company_vat_number').': '.$vendor->vat;
+            }
+            if(!empty($vendor->phonenumber)) {
+                $html .= '<br />'.$vendor->phonenumber;
+            }
+        }
+
+        return $html;
+    }
+}
