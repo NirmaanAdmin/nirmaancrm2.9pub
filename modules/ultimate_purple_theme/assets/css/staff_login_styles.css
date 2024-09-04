@@ -99,3 +99,14 @@ body.login_admin:before {
     background-color: var(--secondary-color);
     border: 0;
 }
+.login-footer{
+    display: flex;
+    justify-content: center;
+    color: #ffffff;
+}
+.login-footer p{
+    margin-top: 15px;
+}
+.login-footer a{
+    color: #ffffff;
+}
