@@ -473,6 +473,8 @@ class Expenses_model extends App_Model
             $this->db->where('rel_type', 'expense');
             $this->db->delete(db_prefix() . 'related_items');
 
+            hooks()->do_action('after_expense_deleted', $id);
+
             log_activity('Expense Deleted [' . $id . ']');
 
             return true;

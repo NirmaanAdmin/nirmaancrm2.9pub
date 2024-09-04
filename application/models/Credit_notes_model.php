@@ -786,7 +786,7 @@ class Credit_notes_model extends App_Model
                    $credit_note_number,
              ]));
 
-            hooks()->do_action('credits_applied', ['data' => $data, 'credit_note_id' => $id]);
+            hooks()->do_action('credits_applied', ['data' => $data, 'credit_note_id' => $id, 'credit_id' => $insert_id]);
 
             log_activity('Credit Applied to Invoice [ Invoice: ' . $inv_number . ', Credit: ' . $credit_note_number . ' ]');
 

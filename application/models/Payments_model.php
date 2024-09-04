@@ -373,6 +373,8 @@ class Payments_model extends App_Model
             if ($data['amount'] != $payment->amount) {
                 update_invoice_status($payment->invoiceid);
             }
+            hooks()->do_action('after_payment_updated', $id);
+            
             log_activity('Payment Updated [Number:' . $id . ']');
 
             return true;
