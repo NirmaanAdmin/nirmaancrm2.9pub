@@ -43,8 +43,7 @@
           <?php echo form_close(); ?>
         </div>
         <footer class="login-footer">
-          <img src="<?php echo base_url('assets/images/nirmaan_360.png'); ?>" alt="" width="50" height="50" class="footer-logo">
-          <p>Powered by <a href="https://www.nirmaan360.com/" target="_blank">Nirmaan360</a></p>
+          <p><a href="https://www.nirmaan360.com/" target="_blank"><img src="<?php echo base_url('assets/images/nirmaan_360.png'); ?>" alt="nirmaan360 logo" width="50" height="50" class="footer-logo"></a> Powered by <a href="https://www.nirmaan360.com/" target="_blank">Nirmaan360</a></p>
         </footer>
       </div>
 

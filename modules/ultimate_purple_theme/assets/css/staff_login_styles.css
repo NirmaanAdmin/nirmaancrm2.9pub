@@ -104,9 +104,6 @@ body.login_admin:before {
     justify-content: center;
     color: #ffffff;
 }
-.login-footer p{
-    margin-top: 15px;
-}
 .login-footer a{
     color: #ffffff;
 }
