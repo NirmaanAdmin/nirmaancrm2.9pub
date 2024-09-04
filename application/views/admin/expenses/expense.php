@@ -494,22 +494,22 @@
 
     function customer_init(){
         var customer_id = $('select[name="clientid"]').val();
-        var projectAjax = $('select[name="project_id"]');
-        var clonedProjectsAjaxSearchSelect = projectAjax.html('').clone();
-        var projectsWrapper = $('.projects-wrapper');
-        projectAjax.selectpicker('destroy').remove();
-        projectAjax = clonedProjectsAjaxSearchSelect;
-        $('#project_ajax_search_wrapper').append(clonedProjectsAjaxSearchSelect);
-        init_ajax_project_search_by_customer_id();
+        // var projectAjax = $('select[name="project_id"]');
+        // var clonedProjectsAjaxSearchSelect = projectAjax.html('').clone();
+        // var projectsWrapper = $('.projects-wrapper');
+        // projectAjax.selectpicker('destroy').remove();
+        // projectAjax = clonedProjectsAjaxSearchSelect;
+        // $('#project_ajax_search_wrapper').append(clonedProjectsAjaxSearchSelect);
+        // init_ajax_project_search_by_customer_id();
         if(!customer_id){
            set_base_currency();
-           projectsWrapper.addClass('hide');
+           // projectsWrapper.addClass('hide');
          }
        $.get(admin_url + 'expenses/get_customer_change_data/'+customer_id,function(response){
          if(customer_id && response.customer_has_projects){
-           projectsWrapper.removeClass('hide');
+           // projectsWrapper.removeClass('hide');
          } else {
-           projectsWrapper.addClass('hide');
+           // projectsWrapper.addClass('hide');
          }
          var client_currency = parseInt(response.client_currency);
          if (client_currency != 0) {
