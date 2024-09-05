@@ -4,9 +4,9 @@ return [
     'development' => [
         'type' => 'mysql',
         'host' => 'localhost',
-        'port' => '',
+        'port' => '3306',
         'user' => 'root',
-        'pass' => '',
+        'pass' => 'password',
         'database' => 'test',
         'singleTransaction' => false,
         'ignoreTables' => [],

@@ -17,7 +17,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 * environments.
 *
 */
-define('APP_BASE_URL', 'http://localhost/nirmaancrm');
+define('APP_BASE_URL', 'http://localhost:8100/');
 
 /*
 * --------------------------------------------------------------------------
@@ -42,11 +42,11 @@ define('APP_DB_HOSTNAME', 'localhost');
 /**
  * The username used to connect to the database
  */
-define('APP_DB_USERNAME', 'root');
+define('APP_DB_USERNAME', 'team');
 /**
  * The password used to connect to the database
  */
-define('APP_DB_PASSWORD', '');
+define('APP_DB_PASSWORD', 'Uday@2207');
 /**
  * The name of the database you want to connect to
  */
