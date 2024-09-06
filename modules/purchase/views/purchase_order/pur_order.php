@@ -121,8 +121,21 @@
                           <option value="<?php echo html_entity_decode($s['id']); ?>" <?php if(isset($estimate) && $estimate->pur_request != '' && $estimate->pur_request->id == $s['id']){ echo 'selected'; } ?> ><?php echo html_entity_decode($s['pur_rq_code'].' - '.$s['pur_rq_name']); ?></option>
                             <?php } ?>
                       </select>
-                      <br><br>
                     </div>
+
+                      <div class="col-md-6 form-group">
+                        <?php
+                        $selected = '';
+                        foreach($staff as $member){
+                         if(isset($pur_order)){
+                           if($pur_order->delivery_person == $member['staffid']) {
+                             $selected = $member['staffid'];
+                           }
+                         }
+                        }
+                        echo render_select('delivery_person',$staff,array('staffid',array('firstname','lastname')),'delivery_person',$selected);
+                        ?>
+                      </div>
                      
                    </div>
                    <div class="col-md-6">

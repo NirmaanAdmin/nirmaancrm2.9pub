@@ -25,8 +25,27 @@ $organization_info = '<div style="color:#424242;">';
     $organization_info .= format_organization_info();
 $organization_info .= '</div>';
 
+$organization_info .= '<br />' . _l('estimate_data_date') . ': ' . _d($estimate->date) . '<br />';
+
+if (!empty($estimate->expirydate)) {
+    $organization_info .= _l('estimate_data_expiry_date') . ': ' . _d($estimate->expirydate) . '<br />';
+}
+
+if (!empty($estimate->reference_no)) {
+    $organization_info .= _l('reference_no') . ': ' . $estimate->reference_no . '<br />';
+}
+
+if ($estimate->sale_agent != 0 && get_option('show_sale_agent_on_estimates') == 1) {
+    $organization_info .= _l('sale_agent_string') . ': ' . get_staff_full_name($estimate->sale_agent) . '<br />';
+}
+
+if ($estimate->project_id != 0 && get_option('show_project_on_estimate') == 1) {
+    $organization_info .= '<br /><b>' . _l('project') . ':</b> ' . get_project_name_by_id($estimate->project_id) . '<br />';
+    $organization_info .= format_project_client_info($estimate->project_id) . '<br />';
+}
+
 // Estimate to
-$estimate_info = '<b>' . _l('estimate_to') . '</b>';
+$estimate_info = '<b>' . _l('invoice_bill_to') . '</b>';
 $estimate_info .= '<div style="color:#424242;">';
 $estimate_info .= format_customer_info($estimate, 'estimate', 'billing');
 $estimate_info .= '</div>';
@@ -37,24 +56,6 @@ if ($estimate->include_shipping == 1 && $estimate->show_shipping_on_estimate == 
     $estimate_info .= '<div style="color:#424242;">';
     $estimate_info .= format_customer_info($estimate, 'estimate', 'shipping');
     $estimate_info .= '</div>';
-}
-
-$estimate_info .= '<br />' . _l('estimate_data_date') . ': ' . _d($estimate->date) . '<br />';
-
-if (!empty($estimate->expirydate)) {
-    $estimate_info .= _l('estimate_data_expiry_date') . ': ' . _d($estimate->expirydate) . '<br />';
-}
-
-if (!empty($estimate->reference_no)) {
-    $estimate_info .= _l('reference_no') . ': ' . $estimate->reference_no . '<br />';
-}
-
-if ($estimate->sale_agent != 0 && get_option('show_sale_agent_on_estimates') == 1) {
-    $estimate_info .= _l('sale_agent_string') . ': ' . get_staff_full_name($estimate->sale_agent) . '<br />';
-}
-
-if ($estimate->project_id != 0 && get_option('show_project_on_estimate') == 1) {
-    $estimate_info .= _l('project') . ': ' . get_project_name_by_id($estimate->project_id) . '<br />';
 }
 
 foreach ($pdf_custom_fields as $field) {

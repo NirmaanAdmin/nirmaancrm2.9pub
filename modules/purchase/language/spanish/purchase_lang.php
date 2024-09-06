@@ -219,3 +219,4 @@ $lang['add'] = 'Añadir';
 $lang['purchase_quotation'] = 'Presupuesto de Compra';
 $lang['project'] = 'Proyecto';
 $lang['convert_to_po'] = 'Convertir a orden de compra';
+$lang['delivery_person'] = 'persona de entrega';

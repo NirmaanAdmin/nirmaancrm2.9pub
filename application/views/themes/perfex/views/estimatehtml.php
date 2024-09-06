@@ -87,19 +87,6 @@
                <address class="estimate-html-company-info">
                   <?php echo format_organization_info(); ?>
                </address>
-            </div>
-            <div class="col-sm-6 text-right transaction-html-info-col-right">
-               <span class="bold estimate_to"><?php echo _l('estimate_to'); ?>:</span>
-               <address class="estimate-html-customer-billing-info">
-                  <?php echo format_customer_info($estimate, 'estimate', 'billing'); ?>
-               </address>
-               <!-- shipping details -->
-               <?php if($estimate->include_shipping == 1 && $estimate->show_shipping_on_estimate == 1){ ?>
-               <span class="bold estimate_ship_to"><?php echo _l('ship_to'); ?>:</span>
-               <address class="estimate-html-customer-shipping-info">
-                  <?php echo format_customer_info($estimate, 'estimate', 'shipping'); ?>
-               </address>
-               <?php } ?>
                <p class="no-mbot estimate-html-date">
                   <span class="bold">
                   <?php echo _l('estimate_data_date'); ?>:
@@ -125,10 +112,25 @@
                </p>
                <?php } ?>
                <?php if($estimate->project_id != 0 && get_option('show_project_on_estimate') == 1){ ?>
+               <br />
                <p class="no-mbot estimate-html-project">
                   <span class="bold"><?php echo _l('project'); ?>:</span>
-                  <?php echo get_project_name_by_id($estimate->project_id); ?>
+                  <?php echo get_project_name_by_id($estimate->project_id); ?><br />
+                  <?php echo format_project_client_info($estimate->project_id); ?>
                </p>
+               <?php } ?>
+            </div>
+            <div class="col-sm-6 text-right transaction-html-info-col-right">
+               <span class="bold estimate_to"><?php echo _l('invoice_bill_to'); ?>:</span>
+               <address class="estimate-html-customer-billing-info">
+                  <?php echo format_customer_info($estimate, 'estimate', 'billing'); ?>
+               </address>
+               <!-- shipping details -->
+               <?php if($estimate->include_shipping == 1 && $estimate->show_shipping_on_estimate == 1){ ?>
+               <span class="bold estimate_ship_to"><?php echo _l('ship_to'); ?>:</span>
+               <address class="estimate-html-customer-shipping-info">
+                  <?php echo format_customer_info($estimate, 'estimate', 'shipping'); ?>
+               </address>
                <?php } ?>
                <?php $pdf_custom_fields = get_custom_fields('estimate',array('show_on_pdf'=>1,'show_on_client_portal'=>1));
                   foreach($pdf_custom_fields as $field){

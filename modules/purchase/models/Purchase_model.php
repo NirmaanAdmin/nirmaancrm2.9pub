@@ -2966,8 +2966,9 @@ class Purchase_model extends App_Model
         $year = date('Y',strtotime($pur_order->order_date));
         $logo = '';
         $delivery_date = '';
-        $project_name = '';
+        $project_detail = '';
         $buyer = '';
+        $delivery_person = '';
         $company_logo = get_option('company_logo_dark');
         if(!empty($company_logo)) {
             $logo = '<img src="' . base_url('uploads/company/' . $company_logo) . '" width="230" height="100">';
@@ -2976,10 +2977,13 @@ class Purchase_model extends App_Model
             $delivery_date = '<span style="text-align: right;"><b>'. _l('delivery_date').':</b> '. date('d-m-Y', strtotime($pur_order->delivery_date)).'</span><br />';
         }
         if(!empty(get_project_name_by_id($pur_order->project_id))) {
-            $project_name = '<span style="text-align: right;"><b>'. _l('project').':</b> '. get_project_name_by_id($pur_order->project_id).'</span><br />';
+            $project_detail = '<br /><span><b>'. _l('project').':</b> '. get_project_name_by_id($pur_order->project_id).'<br />'.format_project_client_info($pur_order->project_id).'</span><br />';
         }
         if(!empty($pur_order->buyer)) {
             $buyer = '<span style="text-align: right;"><b>'. _l('buyer').':</b> '. get_staff_full_name($pur_order->buyer).'</span><br />';
+        }
+        if(!empty($pur_order->delivery_person)) {
+            $delivery_person = '<span style="text-align: right;"><b>'. _l('delivery_person').':</b> '. get_staff_full_name($pur_order->delivery_person).'</span><br />';
         }
         $pur_request = $this->get_purchase_request($pur_order->pur_request);
         $pur_request_name = '';
@@ -2996,7 +3000,8 @@ class Purchase_model extends App_Model
             </td>
             <td style="position: absolute; float: right;">
                 <span style="text-align: right; font-size: 25px"><b>'.mb_strtoupper(_l('purchase_order')).'</b></span><br />
-                <span style="text-align: right;">'.$pur_order->pur_order_number.' - '.$pur_order->pur_order_name.'</span><br />
+                <span style="text-align: right;">'.$pur_order->pur_order_number.' - '.$pur_order->pur_order_name.'</span><br /><br />
+                <span style="text-align: right;">'.format_vendor_info($pur_order->vendor).'</span><br />
             </td>
           </tr>
         </tbody>
@@ -3005,17 +3010,12 @@ class Purchase_model extends App_Model
       <table class="table">
         <tbody>
           <tr>
-            <td></td>
-            <td style="position: absolute; float: right;">
-                <span style="text-align: right;">'.format_vendor_info($pur_order->vendor).'</span><br />
+            <td>
+                '.$project_detail.'
             </td>
-          </tr>
-          <tr>
-            <td></td>
             <td style="position: absolute; float: right;">
                 '.$delivery_date.'
-                '.$project_name.'
-                '.$buyer.'
+                '.$delivery_person.'
                 '.$pur_request_name.'
                 <span style="text-align: right;"><b>'. _l('add_from').':</b> '. get_staff_full_name($pur_order->addedfrom).'</span><br />
             </td>
