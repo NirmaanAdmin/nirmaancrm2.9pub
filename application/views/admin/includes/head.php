@@ -8,6 +8,7 @@
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1" />
 
     <title><?php echo isset($title) ? $title : get_option('companyname'); ?></title>
+    <link rel="manifest" href="<?php echo site_url(); ?>manifest.json">
 
     <?php echo app_compile_css(); ?>
     <?php render_admin_js_variables(); ?>

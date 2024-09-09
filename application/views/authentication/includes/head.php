@@ -8,6 +8,7 @@
   <title>
     <?php echo get_option('companyname'); ?> - <?php echo _l('admin_auth_login_heading'); ?>
   </title>
+  <link rel="manifest" href="<?php echo site_url(); ?>manifest.json">
   <?php echo app_compile_css('admin-auth'); ?>
   <style>
   body {
