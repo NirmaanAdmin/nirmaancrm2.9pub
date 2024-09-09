@@ -58,6 +58,7 @@ class Cron_model extends App_Model
                 log_activity('Cron Invoked Manually');
             }
 
+            $this->ticket_deadline_reminder();
             $this->staff_reminders();
             $this->events();
             $this->tasks_reminders();
@@ -921,6 +922,29 @@ class Cron_model extends App_Model
         }
 
         pusher_trigger_notification($notifiedUsers);
+    }
+
+    private function ticket_deadline_reminder()
+    {
+        $this->db->select('' . db_prefix() . 'tickets.*, ' . db_prefix() . 'staff.email, ' . db_prefix() . 'staff.firstname, ' . db_prefix() . 'staff.lastname');
+        $this->db->join(db_prefix() . 'staff', '' . db_prefix() . 'staff.staffid=' . db_prefix() . 'tickets.assigned');
+        $this->db->where('assigned !=' , 0);
+        $this->db->where('duedate !=' , NULL);
+        $this->db->where('duedate =', date('Y-m-d')); 
+        $assigned = $this->db->get(db_prefix() . 'tickets')->result_array();
+
+        foreach ($assigned as $key => $value) {
+            $data = array();
+            $data['staff_firstname'] = $value['firstname'];
+            $data['staff_lastname'] = $value['lastname'];
+            $data['mail_to'] = $value['email'];
+            $data['ticket_title'] = $value['subject'];
+            $data['ticket_name'] = $value['subject'];
+            $data['duedate'] = $value['duedate'];
+            $data['ticket_url'] = site_url('admin/tickets/ticket/'.$value['ticketid']);
+            $data = (object) $data;
+            send_mail_template('ticket_deadline_reminder', $data);
+        }
     }
 
     private function staff_reminders()
