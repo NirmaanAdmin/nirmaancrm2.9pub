@@ -243,64 +243,65 @@
                      <?php if ($expense->attachment_added_from == get_staff_user_id() || is_admin()) { ?>
                         <a class="_delete text-danger" href="<?php echo admin_url('expenses/delete_expense_attachment/' . $expense->expenseid . '/' . 'preview'); ?>" class="text-danger"><i class="fa fa fa-times"></i></a>
                         <a class="text-danger mleft5" href="<?php echo site_url('download/preview_image?path=' . protected_file_url_by_path($path) . '&type=' . $expense->filetype); ?>"
-                           download >
+                           download>
                            <i class="fa fa-solid fa-download"></i>
                         </a>
 
                      <?php } ?>
                   </div>
-               <?php } ?>
-            </div>
-            </div>
-         </div>
-         <?php if (count($child_expenses) > 0 || $expense->recurring != 0) { ?>
-            <div role="tabpanel" class="tab-pane" id="tab_child_expenses">
-               <?php if (count($child_expenses) > 0) { ?>
-                  <h4 class="mbot25 mtop25"><?php echo _l('expenses_created_from_this_recurring_expense'); ?></h4>
-                  <ul class="list-group">
-                     <?php foreach ($child_expenses as $recurring) { ?>
-                        <li class="list-group-item">
-                           <a href="<?php echo admin_url('expenses/list_expenses/' . $recurring->expenseid); ?>" onclick="init_expense(<?php echo $recurring->expenseid; ?>); return false;" target="_blank"><?php echo $recurring->category_name . (!empty($recurring->expense_name) ? ' (' . $recurring->expense_name . ')' : ''); ?>
-                           </a>
-                           <br />
-                           <span class="inline-block mtop10">
-                              <?php echo '<span class="bold">' . _d($recurring->date) . '</span>'; ?><br />
-                              <p><span class="bold font-medium"><?php echo _l('expense_amount'); ?></span>
-                                 <span class="text-danger bold font-medium"><?php echo app_format_money($recurring->amount, $recurring->currency_data); ?></span>
-                                 <?php
-                                 if ($recurring->tax != 0) {
-                                    echo '<br /><span class="bold">' . _l('tax_1') . ':</span> ' . $recurring->taxrate . '% (' . $recurring->tax_name . ')';
-                                    $total = $recurring->amount;
-                                    $total += ($total / 100 * $recurring->taxrate);
-                                 }
-                                 if ($recurring->tax2 != 0) {
-                                    echo '<br /><span class="bold">' . _l('tax_2') . ':</span> ' . $recurring->taxrate2 . '% (' . $recurring->tax_name2 . ')';
-                                    $total += ($recurring->amount / 100 * $recurring->taxrate2);
-                                 }
-                                 if ($recurring->tax != 0 || $recurring->tax2 != 0) {
-                                    echo '<p class="font-medium bold text-danger">' . _l('total_with_tax') . ': ' . app_format_money($total, $recurring->currency_data) . '</p>';
-                                 }
-                                 ?>
-                           </span>
-                        </li>
-                     <?php } ?>
-                  </ul>
-               <?php } else { ?>
-                  <p class="bold"><?php echo _l('no_child_found', _l('expenses')); ?></p>
-               <?php } ?>
             </div>
          <?php } ?>
-         <div role="tabpanel" class="tab-pane" id="tab_tasks">
-            <?php init_relation_tasks_table(array('data-new-rel-id' => $expense->expenseid, 'data-new-rel-type' => 'expense')); ?>
-         </div>
-         <div role="tabpanel" class="tab-pane" id="tab_reminders">
-            <a href="#" data-toggle="modal" class="btn btn-info" data-target=".reminder-modal-expense-<?php echo $expense->id; ?>"><i class="fa fa-bell-o"></i> <?php echo _l('expense_set_reminder_title'); ?></a>
-            <hr />
-            <?php render_datatable(array(_l('reminder_description'), _l('reminder_date'), _l('reminder_staff'), _l('reminder_is_notified')), 'reminders'); ?>
-            <?php $this->load->view('admin/includes/modals/reminder', array('id' => $expense->id, 'name' => 'expense', 'members' => $members, 'reminder_title' => _l('expense_set_reminder_title'))); ?>
+            </div>
          </div>
       </div>
+      <?php if (count($child_expenses) > 0 || $expense->recurring != 0) { ?>
+         <div role="tabpanel" class="tab-pane" id="tab_child_expenses">
+            <?php if (count($child_expenses) > 0) { ?>
+               <h4 class="mbot25 mtop25"><?php echo _l('expenses_created_from_this_recurring_expense'); ?></h4>
+               <ul class="list-group">
+                  <?php foreach ($child_expenses as $recurring) { ?>
+                     <li class="list-group-item">
+                        <a href="<?php echo admin_url('expenses/list_expenses/' . $recurring->expenseid); ?>" onclick="init_expense(<?php echo $recurring->expenseid; ?>); return false;" target="_blank"><?php echo $recurring->category_name . (!empty($recurring->expense_name) ? ' (' . $recurring->expense_name . ')' : ''); ?>
+                        </a>
+                        <br />
+                        <span class="inline-block mtop10">
+                           <?php echo '<span class="bold">' . _d($recurring->date) . '</span>'; ?><br />
+                           <p><span class="bold font-medium"><?php echo _l('expense_amount'); ?></span>
+                              <span class="text-danger bold font-medium"><?php echo app_format_money($recurring->amount, $recurring->currency_data); ?></span>
+                              <?php
+                              if ($recurring->tax != 0) {
+                                 echo '<br /><span class="bold">' . _l('tax_1') . ':</span> ' . $recurring->taxrate . '% (' . $recurring->tax_name . ')';
+                                 $total = $recurring->amount;
+                                 $total += ($total / 100 * $recurring->taxrate);
+                              }
+                              if ($recurring->tax2 != 0) {
+                                 echo '<br /><span class="bold">' . _l('tax_2') . ':</span> ' . $recurring->taxrate2 . '% (' . $recurring->tax_name2 . ')';
+                                 $total += ($recurring->amount / 100 * $recurring->taxrate2);
+                              }
+                              if ($recurring->tax != 0 || $recurring->tax2 != 0) {
+                                 echo '<p class="font-medium bold text-danger">' . _l('total_with_tax') . ': ' . app_format_money($total, $recurring->currency_data) . '</p>';
+                              }
+                              ?>
+                        </span>
+                     </li>
+                  <?php } ?>
+               </ul>
+            <?php } else { ?>
+               <p class="bold"><?php echo _l('no_child_found', _l('expenses')); ?></p>
+            <?php } ?>
+         </div>
+      <?php } ?>
+      <div role="tabpanel" class="tab-pane" id="tab_tasks">
+         <?php init_relation_tasks_table(array('data-new-rel-id' => $expense->expenseid, 'data-new-rel-type' => 'expense')); ?>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="tab_reminders">
+         <a href="#" data-toggle="modal" class="btn btn-info" data-target=".reminder-modal-expense-<?php echo $expense->id; ?>"><i class="fa fa-bell-o"></i> <?php echo _l('expense_set_reminder_title'); ?></a>
+         <hr />
+         <?php render_datatable(array(_l('reminder_description'), _l('reminder_date'), _l('reminder_staff'), _l('reminder_is_notified')), 'reminders'); ?>
+         <?php $this->load->view('admin/includes/modals/reminder', array('id' => $expense->id, 'name' => 'expense', 'members' => $members, 'reminder_title' => _l('expense_set_reminder_title'))); ?>
+      </div>
    </div>
+</div>
 </div>
 </div>
 <script>
