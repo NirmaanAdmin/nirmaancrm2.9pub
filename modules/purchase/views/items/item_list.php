@@ -149,10 +149,13 @@
                   <div role="tabpanel" class="tab-pane active" id="interview_infor">
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
+                                    <?php echo render_select('group_id',$commodity_groups,array('id','name'),'commodity_group'); ?>
+                                </div>
+                                <div class="col-md-4">
                                     <?php echo render_input('commodity_code', 'commodity_code'); ?>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                   <?php echo render_input('description', 'commodity_name'); ?>
                                 </div>
                                 
@@ -179,11 +182,7 @@
 
 
                             <div class="row">
-                              
-                                <div class="col-md-6">
-                                     <?php echo render_select('group_id',$commodity_groups,array('id','name'),'commodity_group'); ?>
-                                </div>
-                                 <div class="col-md-6">
+                                 <div class="col-md-12">
                                      <?php echo render_select('sub_group',$sub_groups,array('id','sub_group_name'),'sub_group'); ?>
                                 </div>
                             </div>

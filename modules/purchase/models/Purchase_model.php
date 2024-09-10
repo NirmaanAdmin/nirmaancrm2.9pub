@@ -4439,4 +4439,28 @@ class Purchase_model extends App_Model
         return $deleted;
     }
 
+    public function set_commodity_code($data)
+    {
+        $item_id = $data['item_id'];
+        $group_id = $data['group_id'];
+        $response = array();
+        $response['status'] = true;
+
+        if(empty($item_id)) {
+            $this->db->where('id', $group_id);
+            $items_group = $this->db->get(db_prefix() . 'items_groups')->row();
+            $items_group_name = $items_group->name;
+            $items_group_name = strtoupper(substr($items_group_name, 0, 1));
+            $next_number = max_number_items() + 1;
+            $next_number = $items_group_name.str_pad($next_number, 5, '0', STR_PAD_LEFT);
+            $response['next_number'] = $next_number;
+        } else {
+            $this->db->where('id', $item_id);
+            $item = $this->db->get(db_prefix() . 'items')->row();
+            $response['next_number'] = $item->commodity_code;
+        }
+
+        return $response;
+    }
+
 }
