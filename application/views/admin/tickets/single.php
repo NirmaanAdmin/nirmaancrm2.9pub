@@ -189,7 +189,7 @@
                         $use_knowledge_base = get_option('use_knowledge_base');
                         ?>
                         <div class="row mbot15">
-                           <div class="col-md-6">
+                           <div class="col-md-6 hide">
                               <select data-width="100%" id="insert_predefined_reply" data-live-search="true" class="selectpicker" data-title="<?php echo _l('ticket_single_insert_predefined_reply'); ?>">
                                  <?php foreach($predefined_replies as $predefined_reply){ ?>
                                     <option value="<?php echo $predefined_reply['id']; ?>"><?php echo $predefined_reply['name']; ?></option>
@@ -200,7 +200,7 @@
                               <div class="visible-xs">
                                  <div class="mtop15"></div>
                               </div>
-                              <div class="col-md-6">
+                              <div class="col-md-6 hide">
                                  <?php $groups = get_all_knowledge_base_articles_grouped(); ?>
                                  <select data-width="100%" id="insert_knowledge_base_link" class="selectpicker" data-live-search="true" onchange="insert_ticket_knowledgebase_link(this);" data-title="<?php echo _l('ticket_single_insert_knowledge_base_link'); ?>">
                                     <option value=""></option>
@@ -353,13 +353,19 @@
                         </select>
                      </div>
                      <div class="row">
-                        <div class="col-md-<?php if(get_option('services') == 1){ echo 6; }else{echo 12;} ?>">
+                        <div class="col-md-6">
                            <?php
                            $priorities['callback_translate'] = 'ticket_priority_translate';
                            echo render_select('priority',$priorities,array('priorityid','name'),'ticket_settings_priority',$ticket->priority); ?>
                         </div>
+                        <div class="col-md-6">
+                           <?php 
+                           $value = (isset($ticket) ? _d($ticket->duedate) : '');
+                           echo render_date_input('duedate', 'task_add_edit_due_date', $value);
+                           ?>
+                        </div>
                         <?php if(get_option('services') == 1){ ?>
-                           <div class="col-md-6">
+                           <div class="col-md-6 hide">
                               <?php if(is_admin() || get_option('staff_members_create_inline_ticket_services') == '1'){
                                  echo render_select_with_input_group('service',$services,array('serviceid','name'),'ticket_settings_service',$ticket->service,'<a href="#" onclick="new_service();return false;"><i class="fa fa-plus"></i></a>');
                               } else {

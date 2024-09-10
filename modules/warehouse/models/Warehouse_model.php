@@ -1735,6 +1735,20 @@ class Warehouse_model extends App_Model {
 	 * @return array or object
 	 */
 	public function get_inventory_min($id = false) {
+		$sql = 'SELECT id, description, commodity_code from ' . db_prefix() . 'items WHERE id NOT IN (SELECT commodity_id FROM ' . db_prefix() . 'inventory_commodity_min)';
+		$items = $this->db->query($sql)->result_array();
+		if(!empty($items)) {
+			foreach ($items as $key => $value) {
+				$data = array();
+				$data['commodity_id'] = $value['id'];
+				$data['commodity_code'] = $value['commodity_code'];
+				$data['commodity_name'] = $value['description'];
+				$data['inventory_number_min'] = 0;
+				$data['inventory_number_max'] = 0;
+				$this->db->insert(db_prefix() . 'inventory_commodity_min', $data);
+			}
+		}
+
 		if (is_numeric($id)) {
 			$this->db->where('id', $id);
 

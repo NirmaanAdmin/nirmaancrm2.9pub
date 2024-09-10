@@ -38,8 +38,9 @@ var hidden_columns = [3,7];
         'purchase_id': 'required',
         'commodity_type': 'required',
         'rate': 'required',
-        'sku_code': 'required',
-        'sku_name': 'required',
+        'group_id': 'required',
+        // 'sku_code': 'required',
+        // 'sku_name': 'required',
         // 'tax': 'required',
 
     },expenseSubmitHandler);
@@ -224,6 +225,7 @@ function edit_commodity_item(invoker){
       $('#commodity_list-add-edit input[name="commodity_code"]').val($(invoker).data('commodity_code'));
       $('#commodity_list-add-edit input[name="commodity_barcode"]').val($(invoker).data('commodity_barcode'));
       $('#commodity_list-add-edit input[name="description"]').val($(invoker).data('description'));
+      $('#commodity_list-add-edit textarea[name="long_description"]').val($(invoker).data('long_description'));
 
       $('#commodity_list-add-edit input[name="sku_code"]').val($(invoker).data('sku_code'));
       $('#commodity_list-add-edit input[name="sku_name"]').val($(invoker).data('sku_name'));
@@ -302,7 +304,7 @@ function edit_commodity_item(invoker){
 
       $('#commodity_list-add-edit select[name="unit_id"]').val('').change();
       $('#commodity_list-add-edit select[name="commodity_type"]').val('').change();
-      $('#commodity_list-add-edit select[name="group_id"]').val('').change();
+      $('#commodity_list-add-edit select[name="group_id"]').val($('#commodity_list-add-edit select[name="group_id"] option:eq(1)').val()).change();
       $('#commodity_list-add-edit select[name="purchase_id"]').val('').change();
       $('#commodity_list-add-edit select[name="tax"]').val('').change();
       $('#commodity_list-add-edit select[name="sub_group"]').val('').change();
@@ -370,5 +372,22 @@ function purchase_delete_bulk_action(event) {
 
       }
   }
+
+$('select[name="group_id"]').on('change',function(){
+  var group_id = $('select[name="group_id"]').val();
+  var item_id = $('input[name="id"]').val();
+  item_id = item_id == undefined ? '' : item_id;
+  var data = {};
+  data.group_id = group_id;
+  data.item_id = item_id;
+  if(group_id) {
+    $.post(admin_url + 'purchase/set_commodity_code',data).done(function(response){
+       response = JSON.parse(response);
+       if(response) {
+        $('#commodity_code').val(response.next_number);
+       }
+     });
+  }
+});
 
 </script>

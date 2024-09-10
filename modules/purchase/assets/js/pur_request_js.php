@@ -31,6 +31,11 @@ var hotElement = document.querySelector('#example');
           }
         },
         {
+          data: 'description',
+          width: 110,
+          type: 'text',
+        },
+        {
           data: 'unit_id',
           renderer: customDropdownRenderer,
           editor: "chosen",
@@ -83,6 +88,7 @@ var hotElement = document.querySelector('#example');
         '<?php echo ''; ?>',
         '<?php echo ''; ?>',
         '<?php echo _l('items'); ?>',
+        '<?php echo _l('decription'); ?>',
         '<?php echo _l('unit'); ?>',
         '<?php echo _l('unit_price'); ?>',
         '<?php echo _l('quantity'); ?>',
@@ -105,7 +111,7 @@ var hotElement = document.querySelector('#example');
         indicator: true
       },
       hiddenColumns: {
-        columns: [0,1,7],
+        columns: [0,1,8],
         indicators: true
       },
       filters: true,
@@ -121,16 +127,17 @@ hot.addHook('afterChange', function(changes, src) {
         $.post(admin_url + 'purchase/items_change/'+newValue).done(function(response){
           response = JSON.parse(response);
 
-          hot.setDataAtCell(row,3, response.value.unit_id);
-          hot.setDataAtCell(row,4, response.value.purchase_price);
-          hot.setDataAtCell(row,6, response.value.purchase_price*hot.getDataAtCell(row,5));
-          hot.setDataAtCell(row,7, response.value.inventory);
+          hot.setDataAtCell(row,3, response.value.long_description);
+          hot.setDataAtCell(row,4, response.value.unit_id);
+          hot.setDataAtCell(row,5, response.value.rate);
+          hot.setDataAtCell(row,7, response.value.rate*hot.getDataAtCell(row,6));
+          hot.setDataAtCell(row,8, response.value.inventory);
         });
 
       }else if(prop == 'quantity'){
-        hot.setDataAtCell(row,6, newValue*hot.getDataAtCell(row,4));
+        hot.setDataAtCell(row,7, newValue*hot.getDataAtCell(row,5));
       }else if(prop == 'unit_price'){
-        hot.setDataAtCell(row,6, newValue*hot.getDataAtCell(row,5));
+        hot.setDataAtCell(row,7, newValue*hot.getDataAtCell(row,6));
       }
 
     });
@@ -157,6 +164,11 @@ $('.save_detail').on('click', function() {
           }
         },
         {
+          data: 'description',
+          width: 150,
+          type: 'text',
+        },
+        {
           data: 'unit_id',
           renderer: customDropdownRenderer,
           editor: "chosen",
@@ -207,6 +219,7 @@ $('.save_detail').on('click', function() {
       
       colHeaders: [
         '<?php echo _l('items'); ?>',
+        '<?php echo _l('decription'); ?>',
         '<?php echo _l('unit'); ?>',
         '<?php echo _l('unit_price'); ?>',
         '<?php echo _l('quantity'); ?>',
@@ -229,7 +242,7 @@ $('.save_detail').on('click', function() {
         indicator: true
       },
       hiddenColumns: {
-        columns: [5],
+        columns: [6],
         indicators: true
       },
       filters: true,
@@ -245,16 +258,17 @@ hot.addHook('afterChange', function(changes, src) {
         $.post(admin_url + 'purchase/items_change/'+newValue).done(function(response){
           response = JSON.parse(response);
 
-          hot.setDataAtCell(row,1, response.value.unit_id);
-          hot.setDataAtCell(row,2, response.value.purchase_price);
-          hot.setDataAtCell(row,4, response.value.purchase_price*hot.getDataAtCell(row,3));
-          hot.setDataAtCell(row,5, response.value.inventory);
+          hot.setDataAtCell(row,1, response.value.long_description);
+          hot.setDataAtCell(row,2, response.value.unit_id);
+          hot.setDataAtCell(row,3, response.value.rate);
+          hot.setDataAtCell(row,5, response.value.rate*hot.getDataAtCell(row,4));
+          hot.setDataAtCell(row,6, response.value.inventory);
         });
 
       }else if(prop == 'quantity'){
-        hot.setDataAtCell(row,4, newValue*hot.getDataAtCell(row,2));
+        hot.setDataAtCell(row,5, newValue*hot.getDataAtCell(row,3));
       }else if(prop == 'unit_price'){
-        hot.setDataAtCell(row,4, newValue*hot.getDataAtCell(row,3));
+        hot.setDataAtCell(row,5, newValue*hot.getDataAtCell(row,4));
       }
 
     });

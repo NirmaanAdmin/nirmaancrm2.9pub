@@ -458,3 +458,55 @@ function total_project_finished_tasks_by_milestone($milestone_id, $project_id)
              'milestone' => $milestone_id,
              ]);
 }
+
+function format_project_client_info($project_id) {
+    $html = '';
+    $CI = & get_instance();
+
+    if(!empty($project_id)) {
+        $client = $CI->db->select(db_prefix() . 'clients.*')
+        ->join(db_prefix() . 'clients', db_prefix() . 'clients.userid = ' . db_prefix() . 'projects.clientid')
+        ->where('id', $project_id)
+        ->from(db_prefix() . 'projects')
+        ->get()
+        ->row();
+
+        if(!empty($client)) {
+            $html .= '<b>Client: '.$client->company.'</b>';
+            if(!empty($client->address)) {
+                $html .= '<br />'.$client->address;
+            }
+            if(!empty($client->city) || !empty($client->state)) {
+                $html .= '<br />';
+                if(!empty($client->city)) {
+                    $html .= $client->city." ";
+                }
+                if(!empty($client->state)) {
+                    $html .= $client->state;
+                }
+            }
+            if(!empty($client->country) || !empty($client->zip)) {
+                $html .= '<br />';
+                if(!empty($client->country)) {
+                    $country = $CI->db->select('short_name')
+                    ->where('country_id', $client->country)
+                    ->from(db_prefix() . 'countries')
+                    ->get()
+                    ->row();
+                    $html .= $country->short_name." ";
+                }
+                if(!empty($client->zip)) {
+                    $html .= $client->zip;
+                }
+            }
+            if(!empty($client->vat)) {
+                $html .= '<br />'._l('company_vat_number').': '.$client->vat;
+            }
+            if(!empty($client->phonenumber)) {
+                $html .= '<br />'.$client->phonenumber;
+            }
+        }
+
+        return $html;
+    }
+}

@@ -1221,3 +1221,14 @@ function format_vendor_info($vendor_id) {
         return $html;
     }
 }
+
+/**
+ * { function_description }
+ *
+ * @return     <type>  ( description_of_the_return_value )
+ */
+function max_number_items(){
+    $CI = & get_instance();
+    $max = $CI->db->query('select COUNT(id) as count from '.db_prefix().'items')->row();
+    return $max->count;
+}

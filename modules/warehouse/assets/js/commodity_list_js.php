@@ -49,6 +49,7 @@
       'commodity_code': 'required',
       'unit_id': 'required',
       'rate': 'required',
+      'group_id': 'required',
     },expenseSubmitHandler);
 
 
@@ -928,7 +929,7 @@ warehouse_type_value = warehouse_type;
 
     $('#commodity_list-add-edit select[name="unit_id"]').val('').change();
     $('#commodity_list-add-edit select[name="commodity_type"]').val('').change();
-    $('#commodity_list-add-edit select[name="group_id"]').val('').change();
+    $('#commodity_list-add-edit select[name="group_id"]').val($('#commodity_list-add-edit select[name="group_id"] option:eq(1)').val()).change();
     $('#commodity_list-add-edit select[name="warehouse_id"]').val('').change();
     $('#commodity_list-add-edit select[name="tax"]').val('').change();
 
@@ -1284,5 +1285,22 @@ var addMoreVendorsInputKey;
     $('input[name="account_template"]').val(account_template.getData());
   });
 })(jQuery);
+
+$('select[name="group_id"]').on('change',function(){
+  var group_id = $('select[name="group_id"]').val();
+  var item_id = $('input[name="id"]').val();
+  item_id = item_id == undefined ? '' : item_id;
+  var data = {};
+  data.group_id = group_id;
+  data.item_id = item_id;
+  if(group_id) {
+    $.post(admin_url + 'purchase/set_commodity_code',data).done(function(response){
+       response = JSON.parse(response);
+       if(response) {
+        $('#commodity_code').val(response.next_number);
+       }
+     });
+  }
+});
 
 </script>

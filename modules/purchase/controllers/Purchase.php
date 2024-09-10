@@ -3068,4 +3068,14 @@ class purchase extends AdminController
         $this->purchase_model->delete_attachment($id);
         redirect($_SERVER['HTTP_REFERER']);
     }
+
+    public function set_commodity_code()
+    {
+        $response = array();
+        if ($this->input->post()) {
+            $data = $this->input->post();
+            $response = $this->purchase_model->set_commodity_code($data);
+        }
+        echo json_encode($response);
+    }
 }

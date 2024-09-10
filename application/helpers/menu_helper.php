@@ -356,7 +356,7 @@ function app_init_admin_sidebar_menu_items()
         ]);
         $CI->app_menu->add_setup_menu_item('support', [
             'collapse' => true,
-            'name'     => _l('support'),
+            'name'     => _l('Ticketing'),
             'position' => 15,
             'badge'    => [],
         ]);
@@ -368,13 +368,13 @@ function app_init_admin_sidebar_menu_items()
             'position' => 5,
             'badge'    => [],
         ]);
-        $CI->app_menu->add_setup_children_item('support', [
-            'slug'     => 'tickets-predefined-replies',
-            'name'     => _l('acs_ticket_predefined_replies_submenu'),
-            'href'     => admin_url('tickets/predefined_replies'),
-            'position' => 10,
-            'badge'    => [],
-        ]);
+        // $CI->app_menu->add_setup_children_item('support', [
+        //     'slug'     => 'tickets-predefined-replies',
+        //     'name'     => _l('acs_ticket_predefined_replies_submenu'),
+        //     'href'     => admin_url('tickets/predefined_replies'),
+        //     'position' => 10,
+        //     'badge'    => [],
+        // ]);
         $CI->app_menu->add_setup_children_item('support', [
             'slug'     => 'tickets-priorities',
             'name'     => _l('acs_ticket_priority_submenu'),
@@ -390,20 +390,20 @@ function app_init_admin_sidebar_menu_items()
             'badge'    => [],
         ]);
 
-        $CI->app_menu->add_setup_children_item('support', [
-            'slug'     => 'tickets-services',
-            'name'     => _l('acs_ticket_services_submenu'),
-            'href'     => admin_url('tickets/services'),
-            'position' => 25,
-            'badge'    => [],
-        ]);
-        $CI->app_menu->add_setup_children_item('support', [
-            'slug'     => 'tickets-spam-filters',
-            'name'     => _l('spam_filters'),
-            'href'     => admin_url('spam_filters/view/tickets'),
-            'position' => 30,
-            'badge'    => [],
-        ]);
+        // $CI->app_menu->add_setup_children_item('support', [
+        //     'slug'     => 'tickets-services',
+        //     'name'     => _l('acs_ticket_services_submenu'),
+        //     'href'     => admin_url('tickets/services'),
+        //     'position' => 25,
+        //     'badge'    => [],
+        // ]);
+        // $CI->app_menu->add_setup_children_item('support', [
+        //     'slug'     => 'tickets-spam-filters',
+        //     'name'     => _l('spam_filters'),
+        //     'href'     => admin_url('spam_filters/view/tickets'),
+        //     'position' => 30,
+        //     'badge'    => [],
+        // ]);
 
         $CI->app_menu->add_setup_menu_item('leads', [
             'collapse' => true,
