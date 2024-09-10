@@ -225,6 +225,7 @@ function edit_commodity_item(invoker){
       $('#commodity_list-add-edit input[name="commodity_code"]').val($(invoker).data('commodity_code'));
       $('#commodity_list-add-edit input[name="commodity_barcode"]').val($(invoker).data('commodity_barcode'));
       $('#commodity_list-add-edit input[name="description"]').val($(invoker).data('description'));
+      $('#commodity_list-add-edit textarea[name="long_description"]').val($(invoker).data('long_description'));
 
       $('#commodity_list-add-edit input[name="sku_code"]').val($(invoker).data('sku_code'));
       $('#commodity_list-add-edit input[name="sku_name"]').val($(invoker).data('sku_name'));

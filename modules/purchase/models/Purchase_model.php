@@ -895,6 +895,7 @@ class Purchase_model extends App_Model
             $rq_val = [];
             $header = [];
             $header[] = 'item_code';
+            $header[] = 'description';
             $header[] = 'unit_id';
             $header[] = 'unit_price';
             $header[] = 'quantity';
@@ -947,6 +948,7 @@ class Purchase_model extends App_Model
             $header[] = 'prd_id';
             $header[] = 'pur_request';
             $header[] = 'item_code';
+            $header[] = 'description';
             $header[] = 'unit_id';
             $header[] = 'unit_price';
             $header[] = 'quantity';

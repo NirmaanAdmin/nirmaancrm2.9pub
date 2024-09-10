@@ -43,6 +43,11 @@ var hotElement = document.querySelector('#example');
           readOnly: true
         },
         {
+          data: 'description',
+          width: 110,
+          type: 'text',
+        },
+        {
           data: 'unit_id',
           renderer: customDropdownRenderer,
           editor: "chosen",
@@ -97,6 +102,7 @@ var hotElement = document.querySelector('#example');
         '<?php echo ''; ?>',
         '<?php echo ''; ?>',
         '<?php echo _l('items'); ?>',
+        '<?php echo _l('decription'); ?>',
         '<?php echo _l('unit'); ?>',
         '<?php echo _l('unit_price'); ?>',
         '<?php echo _l('quantity'); ?>',
@@ -119,7 +125,7 @@ var hotElement = document.querySelector('#example');
         indicator: true
       },
       hiddenColumns: {
-        columns: [0,1,7],
+        columns: [0,1,8],
         indicators: true
       },
       filters: true,
