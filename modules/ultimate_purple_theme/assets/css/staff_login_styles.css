@@ -103,6 +103,7 @@ body.login_admin:before {
     display: flex;
     justify-content: center;
     color: #ffffff;
+    font-size: 15px;
 }
 .login-footer a{
     color: #ffffff;
