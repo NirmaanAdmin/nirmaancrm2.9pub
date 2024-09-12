@@ -611,23 +611,24 @@ class Purchase_model extends App_Model
     {
         unset($data['approval_setting_id']);
 
-        if(isset($data['approver'])){
-            $setting = [];
-            foreach ($data['approver'] as $key => $value) {
-                $node = [];
-                $node['approver'] = $data['approver'][$key];
-                $node['role'] = $data['role'][$key];
-                $node['staff'] = $data['staff'][$key];
-                $node['action'] = $data['action'][$key];
-
-                $setting[] = $node;
+        $setting = [];
+        if(isset($data['approver'])) {
+            $approver = $data['approver'];
+            foreach ($approver as $key => $value) {
+               $node = [];
+               $node['approver'] = "staff";
+               $node['staff'] = $value;
+               $node['action'] = "approve";
+               $setting[] = $node;
             }
-            unset($data['approver']);
-            unset($data['role']);
-            unset($data['staff']);
-            unset($data['action']);
         }
         $data['setting'] = json_encode($setting);
+
+        if(isset($data['approver'])) {
+            $data['approver'] = implode(',', $data['approver']);
+        } else {
+            $data['approver'] = NULL;
+        }
 
         $this->db->insert(db_prefix() .'pur_approval_setting', $data);
         $insert_id = $this->db->insert_id();
@@ -649,23 +650,24 @@ class Purchase_model extends App_Model
     {
         unset($data['approval_setting_id']);
 
-        if(isset($data['approver'])){
-            $setting = [];
-            foreach ($data['approver'] as $key => $value) {
-                $node = [];
-                $node['approver'] = $data['approver'][$key];
-                $node['role'] = $data['role'][$key];
-                $node['staff'] = $data['staff'][$key];
-                $node['action'] = $data['action'][$key];
-
-                $setting[] = $node;
+        $setting = [];
+        if(isset($data['approver'])) {
+            $approver = $data['approver'];
+            foreach ($approver as $key => $value) {
+               $node = [];
+               $node['approver'] = "staff";
+               $node['staff'] = $value;
+               $node['action'] = "approve";
+               $setting[] = $node;
             }
-            unset($data['approver']);
-            unset($data['role']);
-            unset($data['staff']);
-            unset($data['action']);
         }
         $data['setting'] = json_encode($setting);
+
+        if(isset($data['approver'])) {
+            $data['approver'] = implode(',', $data['approver']);
+        } else {
+            $data['approver'] = NULL;
+        }
 
         $this->db->where('id', $id);
         $this->db->update(db_prefix() .'pur_approval_setting', $data);
@@ -4191,39 +4193,56 @@ class Purchase_model extends App_Model
 
     public function check_approval_setting($data, $related, $response = 0)
     {
-        $check_status = false;
-        $this->db->select('staff_id as id, "approve" as action', FALSE);
-        $this->db->where('project_id', $data['project_id']);
-        $project_members = $this->db->get('tblproject_members')->result_array();
+        // $check_status = false;
+        // $this->db->select('staff_id as id, "approve" as action', FALSE);
+        // $this->db->where('project_id', $data['project_id']);
+        // $project_members = $this->db->get('tblproject_members')->result_array();
 
+        // $this->db->select('*');
+        // $this->db->where('related', $related);
+        // $approval_setting = $this->db->get('tblpur_approval_setting')->result_array();
+
+        // $asettings = array();
+        // $i = 0;
+        // if(!empty($approval_setting)) {
+        //     foreach ($approval_setting as $key => $value) {
+        //         if(!empty($value['setting'])) {
+        //             $setting = json_decode($value['setting'], TRUE);
+        //             if(!empty($setting)) {
+        //                 foreach ($setting as $skey => $svalue) {
+        //                     if($svalue['action'] == 'approve') {
+        //                         $asettings[$i]['id'] = $svalue['staff'];
+        //                         $asettings[$i]['action'] = $svalue['action'];
+        //                         $i++;
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+
+        // $intersect = array();
+        // if(!empty($project_members) && !empty($asettings)) {
+        //     $intersect = array_uintersect($project_members, $asettings, function ($val1, $val2){
+        //         return strcmp($val1['id'], $val2['id']);
+        //     });
+        // }
+
+        $check_status = false;
+        $intersect = array();
         $this->db->select('*');
         $this->db->where('related', $related);
-        $approval_setting = $this->db->get('tblpur_approval_setting')->result_array();
+        $this->db->where('project_id', $data['project_id']);
+        $project_members = $this->db->get(db_prefix().'pur_approval_setting')->row();
 
-        $asettings = array();
-        $i = 0;
-        if(!empty($approval_setting)) {
-            foreach ($approval_setting as $key => $value) {
-                if(!empty($value['setting'])) {
-                    $setting = json_decode($value['setting'], TRUE);
-                    if(!empty($setting)) {
-                        foreach ($setting as $skey => $svalue) {
-                            if($svalue['action'] == 'approve') {
-                                $asettings[$i]['id'] = $svalue['staff'];
-                                $asettings[$i]['action'] = $svalue['action'];
-                                $i++;
-                            }
-                        }
-                    }
-                }
+        if(!empty($project_members)) {
+            if(!empty($project_members->approver)) {
+                $approver = $project_members->approver;
+                $approver = explode(',',$approver);
+                $this->db->select('staffid as id, "approve" as action', FALSE);
+                $this->db->where_in('staffid', $approver);
+                $intersect = $this->db->get(db_prefix().'staff')->result_array();
             }
-        }
-
-        $intersect = array();
-        if(!empty($project_members) && !empty($asettings)) {
-            $intersect = array_uintersect($project_members, $asettings, function ($val1, $val2){
-                return strcmp($val1['id'], $val2['id']);
-            });
         }
 
         if($response == 1) {
@@ -4460,6 +4479,23 @@ class Purchase_model extends App_Model
             $this->db->where('id', $item_id);
             $item = $this->db->get(db_prefix() . 'items')->row();
             $response['next_number'] = $item->commodity_code;
+        }
+
+        return $response;
+    }
+
+    public function find_approval_setting($data)
+    {
+        $this->db->where('project_id', $data['project_id']);
+        $this->db->where('related', $data['related']);
+        if(!empty($data['approval_setting_id'])) {
+            $this->db->where('id !=', $data['approval_setting_id']);
+        }
+        $approval_setting = $this->db->get(db_prefix() . 'pur_approval_setting')->result_array();
+        if(!empty($approval_setting)) {
+            $response['success'] = true;
+        } else {
+            $response['success'] = false;
         }
 
         return $response;

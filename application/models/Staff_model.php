@@ -856,4 +856,14 @@ class Staff_model extends App_Model
 
         return $result;
     }
+
+    public function find_project_members($project_id) 
+    {
+        $this->db->select(db_prefix() . 'staff.staffid as id, CONCAT(firstname," ",lastname) AS full_name', FALSE);
+        $this->db->join(db_prefix() . 'staff', db_prefix() . 'staff.staffid = ' . db_prefix() . 'project_members.staff_id');
+        $this->db->where(db_prefix() . 'project_members.project_id', $project_id);
+        $this->db->order_by(db_prefix() . 'staff.staffid', 'desc');
+        $project_members = $this->db->get(db_prefix() . 'project_members')->result_array();
+        return $project_members;
+    }
 }

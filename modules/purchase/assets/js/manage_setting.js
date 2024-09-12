@@ -60,29 +60,88 @@
         });
     }
   });
+
+  $("body").on('change', '#project_id', function() {
+    var project_id = $(this).val();
+    if(project_id) {
+        $('#approver').empty().selectpicker('refresh');
+        $.post(admin_url+'purchase/find_project_members',{'project_id':project_id}).done(function(response){
+            response = JSON.parse(response);
+            if(response.length > 0) {
+                $.each(response, function(idx, member) {
+                    var approver = $('#approver');
+                    approver.prepend('<option value="'+member.id+'">'+member.full_name+'</option>');
+                });
+                $('#approver').selectpicker('refresh');
+            }
+        });
+    }
+  });
+
+  // $(document).on('submit', '#approval-setting-form', function(e) {
+  //   var data = {};
+  //   data.approval_setting_id = $('input[name="approval_setting_id"]').val();
+  //   data.project_id = $('select[id="project_id"]').val();
+  //   data.related = $('select[name="related"]').val();
+  //   $('.submit_approval_setting').prop('disabled', false);
+  //   if(data.project_id && data.related) {
+  //       $.post(admin_url+'purchase/find_approval_setting',data).done(function(response){
+  //           response = JSON.parse(response);
+  //           if(response.success == true) {
+  //               alert_float('warning', 'Project is already exist with same releted value.');
+  //               $('.submit_approval_setting').prop('disabled', true);
+  //               e.preventDefault();
+  //           } else {
+  //               $('.submit_approval_setting').prop('disabled', false);
+  //           }
+  //       });
+  //   }
+  // });
 })(jQuery);
 
     function edit_approval_setting(invoker,id){
         "use strict";
-      appValidateForm($('#approval-setting-form'),{name:'required', related:'required'});
+      appValidateForm($('#approval-setting-form'),{name:'required', related:'required', project_id:'required', "approver[]": "required"});
 
       var name = $(invoker).data('name');
       var related = $(invoker).data('related');
-      var setting = $(invoker).data('setting');
+      var project_id = $(invoker).data('project');
       
       $('input[name="approval_setting_id"]').val(id);
-
       $('#approval_setting_modal input[name="name"]').val(name);
       $('select[name="related"]').val(related).change();
-      
-      $.post(admin_url + 'purchase/get_html_approval_setting/'+ id).done(function(response) {
-         response = JSON.parse(response);
+      $('select[id="project_id"]').val(project_id).selectpicker('refresh');
 
-          $('.list_approve').html('');
-          $('.list_approve').append(response);
-      init_selectpicker();
+      var approver = $(invoker).data('approver');
+      var approver_array = [];
+      if(approver) {
+        approver_array = approver.toString().split(',');
+      }
 
+      $('#approver').empty().selectpicker('refresh');
+      $.post(admin_url+'purchase/find_project_members',{'project_id':project_id}).done(function(response){
+        response = JSON.parse(response);
+        if(response.length > 0) {
+            $.each(response, function(idx, member) {
+                var approver_view = $('#approver');
+                if(approver_array.includes(member.id)) {
+                    approver_view.prepend('<option value="'+member.id+'" selected>'+member.full_name+'</option>');
+                } else {
+                    approver_view.prepend('<option value="'+member.id+'">'+member.full_name+'</option>');
+                }
+            });
+            $('#approver').selectpicker('refresh');
+        }
       });
+
+      // $.post(admin_url + 'purchase/get_html_approval_setting/'+ id).done(function(response) {
+      //    response = JSON.parse(response);
+
+      //     $('.list_approve').html('');
+      //     $('.list_approve').append(response);
+      // init_selectpicker();
+
+      // });
       
       $('#approval_setting_modal').modal('show');
       $('#approval_setting_modal .add-title').addClass('hide');
@@ -91,19 +150,20 @@
 
    function new_approval_setting(){
       "use strict";
-      appValidateForm($('#approval-setting-form'),{name:'required', related:'required'});
+      appValidateForm($('#approval-setting-form'),{name:'required', related:'required', project_id:'required', "approver[]": "required"});
 
       $('#approval_setting_modal input[name="name"]').val('');
       $('select[name="related"]').val('').change();
+      $('select[id="project_id"]').val('').change();
       
-      $.post(admin_url + 'purchase/get_html_approval_setting').done(function(response) {
-         response = JSON.parse(response);
+      // $.post(admin_url + 'purchase/get_html_approval_setting').done(function(response) {
+      //    response = JSON.parse(response);
 
-          $('.list_approve').html('');
-          $('.list_approve').append(response);
-          init_selectpicker();
+      //     $('.list_approve').html('');
+      //     $('.list_approve').append(response);
+      //     init_selectpicker();
 
-      });
+      // });
 
       $('#approval_setting_modal').modal('show');
       $('#approval_setting_modal .add-title').removeClass('hide');
