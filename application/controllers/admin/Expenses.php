@@ -24,13 +24,64 @@ class Expenses extends AdminController
         }
 
         $this->load->model('payment_modes_model');
+        $this->load->model('expenses_model');
         $data['payment_modes'] = $this->payment_modes_model->get('', [], true);
         $data['expenseid']     = $id;
         $data['categories']    = $this->expenses_model->get_category();
         $data['years']         = $this->expenses_model->get_expenses_years();
         $data['title']         = _l('expenses');
+        $expenses_model = $this->expenses_model->get('', [], 'category_name', true);
 
+        // Initialize chart data array
+        $chart_data = [];
+
+        // Format the result into Highcharts-friendly format
+        foreach ($expenses_model as $row) {
+            $chart_data[] = [
+                'name' => $row['category_name'],  // category name
+                'y' => (int) $row['category_count']  // count as y value
+            ];
+        }
+        // Pass the data to the view
+        $data['chart_data'] = $chart_data;
         $this->load->view('admin/expenses/manage', $data);
+    }
+
+    public function get_expenses_chart_data_type_wise()
+    {
+        $this->load->model('expenses_model');
+        $selected_type = $_GET['type'] ?? '0';  // Default to Category Wise
+
+        // Fetch data based on the selected type
+        if ($selected_type == '0') {
+            // Category Wise data
+            $expenses_model = $this->expenses_model->get('', [], 'category_name', true);
+            $name_field = 'category_name';
+            $count_field = 'category_count';
+        } elseif ($selected_type == '1') {
+            // Payment Wise data
+            $expenses_model = $this->expenses_model->get('', [], 'paymentmode', true);
+            $name_field = 'payment_mode_name';
+            $count_field = 'payment_count';
+        } elseif ($selected_type == '2') {
+            // Project Wise data
+            $expenses_model = $this->expenses_model->get('', [], 'project_id', true);
+            $name_field = 'project_name';
+            $count_field = 'project_count';
+        }
+        
+        // Prepare chart data
+        $chart_data = [];
+        foreach ($expenses_model as $row) {
+            $chart_data[] = [
+                'name' => $row[$name_field],   // The name could be category, payment method, or project
+                'y' => (int) $row[$count_field]  // The count corresponds to the selected type
+            ];
+        }
+
+        // Return the chart data as JSON for the AJAX request
+        header('Content-Type: application/json');
+        echo json_encode($chart_data);
     }
 
     public function table($clientid = '')
@@ -75,8 +126,8 @@ class Expenses extends AdminController
             if (!has_permission('expenses', '', 'edit')) {
                 set_alert('danger', _l('access_denied'));
                 echo json_encode([
-                        'url' => admin_url('expenses/expense/' . $id),
-                    ]);
+                    'url' => admin_url('expenses/expense/' . $id),
+                ]);
                 die;
             }
             $success = $this->expenses_model->update($this->input->post(), $id);
@@ -84,9 +135,9 @@ class Expenses extends AdminController
                 set_alert('success', _l('updated_successfully', _l('expense')));
             }
             echo json_encode([
-                    'url'       => admin_url('expenses/list_expenses/' . $id),
-                    'expenseid' => $id,
-                ]);
+                'url'       => admin_url('expenses/list_expenses/' . $id),
+                'expenseid' => $id,
+            ]);
             die;
         }
         if ($id == '') {

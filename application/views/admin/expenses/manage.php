@@ -1,20 +1,35 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <?php init_head(); ?>
+
 <div id="wrapper">
    <div class="content">
       <div class="row">
          <div class="col-md-12">
             <div class="panel_s mbot10">
                <div class="panel-body _buttons">
-                  <?php if(has_permission('expenses','','create')){ ?>
-                  <a href="<?php echo admin_url('expenses/expense'); ?>" class="btn btn-info"><?php echo _l('new_expense'); ?></a>
+                  <?php if (has_permission('expenses', '', 'create')) { ?>
+                     <a href="<?php echo admin_url('expenses/expense'); ?>" class="btn btn-info"><?php echo _l('new_expense'); ?></a>
                   <?php } ?>
                   <?php $this->load->view('admin/expenses/filter_by_template'); ?>
+
+                  <a href="#" onclick="slideToggle('#expense-chart'); return false;" class="pull-right btn btn-default mleft5 btn-with-tooltip" data-toggle="tooltip" title="Expense Chart"><i class="fa fa-pie-chart"></i></a>
+
                   <a href="#" onclick="slideToggle('#stats-top'); return false;" class="pull-right btn btn-default mleft5 btn-with-tooltip" data-toggle="tooltip" title="<?php echo _l('view_stats_tooltip'); ?>"><i class="fa fa-bar-chart"></i></a>
+
                   <a href="#" class="btn btn-default pull-right btn-with-tooltip toggle-small-view hidden-xs" onclick="toggle_small_view('.table-expenses','#expense'); return false;" data-toggle="tooltip" title="<?php echo _l('invoices_toggle_table_tooltip'); ?>"><i class="fa fa-angle-double-left"></i></a>
                   <div id="stats-top" class="hide">
                      <hr />
                      <div id="expenses_total"></div>
+                  </div>
+                  <div id="expense-chart" class="hide mtop15">
+                     <div class="col-md-3 pull-right">
+                        <select class="form-control" id="expenseType" name="expenseType" onchange="updateExpenseChart();">
+                           <option value="0">Category Wise</option>
+                           <option value="1">Payment Wise</option>
+                           <option value="2">Project Wise</option>
+                        </select>
+                     </div>
+                     <div id="expense_chart" style="width:100%; height:400px;"></div>
                   </div>
                </div>
             </div>
@@ -24,8 +39,8 @@
                      <div class="panel-body">
                         <div class="clearfix"></div>
                         <!-- if expenseid found in url -->
-                        <?php echo form_hidden('expenseid',$expenseid); ?>
-                        <?php $this->load->view('admin/expenses/table_html', ['withBulkActions'=>true]); ?>
+                        <?php echo form_hidden('expenseid', $expenseid); ?>
+                        <?php $this->load->view('admin/expenses/table_html', ['withBulkActions' => true]); ?>
                      </div>
                   </div>
                </div>
@@ -77,44 +92,94 @@
    <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
-<script>var hidden_columns = [4,5,6,7,8,9];</script>
+<script>
+   var hidden_columns = [4, 5, 6, 7, 8, 9];
+</script>
 <?php init_tail(); ?>
+<?php echo '<script src="' . base_url('modules/project_roadmap/assets/js/plugins/highcharts/highcharts.js') . '"></script>'; ?>
 <script>
    Dropzone.autoDiscover = false;
-   $(function(){
-             // Expenses additional server params
-             var Expenses_ServerParams = {};
+   $(function() {
+      // Expenses additional server params
+      var Expenses_ServerParams = {};
 
-             $.each($('._hidden_inputs._filters input'),function(){
-               Expenses_ServerParams[$(this).attr('name')] = '[name="'+$(this).attr('name')+'"]';
-             });
+      $.each($('._hidden_inputs._filters input'), function() {
+         Expenses_ServerParams[$(this).attr('name')] = '[name="' + $(this).attr('name') + '"]';
+      });
 
-             initDataTable('.table-expenses', admin_url+'expenses/table', [0], [0], Expenses_ServerParams, <?php echo hooks()->apply_filters('expenses_table_default_order', json_encode(array(6,'desc'))); ?>).column(1).visible(false, false).columns.adjust();
+      initDataTable('.table-expenses', admin_url + 'expenses/table', [0], [0], Expenses_ServerParams, <?php echo hooks()->apply_filters('expenses_table_default_order', json_encode(array(6, 'desc'))); ?>).column(1).visible(false, false).columns.adjust();
 
-             init_expense();
+      init_expense();
 
-             $('#expense_convert_helper_modal').on('show.bs.modal',function(){
-                var emptyNote = $('#tab_expense').attr('data-empty-note');
-                var emptyName = $('#tab_expense').attr('data-empty-name');
-                if(emptyNote == '1' && emptyName == '1') {
-                    $('#inc_field_wrapper').addClass('hide');
-                } else {
-                    $('#inc_field_wrapper').removeClass('hide');
-                    emptyNote === '1' && $('.inc_note').addClass('hide') || $('.inc_note').removeClass('hide')
-                    emptyName === '1' && $('.inc_name').addClass('hide') || $('.inc_name').removeClass('hide')
-                }
-             });
+      $('#expense_convert_helper_modal').on('show.bs.modal', function() {
+         var emptyNote = $('#tab_expense').attr('data-empty-note');
+         var emptyName = $('#tab_expense').attr('data-empty-name');
+         if (emptyNote == '1' && emptyName == '1') {
+            $('#inc_field_wrapper').addClass('hide');
+         } else {
+            $('#inc_field_wrapper').removeClass('hide');
+            emptyNote === '1' && $('.inc_note').addClass('hide') || $('.inc_note').removeClass('hide')
+            emptyName === '1' && $('.inc_name').addClass('hide') || $('.inc_name').removeClass('hide')
+         }
+      });
 
-             $('body').on('click','#expense_confirm_convert',function(){
-              var parameters = new Array();
-              if($('input[name="expense_convert_invoice_type"]:checked').val() == 'save_as_draft_true'){
-                parameters['save_as_draft'] = 'true';
-              }
-              parameters['include_name'] = $('#inc_name').prop('checked');
-              parameters['include_note'] = $('#inc_note').prop('checked');
-              window.location.href = buildUrl(admin_url+'expenses/convert_to_invoice/'+$('body').find('.expense_convert_btn').attr('data-id'), parameters);
-            });
-           });
+      $('body').on('click', '#expense_confirm_convert', function() {
+         var parameters = new Array();
+         if ($('input[name="expense_convert_invoice_type"]:checked').val() == 'save_as_draft_true') {
+            parameters['save_as_draft'] = 'true';
+         }
+         parameters['include_name'] = $('#inc_name').prop('checked');
+         parameters['include_note'] = $('#inc_note').prop('checked');
+         window.location.href = buildUrl(admin_url + 'expenses/convert_to_invoice/' + $('body').find('.expense_convert_btn').attr('data-id'), parameters);
+      });
+   });
+</script>
+<script>
+   document.addEventListener('DOMContentLoaded', function() {
+      renderChart(<?php echo json_encode($chart_data); ?>,'Category Wise Expenses');
+   });
+
+   function renderChart(chartData, titleText) {
+      Highcharts.chart('expense_chart', {
+         chart: {
+            type: 'pie'
+         },
+         title: {
+            text: titleText
+         },
+         series: [{
+            name: 'Expense',
+            colorByPoint: true,
+            data: chartData
+         }]
+      });
+   }
+
+   function updateExpenseChart() {
+      var selectedType = document.getElementById("expenseType").value;
+      var titleText = '';
+
+      // Determine the chart title and request data based on the selected type
+      if (selectedType == '0') {
+         titleText = 'Category Wise Expenses';
+      } else if (selectedType == '1') {
+         titleText = 'Payment Wise Expenses';
+      } else if (selectedType == '2') {
+         titleText = 'Project Wise Expenses';
+      }
+
+      // Use AJAX to fetch the correct chart data
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '' + admin_url + 'expenses/get_expenses_chart_data_type_wise?type=' + selectedType, true);
+      xhr.onload = function() {
+         if (xhr.status === 200) {
+            var responseData = JSON.parse(xhr.responseText);
+            renderChart(responseData, titleText); // Update chart with new data and title
+         }
+      };
+      xhr.send();
+   }
 </script>
 </body>
+
 </html>

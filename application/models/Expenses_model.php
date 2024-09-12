@@ -14,17 +14,29 @@ class Expenses_model extends App_Model
      * @param  mixed $id Optional expense id
      * @return mixed     object or array
      */
-    public function get($id = '', $where = [])
+    public function get($id = '', $where = [], $group_by = '')
     {
-        $this->db->select('*,' . db_prefix() . 'expenses.id as id,' . db_prefix() . 'expenses_categories.name as category_name,' . db_prefix() . 'payment_modes.name as payment_mode_name,' . db_prefix() . 'taxes.name as tax_name, ' . db_prefix() . 'taxes.taxrate as taxrate,' . db_prefix() . 'taxes_2.name as tax_name2, ' . db_prefix() . 'taxes_2.taxrate as taxrate2, ' . db_prefix() . 'expenses.id as expenseid,' . db_prefix() . 'expenses.addedfrom as addedfrom, recurring_from');
+        if ($group_by == 'category_name') {
+            $this->db->select('' . db_prefix() . 'expenses_categories.name as category_name, COUNT(*) as category_count');
+        } elseif ($group_by == 'paymentmode') {
+            $this->db->select('' . db_prefix() . 'payment_modes.name as payment_mode_name, COUNT(*) as payment_count');
+        } elseif ($group_by == 'project_id') {
+            $this->db->select('' . db_prefix() . 'projects.name as project_name, COUNT(*) as project_count');
+        }else {
+            $this->db->select('*,' . db_prefix() . 'expenses.id as id,' . db_prefix() . 'expenses_categories.name as category_name,' . db_prefix() . 'payment_modes.name as payment_mode_name,' . db_prefix() . 'taxes.name as tax_name, ' . db_prefix() . 'taxes.taxrate as taxrate,' . db_prefix() . 'taxes_2.name as tax_name2, ' . db_prefix() . 'taxes_2.taxrate as taxrate2, ' . db_prefix() . 'expenses.id as expenseid,' . db_prefix() . 'expenses.addedfrom as addedfrom, recurring_from');
+        }
+
         $this->db->from(db_prefix() . 'expenses');
         $this->db->join(db_prefix() . 'clients', '' . db_prefix() . 'clients.userid = ' . db_prefix() . 'expenses.clientid', 'left');
         $this->db->join(db_prefix() . 'payment_modes', '' . db_prefix() . 'payment_modes.id = ' . db_prefix() . 'expenses.paymentmode', 'left');
         $this->db->join(db_prefix() . 'taxes', '' . db_prefix() . 'taxes.id = ' . db_prefix() . 'expenses.tax', 'left');
         $this->db->join('' . db_prefix() . 'taxes as ' . db_prefix() . 'taxes_2', '' . db_prefix() . 'taxes_2.id = ' . db_prefix() . 'expenses.tax2', 'left');
         $this->db->join(db_prefix() . 'expenses_categories', '' . db_prefix() . 'expenses_categories.id = ' . db_prefix() . 'expenses.category');
+        if ($group_by == 'project_id') {
+            $this->db->join(db_prefix() . 'projects', '' . db_prefix() . 'projects.id = ' . db_prefix() . 'expenses.project_id');
+        }
         $this->db->where($where);
-
+        $this->db->group_by($group_by);
         if (is_numeric($id)) {
             $this->db->where(db_prefix() . 'expenses.id', $id);
             $expense = $this->db->get()->row();
