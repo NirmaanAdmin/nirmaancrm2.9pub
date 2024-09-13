@@ -226,7 +226,8 @@ class purchase extends AdminController
         $data['sub_groups'] = $this->purchase_model->get_sub_group();
         $data['item_group'] = $this->purchase_model->get_item_group();
         $data['approval_setting'] = $this->purchase_model->get_approval_setting();
-        $data['staffs'] = $this->staff_model->get(); 
+        $data['staffs'] = $this->staff_model->get();
+        $data['projects'] = $this->projects_model->get_items(); 
         
         $this->load->view('manage_setting', $data);
     }
@@ -3075,6 +3076,27 @@ class purchase extends AdminController
         if ($this->input->post()) {
             $data = $this->input->post();
             $response = $this->purchase_model->set_commodity_code($data);
+        }
+        echo json_encode($response);
+    }
+
+    public function find_project_members() 
+    {
+        $response = array();
+        if ($this->input->post()) {
+            $data = $this->input->post();
+            if(!empty($data['project_id'])) {
+                $response = $this->staff_model->find_project_members($data['project_id']);
+            }
+        }
+        echo json_encode($response);
+    }
+
+    public function find_approval_setting()
+    {
+        $response['success'] = false;
+        if ($this->input->post()) {
+            $response = $this->purchase_model->find_approval_setting($this->input->post());
         }
         echo json_encode($response);
     }
