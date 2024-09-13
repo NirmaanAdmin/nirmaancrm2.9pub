@@ -88,7 +88,7 @@
         $.post(admin_url+'purchase/find_approval_setting',data).done(function(response){
             response = JSON.parse(response);
             if(response.success == true) {
-                alert_float('warning', 'Project is already exist with same releted value.');
+                alert_float('warning', 'Approval settings already exists on this project');
                 $('.submit_approval_setting').prop('disabled', true);
             } else {
                 $('.submit_approval_setting').prop('disabled', false);
