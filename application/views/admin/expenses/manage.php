@@ -96,7 +96,11 @@
    var hidden_columns = [4, 5, 6, 7, 8, 9];
 </script>
 <?php init_tail(); ?>
-<?php echo '<script src="' . base_url('modules/project_roadmap/assets/js/plugins/highcharts/highcharts.js') . '"></script>'; ?>
+<?php echo '<script src="' . base_url('modules/project_roadmap/assets/js/plugins/highcharts/highcharts.js') . '"></script>';
+echo '<script src="' . base_url('modules/project_roadmap/assets/js/plugins/highcharts/exporting.js') .'"></script>';
+
+
+?>
 <script>
    Dropzone.autoDiscover = false;
    $(function() {
@@ -142,7 +146,11 @@
    function renderChart(chartData, titleText) {
       Highcharts.chart('expense_chart', {
          chart: {
-            type: 'pie'
+            type: 'pie',
+            options3d: {
+            enabled: true,
+            alpha: 45
+        }
          },
          title: {
             text: titleText

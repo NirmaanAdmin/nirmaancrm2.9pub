@@ -17,11 +17,11 @@ class Expenses_model extends App_Model
     public function get($id = '', $where = [], $group_by = '')
     {
         if ($group_by == 'category_name') {
-            $this->db->select('' . db_prefix() . 'expenses_categories.name as category_name, COUNT(*) as category_count');
+            $this->db->select('' . db_prefix() . 'expenses_categories.name as category_name, SUM(' . db_prefix() . 'expenses.amount) as total_amount');
         } elseif ($group_by == 'paymentmode') {
-            $this->db->select('' . db_prefix() . 'payment_modes.name as payment_mode_name, COUNT(*) as payment_count');
+            $this->db->select('' . db_prefix() . 'payment_modes.name as payment_mode_name, SUM(' . db_prefix() . 'expenses.amount) as total_amount');
         } elseif ($group_by == 'project_id') {
-            $this->db->select('' . db_prefix() . 'projects.name as project_name, COUNT(*) as project_count');
+            $this->db->select('' . db_prefix() . 'projects.name as project_name, SUM(' . db_prefix() . 'expenses.amount) as total_amount');
         }else {
             $this->db->select('*,' . db_prefix() . 'expenses.id as id,' . db_prefix() . 'expenses_categories.name as category_name,' . db_prefix() . 'payment_modes.name as payment_mode_name,' . db_prefix() . 'taxes.name as tax_name, ' . db_prefix() . 'taxes.taxrate as taxrate,' . db_prefix() . 'taxes_2.name as tax_name2, ' . db_prefix() . 'taxes_2.taxrate as taxrate2, ' . db_prefix() . 'expenses.id as expenseid,' . db_prefix() . 'expenses.addedfrom as addedfrom, recurring_from');
         }

@@ -39,7 +39,7 @@ class Expenses extends AdminController
         foreach ($expenses_model as $row) {
             $chart_data[] = [
                 'name' => $row['category_name'],  // category name
-                'y' => (int) $row['category_count']  // count as y value
+                'y' => (float) $row['total_amount']  // count as y value
             ];
         }
         // Pass the data to the view
@@ -51,31 +51,29 @@ class Expenses extends AdminController
     {
         $this->load->model('expenses_model');
         $selected_type = $_GET['type'] ?? '0';  // Default to Category Wise
-
+        $name_field = '';
+        $amount_field = 'amount';  // Field to sum up
         // Fetch data based on the selected type
         if ($selected_type == '0') {
             // Category Wise data
             $expenses_model = $this->expenses_model->get('', [], 'category_name', true);
             $name_field = 'category_name';
-            $count_field = 'category_count';
         } elseif ($selected_type == '1') {
             // Payment Wise data
             $expenses_model = $this->expenses_model->get('', [], 'paymentmode', true);
             $name_field = 'payment_mode_name';
-            $count_field = 'payment_count';
         } elseif ($selected_type == '2') {
             // Project Wise data
             $expenses_model = $this->expenses_model->get('', [], 'project_id', true);
             $name_field = 'project_name';
-            $count_field = 'project_count';
         }
-        
+
         // Prepare chart data
         $chart_data = [];
         foreach ($expenses_model as $row) {
             $chart_data[] = [
                 'name' => $row[$name_field],   // The name could be category, payment method, or project
-                'y' => (int) $row[$count_field]  // The count corresponds to the selected type
+                'y' => (float) $row['total_amount']  // The count corresponds to the selected type
             ];
         }
 
