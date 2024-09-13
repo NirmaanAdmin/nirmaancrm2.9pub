@@ -78,25 +78,24 @@
     }
   });
 
-  // $(document).on('submit', '#approval-setting-form', function(e) {
-  //   var data = {};
-  //   data.approval_setting_id = $('input[name="approval_setting_id"]').val();
-  //   data.project_id = $('select[id="project_id"]').val();
-  //   data.related = $('select[name="related"]').val();
-  //   $('.submit_approval_setting').prop('disabled', false);
-  //   if(data.project_id && data.related) {
-  //       $.post(admin_url+'purchase/find_approval_setting',data).done(function(response){
-  //           response = JSON.parse(response);
-  //           if(response.success == true) {
-  //               alert_float('warning', 'Project is already exist with same releted value.');
-  //               $('.submit_approval_setting').prop('disabled', true);
-  //               e.preventDefault();
-  //           } else {
-  //               $('.submit_approval_setting').prop('disabled', false);
-  //           }
-  //       });
-  //   }
-  // });
+  $(document).on('change', '#project_id, #related', function() {
+    var data = {};
+    data.approval_setting_id = $('input[name="approval_setting_id"]').val();
+    data.project_id = $('select[id="project_id"]').val();
+    data.related = $('select[name="related"]').val();
+    $('.submit_approval_setting').prop('disabled', false);
+    if(data.project_id && data.related) {
+        $.post(admin_url+'purchase/find_approval_setting',data).done(function(response){
+            response = JSON.parse(response);
+            if(response.success == true) {
+                alert_float('warning', 'Approval settings already exists on this project');
+                $('.submit_approval_setting').prop('disabled', true);
+            } else {
+                $('.submit_approval_setting').prop('disabled', false);
+            }
+        });
+    }
+  });
 })(jQuery);
 
     function edit_approval_setting(invoker,id){
@@ -109,7 +108,7 @@
       
       $('input[name="approval_setting_id"]').val(id);
       $('#approval_setting_modal input[name="name"]').val(name);
-      $('select[name="related"]').val(related).change();
+      $('select[name="related"]').val(related).selectpicker('refresh');
       $('select[id="project_id"]').val(project_id).selectpicker('refresh');
 
       var approver = $(invoker).data('approver');
@@ -153,8 +152,9 @@
       appValidateForm($('#approval-setting-form'),{name:'required', related:'required', project_id:'required', "approver[]": "required"});
 
       $('#approval_setting_modal input[name="name"]').val('');
-      $('select[name="related"]').val('').change();
-      $('select[id="project_id"]').val('').change();
+      $('select[name="related"]').val('').selectpicker('refresh');
+      $('select[id="project_id"]').val('').selectpicker('refresh');
+      $('#approver').empty().selectpicker('refresh');
       
       // $.post(admin_url + 'purchase/get_html_approval_setting').done(function(response) {
       //    response = JSON.parse(response);

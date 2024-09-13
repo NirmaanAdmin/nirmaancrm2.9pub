@@ -134,7 +134,7 @@
                                     {
                                       $staff_name .= ' or ';
                                     }
-                                    $staff_name .= $this->staff_model->get($val)->firstname;
+                                    $staff_name .= $this->staff_model->get($val)->firstname." ".$this->staff_model->get($val)->lastname;
                                   }
                                   echo html_entity_decode($staff_name); 
                                   ?></p>
@@ -156,7 +156,7 @@
                                     {
                                       $staff_name .= ' or ';
                                     }
-                                    $staff_name .= $this->staff_model->get($val)->firstname;
+                                    $staff_name .= $this->staff_model->get($val)->firstname." ".$this->staff_model->get($val)->lastname;
                                   }
                                   echo html_entity_decode($staff_name); 
                                   ?></p>
