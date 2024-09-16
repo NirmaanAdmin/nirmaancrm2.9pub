@@ -21,12 +21,17 @@ $join         = [
 ];
 $where = [];
 
+$having = '';
+if(!is_admin()) {
+    $having = "FIND_IN_SET('".get_staff_user_id()."', member_list) != 0";
+}
 
 $result = data_tables_init($aColumns, $sIndexColumn, $sTable, $join, $where, [
     db_prefix() . 'pur_request.id as id',
     db_prefix() . 'departments.name as name',
-    'pur_rq_code'
-]);
+    'pur_rq_code',
+    '(SELECT GROUP_CONCAT(' . db_prefix() . 'project_members.staff_id SEPARATOR ",") FROM ' . db_prefix() . 'project_members WHERE ' . db_prefix() . 'project_members.project_id=' . db_prefix() . 'pur_request.project_id) as member_list',
+], '', [], $having);
 
 $output  = $result['output'];
 $rResult = $result['rResult'];

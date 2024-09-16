@@ -13,7 +13,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * @param  string $sGroupBy group results
  * @return array
  */
-function data_tables_init($aColumns, $sIndexColumn, $sTable, $join = [], $where = [], $additionalSelect = [], $sGroupBy = '', $searchAs = [])
+function data_tables_init($aColumns, $sIndexColumn, $sTable, $join = [], $where = [], $additionalSelect = [], $sGroupBy = '', $searchAs = [], $having = '')
 {
     $CI          = & get_instance();
     $__post      = $CI->input->post();
@@ -208,6 +208,11 @@ function data_tables_init($aColumns, $sIndexColumn, $sTable, $join = [], $where 
 
     $join = implode(' ', $join);
 
+    $havingSet = '';
+    if (!empty($having)) {
+        $havingSet = 'HAVING ' . $having;
+    }
+
     $sQuery = '
     SELECT SQL_CALC_FOUND_ROWS ' . str_replace(' , ', ' ', implode(', ', $_aColumns)) . ' ' . $_additionalSelect . "
     FROM $sTable
@@ -215,6 +220,7 @@ function data_tables_init($aColumns, $sIndexColumn, $sTable, $join = [], $where 
     $sWhere
     " . $where . "
     $sGroupBy
+    $havingSet
     $sOrder
     $sLimit
     ";
