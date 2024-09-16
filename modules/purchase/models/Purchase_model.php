@@ -2529,16 +2529,7 @@ class Purchase_model extends App_Model
             <td style="position: absolute; float: right;">
                 <span style="text-align: right; font-size: 25px"><b>'.mb_strtoupper(_l('request_quotation')).'</b></span><br />
                 <span style="text-align: right;"># '.$pur_request->pur_rq_code.'</span><br />
-                <span style="text-align: right;">'.get_status_approve($pur_request->status).'</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <table class="table">
-        <tbody>
-          <tr>
-            <td></td>
-            <td style="position: absolute; float: right;">
+                <span style="text-align: right;">'.get_status_approve($pur_request->status).'</span><br /><br />
                 <span style="text-align: right;"><b>'. _l('date_request').':</b> '. date('d-m-Y', strtotime($pur_request->request_date)).'</span><br />
                 <span style="text-align: right;"><b>'. _l('project').':</b> '. get_project_name_by_id($pur_request->project_id).'</span><br />
                 <span style="text-align: right;"><b>'. _l('requester').':</b> '. get_staff_full_name($pur_request->requester).'</span><br />
@@ -2549,26 +2540,28 @@ class Purchase_model extends App_Model
       <br><br>
       ';
 
-      $html .=  '<table class="table table-hover table-bordered border_table">
-        <tbody>
-          <tr class="border_tr">
-            <td class="border_td">'._l('items').'</td>
-            <td class="border_td">'._l('unit').'</td>
-            <td class="border_td">'._l('unit_price').'</td>
-            <td class="border_td">'._l('quantity').'</td>
-            <td class="border_td">'._l('into_money').'</td>
-            <td class="border_td">'._l('inventory_quantity').'</td>
-          </tr>';
+      $html .=  '<table class="table purorder-item">
+        <thead>
+          <tr>
+            <th class="thead-dark">'._l('items').'</th>
+            <th class="thead-dark" align="right">'._l('unit').'</th>
+            <th class="thead-dark" align="right">'._l('unit_price').'</th>
+            <th class="thead-dark" align="right">'._l('quantity').'</th>
+            <th class="thead-dark" align="right">'._l('into_money').'</th>
+            <th class="thead-dark" align="right">'._l('inventory_quantity').'</th>
+          </tr>
+        </thead>
+        <tbody>';
       foreach($pur_request_detail as $row){
         $items = $this->get_items_by_id($row['item_code']);
         $units = $this->get_units_by_id($row['unit_id']);
-        $html .= '<tr class="border_tr">
-            <td class="border_td_left">'.$items->commodity_code.' - '.$items->description.'</td>
-            <td class="border_td_left">'.$units->unit_name.'</td>
-            <td class="border_td_right">'.app_format_money($row['unit_price'],'').'</td>
-            <td class="border_td_right">'.$row['quantity'].'</td>
-            <td class="border_td_right">'.app_format_money($row['into_money'],'').'</td>
-            <td class="border_td_right">'.$row['inventory_quantity'].'</td>
+        $html .= '<tr nobr="true" class="sortable">
+            <td>'.$items->commodity_code.' - '.$items->description.'</td>
+            <td align="right">'.$units->unit_name.'</td>
+            <td align="right">'.app_format_money($row['unit_price'],'').'</td>
+            <td align="right">'.$row['quantity'].'</td>
+            <td align="right">'.app_format_money($row['into_money'],'').'</td>
+            <td align="right">'.$row['inventory_quantity'].'</td>
           </tr>';
       }  
       $html .=  '</tbody>
@@ -2661,16 +2654,7 @@ class Purchase_model extends App_Model
             <td style="position: absolute; float: right;">
                 <span style="text-align: right; font-size: 25px"><b>'.mb_strtoupper(_l('request_quotation')).'</b></span><br />
                 <span style="text-align: right;"># '.$pur_request->pur_rq_code.'</span><br />
-                <span style="text-align: right;">'.get_status_approve($pur_request->status).'</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <table class="table">
-        <tbody>
-          <tr>
-            <td></td>
-            <td style="position: absolute; float: right;">
+                <span style="text-align: right;">'.get_status_approve($pur_request->status).'</span><br /><br />
                 <span style="text-align: right;"><b>'. _l('date_request').':</b> '. date('d-m-Y', strtotime($pur_request->request_date)).'</span><br />
                 <span style="text-align: right;"><b>'. _l('project').':</b> '. get_project_name_by_id($pur_request->project_id).'</span><br />
                 <span style="text-align: right;"><b>'. _l('requester').':</b> '. get_staff_full_name($pur_request->requester).'</span><br />
@@ -2681,26 +2665,26 @@ class Purchase_model extends App_Model
       <br><br>
       ';
 
-      $html .=  '<table class="table table-hover table-bordered border_table">
-        <tbody>
-          <tr class="border_tr">
-            <td class="border_td">'._l('items').'</td>
-            <td class="border_td">'._l('unit').'</td>
-            <td class="border_td">'._l('unit_price').'</td>
-            <td class="border_td">'._l('quantity').'</td>
-            <td class="border_td">'._l('into_money').'</td>
-            
-          </tr>';
+      $html .=  '<table class="table purorder-item">
+        <thead>
+          <tr>
+            <th class="thead-dark">'._l('items').'</th>
+            <th class="thead-dark" align="right">'._l('unit').'</th>
+            <th class="thead-dark" align="right">'._l('unit_price').'</th>
+            <th class="thead-dark" align="right">'._l('quantity').'</th>
+            <th class="thead-dark" align="right">'._l('into_money').'</th>
+          </tr>
+        </thead>
+        <tbody>';
       foreach($pur_request_detail as $row){
         $items = $this->get_items_by_id($row['item_code']);
         $units = $this->get_units_by_id($row['unit_id']);
-        $html .= '<tr class="border_tr">
-            <td class="border_td_left">'.$items->commodity_code.' - '.$items->description.'</td>
-            <td class="border_td_left">'.$units->unit_name.'</td>
-            <td class="border_td_right">'.app_format_money($row['unit_price'],'').'</td>
-            <td class="border_td_right">'.$row['quantity'].'</td>
-            <td class="border_td_right">'.app_format_money($row['into_money'],'').'</td>
-            
+        $html .= '<tr nobr="true" class="sortable">
+            <td>'.$items->commodity_code.' - '.$items->description.'</td>
+            <td align="right">'.$units->unit_name.'</td>
+            <td align="right">'.app_format_money($row['unit_price'],'').'</td>
+            <td align="right">'.$row['quantity'].'</td>
+            <td align="right">'.app_format_money($row['into_money'],'').'</td>
           </tr>';
       }  
       $html .=  '</tbody>
