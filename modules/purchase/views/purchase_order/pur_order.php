@@ -187,6 +187,37 @@
                         </select>
                       </div> 
 
+                      <div class="clearfix"></div>
+                      <div class="col-md-6">
+                        <br><br>
+                        <p class="bold"><?php echo _l('ship_to'); ?></p>
+                        <a href="#" class="edit_shipping_billing_info" data-toggle="modal" data-target="#billing_and_shipping_details"><i class="fa fa-pencil-square-o"></i></a>
+                        <?php $this->load->view('purchase_order/shipping_info'); ?>
+                        <address>
+                           <span class="shipping_street">
+                           <?php $shipping_street = (isset($pur_order) ? $pur_order->shipping_street : '--'); ?>
+                           <?php $shipping_street = ($shipping_street == '' ? '--' :$shipping_street); ?>
+                           <?php echo $shipping_street; ?></span><br>
+                           <span class="shipping_city">
+                           <?php $shipping_city = (isset($pur_order) ? $pur_order->shipping_city : '--'); ?>
+                           <?php $shipping_city = ($shipping_city == '' ? '--' :$shipping_city); ?>
+                           <?php echo $shipping_city; ?></span>,
+                           <span class="shipping_state">
+                           <?php $shipping_state = (isset($pur_order) ? $pur_order->shipping_state : '--'); ?>
+                           <?php $shipping_state = ($shipping_state == '' ? '--' :$shipping_state); ?>
+                           <?php echo $shipping_state; ?></span>
+                           <br/>
+                           <span class="shipping_country">
+                           <?php $shipping_country = (isset($pur_order) ? get_country_short_name($pur_order->shipping_country) : '--'); ?>
+                           <?php $shipping_country = ($shipping_country == '' ? '--' :$shipping_country); ?>
+                           <?php echo $shipping_country; ?></span>,
+                           <span class="shipping_zip">
+                           <?php $shipping_zip = (isset($pur_order) ? $pur_order->shipping_zip : '--'); ?>
+                           <?php $shipping_zip = ($shipping_zip == '' ? '--' :$shipping_zip); ?>
+                           <?php echo $shipping_zip; ?></span>
+                        </address>
+                      </div>
+
                    </div>  
                 </div>
 

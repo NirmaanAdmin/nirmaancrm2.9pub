@@ -1642,6 +1642,14 @@ class Purchase_model extends App_Model
 
         if(isset($data['clients']) && count($data['clients']) > 0){
             $data['clients'] = implode(',', $data['clients']);
+        }
+
+        if (isset($data['include_shipping'])) {
+            unset($data['include_shipping']);
+        }
+        if (isset($data['shipping_street'])) {
+            $data['shipping_street'] = trim($data['shipping_street']);
+            $data['shipping_street'] = nl2br($data['shipping_street']);
         } 
 
         if (isset($data['custom_fields'])) {
@@ -1764,6 +1772,12 @@ class Purchase_model extends App_Model
         if(isset($data['clients']) && count($data['clients']) > 0){
             $data['clients'] = implode(',', $data['clients']);
         }
+
+        if (isset($data['include_shipping'])) {
+            unset($data['include_shipping']);
+        }
+        $data['shipping_street'] = trim($data['shipping_street']);
+        $data['shipping_street'] = nl2br($data['shipping_street']);
 
         if(isset($data['pur_order_detail'])){
             $pur_order_detail = json_decode($data['pur_order_detail']);
@@ -2961,6 +2975,7 @@ class Purchase_model extends App_Model
         $project_detail = '';
         $buyer = '';
         $delivery_person = '';
+        $ship_to = format_po_ship_to_info($pur_order);
         $company_logo = get_option('company_logo_dark');
         if(!empty($company_logo)) {
             $logo = '<img src="' . base_url('uploads/company/' . $company_logo) . '" width="230" height="100">';
@@ -2981,6 +2996,10 @@ class Purchase_model extends App_Model
         $pur_request_name = '';
         if(!empty($pur_request)) {
             $pur_request_name = '<span style="text-align: right;"><b>'. _l('pur_request').':</b> #'. $pur_request->pur_rq_code.'</span><br />';
+        }
+        $ship_to_detail = '';
+        if(!empty($ship_to)) {
+            $ship_to_detail = '<span style="text-align: right;">'.$ship_to.'</span><br /><br />';
         }
         
     $html = '<table class="table">
@@ -3006,6 +3025,7 @@ class Purchase_model extends App_Model
                 '.$project_detail.'
             </td>
             <td style="position: absolute; float: right;">
+                '.$ship_to_detail.'
                 '.$delivery_date.'
                 '.$delivery_person.'
                 '.$pur_request_name.'
@@ -3086,10 +3106,12 @@ class Purchase_model extends App_Model
 
       $html .= ' </tbody></table>';
 
+      $html .= '<div style="page-break-before:always">&nbsp;</div>';
+
       $html .= '<div class="col-md-12 mtop15">
-                        <p class="bold">'. _l('terms_and_conditions').': '. html_entity_decode($pur_order->terms).'</p>
-                       
-                     </div>';
+            <p class="bold"><b>'. _l('estimate_add_edit_vendor_note').':</b> '. html_entity_decode($pur_order->vendornote).'</p>
+            <p class="bold"><b>'. _l('terms_and_conditions').':</b> '. html_entity_decode($pur_order->terms).'</p>
+            </div>';
       $html .= '<br>
       <br>
       <br>

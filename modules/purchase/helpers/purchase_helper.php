@@ -1232,3 +1232,40 @@ function max_number_items(){
     $max = $CI->db->query('select COUNT(id) as count from '.db_prefix().'items')->row();
     return $max->count;
 }
+
+function format_po_ship_to_info($pur_order) {
+    $html = '';
+    $CI = & get_instance();
+
+    if(!empty($pur_order->shipping_street) || !empty($pur_order->shipping_city) || !empty($pur_order->shipping_state) || !empty($pur_order->shipping_zip)) {
+        $html .= '<b>'._l('ship_to').'</b>';
+        if(!empty($pur_order->shipping_street)) {
+            $html .= '<br />'.$pur_order->shipping_street;
+        }
+        if(!empty($pur_order->shipping_city) || !empty($pur_order->shipping_state)) {
+            $html .= '<br />';
+            if(!empty($pur_order->shipping_city)) {
+                $html .= $pur_order->shipping_city." ";
+            }
+            if(!empty($pur_order->shipping_state)) {
+                $html .= $pur_order->shipping_state;
+            }
+        }
+        if(!empty($pur_order->shipping_country) || !empty($pur_order->shipping_zip)) {
+            $html .= '<br />';
+            if(!empty($pur_order->shipping_country)) {
+                $shipping_country = $CI->db->select('short_name')
+                ->where('country_id', $pur_order->shipping_country)
+                ->from(db_prefix() . 'countries')
+                ->get()
+                ->row();
+                $html .= $shipping_country->short_name." ";
+            }
+            if(!empty($pur_order->shipping_zip)) {
+                $html .= $pur_order->shipping_zip;
+            }
+        }
+    }
+
+    return $html;
+}

@@ -219,4 +219,4 @@ $lang['add'] = 'Add';
 $lang['purchase_quotation'] = 'Purchase quotation';
 $lang['project'] = 'Project';
 $lang['convert_to_po'] = 'Convert to PO';
-$lang['delivery_person'] = 'Delivery person';
+$lang['delivery_person'] = 'Delivered by';
