@@ -2544,6 +2544,7 @@ class Purchase_model extends App_Model
         <thead>
           <tr>
             <th class="thead-dark">'._l('items').'</th>
+            <th class="thead-dark">'._l('decription').'</th>
             <th class="thead-dark" align="right">'._l('unit').'</th>
             <th class="thead-dark" align="right">'._l('unit_price').'</th>
             <th class="thead-dark" align="right">'._l('quantity').'</th>
@@ -2557,6 +2558,7 @@ class Purchase_model extends App_Model
         $units = $this->get_units_by_id($row['unit_id']);
         $html .= '<tr nobr="true" class="sortable">
             <td>'.$items->commodity_code.' - '.$items->description.'</td>
+            <td>'.$row['description'].'</td>
             <td align="right">'.$units->unit_name.'</td>
             <td align="right">'.app_format_money($row['unit_price'],'').'</td>
             <td align="right">'.$row['quantity'].'</td>
@@ -2669,6 +2671,7 @@ class Purchase_model extends App_Model
         <thead>
           <tr>
             <th class="thead-dark">'._l('items').'</th>
+            <th class="thead-dark">'._l('decription').'</th>
             <th class="thead-dark" align="right">'._l('unit').'</th>
             <th class="thead-dark" align="right">'._l('unit_price').'</th>
             <th class="thead-dark" align="right">'._l('quantity').'</th>
@@ -2681,6 +2684,7 @@ class Purchase_model extends App_Model
         $units = $this->get_units_by_id($row['unit_id']);
         $html .= '<tr nobr="true" class="sortable">
             <td>'.$items->commodity_code.' - '.$items->description.'</td>
+            <td>'.$row['description'].'</td>
             <td align="right">'.$units->unit_name.'</td>
             <td align="right">'.app_format_money($row['unit_price'],'').'</td>
             <td align="right">'.$row['quantity'].'</td>
