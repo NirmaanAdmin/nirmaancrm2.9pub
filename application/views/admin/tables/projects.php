@@ -109,6 +109,20 @@ foreach ($rResult as $aRow) {
 
     $row[] = render_tags($aRow['tags']);
 
+    ob_start();
+    $percent = $this->ci->projects_model->calc_progress($aRow['id']);
+    $progress_bar_percent = $percent / 100; ?>
+    <input type="hidden" value="<?php
+    echo '' . $progress_bar_percent; ?>" name="percent">
+    <div class="goal-progress" data-reverse="true">
+       <strong class="goal-percent pr-goal-percent"><?php
+        echo '' . $percent; ?>%</strong>
+    </div>
+    <?php
+    $progress = ob_get_contents();
+    ob_end_clean();
+    $row[] = $progress;
+
     $row[] = _d($aRow['start_date']);
 
     $row[] = _d($aRow['deadline']);
@@ -135,6 +149,9 @@ foreach ($rResult as $aRow) {
 
     $membersOutput .= '<span class="hide">' . trim($exportMembers, ', ') . '</span>';
     $row[] = $membersOutput;
+
+    $options = icon_btn('project_roadmap/view_project_roadmap/' . $aRow['id'], 'eye', 'btn-default', $data_title);
+    $row[] =  $options;
 
     $status = get_project_status_by_id($aRow['status']);
     $row[]  = '<span class="label label inline-block project-status-' . $aRow['status'] . '" style="color:' . $status['color'] . ';border:1px solid ' . $status['color'] . '">' . $status['name'] . '</span>';

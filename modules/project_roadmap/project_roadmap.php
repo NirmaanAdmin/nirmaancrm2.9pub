@@ -105,12 +105,12 @@ register_language_files(PROJECT_ROADMAP_MODULE_NAME, [PROJECT_ROADMAP_MODULE_NAM
 function project_roadmap_module_init_menu_items() {
     if (has_permission('project_roadmap', '', 'view')) {
         $CI = &get_instance();
-        $CI->app_menu->add_sidebar_menu_item('project_roadmap', [
-                'name'     => _l('project_roadmap'),
-                'href'     => admin_url('project_roadmap'),
-                'icon'     => 'fa fa-line-chart',
-                'position' => 4
-        ]);
+        // $CI->app_menu->add_sidebar_menu_item('project_roadmap', [
+        //         'name'     => _l('project_roadmap'),
+        //         'href'     => admin_url('project_roadmap'),
+        //         'icon'     => 'fa fa-line-chart',
+        //         'position' => 4
+        // ]);
     }
 }
 

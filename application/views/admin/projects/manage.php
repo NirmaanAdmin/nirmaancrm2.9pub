@@ -100,6 +100,21 @@ $(function(){
      });
 
      initDataTable('.table-projects', admin_url+'projects/table', undefined, undefined, ProjectsServerParams, <?php echo hooks()->apply_filters('projects_table_default_order', json_encode(array(5,'asc'))); ?>);
+     $('.table-projects').DataTable().on('draw', function() {
+        var rows = $('.table-projects').find('tr');
+        $.each(rows, function() {
+            var td = $(this).find('td').eq(4);
+            var percent = $(td).find('input[name="percent"]').val();
+            $(td).find('.goal-progress').circleProgress({
+                value: percent,
+                size: 45,
+                animation: false,
+                fill: {
+                    gradient: ["#28b8da", "#059DC1"]
+                }
+            })
+        })
+    })
 
      init_ajax_search('customer', '#clientid_copy_project.ajax-search');
 });

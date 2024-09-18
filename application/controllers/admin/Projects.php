@@ -16,6 +16,7 @@ class Projects extends AdminController
     {
         close_setup_menu();
         $data['statuses'] = $this->projects_model->get_project_statuses();
+        $this->app_scripts->add('circle-progress-js','assets/plugins/jquery-circle-progress/circle-progress.min.js');
         $data['title']    = _l('projects');
         $this->load->view('admin/projects/manage', $data);
     }
