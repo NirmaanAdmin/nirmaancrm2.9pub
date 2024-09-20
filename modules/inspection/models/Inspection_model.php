@@ -231,4 +231,14 @@ class Inspection_model extends App_Model
 
         return false;
     }
+
+    public function get_inspection_type($id = '')
+    {
+        if (is_numeric($id)) {
+            $this->db->where('id', $id);
+            return $this->db->get(db_prefix() . 'inspection_types')->row();
+        }
+
+        return $this->db->get(db_prefix() . 'inspection_types')->result_array();
+    }
 }

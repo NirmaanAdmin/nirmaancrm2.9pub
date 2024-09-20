@@ -67,4 +67,21 @@ class Inspection extends AdminController
         }
         redirect(admin_url('inspection'));
     }
+
+    public function perform_inspection($id)
+    {
+        $inspection = $this->inspection_model->get($id);
+        if(!empty($inspection)) {
+            $inspection_type = $this->inspection_model->get_inspection_type($inspection->inspection_type_id);
+            if(!empty($inspection_type)) {
+                $data = array();
+                $data['title'] = $inspection_type->name;
+                $this->load->view($inspection_type->label, $data);
+            } else {
+                redirect(admin_url('inspection'));
+            }
+        } else {
+            redirect(admin_url('inspection'));
+        }
+    }
 }

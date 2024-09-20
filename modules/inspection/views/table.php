@@ -38,8 +38,9 @@ foreach ($rResult as $key => $aRow) {
     $outputName = '';
     $outputName .= '<a href="' . admin_url('inspection/create_inspection/' . $aRow['id']) . '" class="display-block main-tasks-table-href-name">' . $aRow['inspection_name'] . '</a><span>' . $aRow['project_name'] . ' - ' . $aRow['client_name'] . '<br />' . $aRow['inspection_type'] . '</span>';
     $outputName .= '<div class="row-options">';
-    $outputName .= '<span class="text-dark"></span><a href="' . admin_url('inspection/create_inspection/' . $aRow['id']) . '">' . _l('edit') . '</a>';
-    $outputName .= '<span class="text-dark"> | </span><a href="' . admin_url('inspection/delete/' . $aRow['id']) . '" class="text-danger _delete task-delete">' . _l('delete') . '</a>';
+    $outputName .= '<span class="text-dark"></span><a href="' . admin_url('inspection/perform_inspection/' . $aRow['id']) . '">' . _l('perform') . '</a> | ';
+    $outputName .= '<span class="text-dark"></span><a href="' . admin_url('inspection/create_inspection/' . $aRow['id']) . '">' . _l('edit') . '</a> | ';
+    $outputName .= '<span class="text-dark"></span><a href="' . admin_url('inspection/delete/' . $aRow['id']) . '" class="text-danger _delete task-delete">' . _l('delete') . '</a>';
     $outputName .= '</div>';
     $row[] = $outputName;
 
