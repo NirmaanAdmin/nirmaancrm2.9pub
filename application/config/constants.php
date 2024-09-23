@@ -164,6 +164,10 @@ define('TASKS_ATTACHMENTS_FOLDER', FCPATH . 'uploads/tasks' . '/');
 /**
  * Purchase attachments
  */
+define('QUALITY_ATTACHMENTS_FOLDER', FCPATH . 'uploads/quality' . '/');
+/**
+ * Purchase attachments
+ */
 define('PURCHASE_ATTACHMENTS_FOLDER', FCPATH . 'uploads/purchase' . '/');
 /**
  * Invoice attachments

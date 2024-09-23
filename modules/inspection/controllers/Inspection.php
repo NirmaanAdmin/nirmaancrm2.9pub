@@ -27,14 +27,14 @@ class Inspection extends AdminController
                 $id = $this->inspection_model->add($this->input->post());
                 if ($id) {
                     set_alert('success', _l('added_successfully', _l('inspection')));
-                    redirect(admin_url('inspection'));
+                    redirect(admin_url('inspection/perform_inspection/' . $id));
                 }
             } else {
                 $success = $this->inspection_model->update($this->input->post(), $id);
                 if ($success) {
                     set_alert('success', _l('updated_successfully', _l('inspection')));
                 }
-                redirect(admin_url('inspection'));
+                redirect(admin_url('inspection/perform_inspection/' . $id));
             }
         }
         if ($id == '') {
@@ -74,9 +74,30 @@ class Inspection extends AdminController
         if(!empty($inspection)) {
             $inspection_type = $this->inspection_model->get_inspection_type($inspection->inspection_type_id);
             if(!empty($inspection_type)) {
-                $data = array();
-                $data['title'] = $inspection_type->name;
-                $this->load->view($inspection_type->label, $data);
+                if(!empty($inspection_type->label)) {
+                    if($this->input->post()) {
+                        $add_data = $this->input->post();
+                        $checklist_id = $add_data['id'];
+                        if(empty($checklist_id)) {
+                            $id = $this->inspection_model->add_perform_inspection($add_data, $inspection_type->label, $id);
+                            set_alert('success', _l('added_successfully'));
+                        } else {
+                            $id = $this->inspection_model->update_perform_inspection($add_data, $inspection_type->label, $id, $checklist_id);
+                            set_alert('success', _l('updated_successfully'));
+                        }
+                        redirect(admin_url('inspection'));
+                    } else {
+                        $data = array();
+                        $checklist_data = $this->inspection_model->get_checklist_data($inspection_type->label, $id);
+                        if(!empty($checklist_data)) {
+                            $data['result'] = (object) $checklist_data[0];
+                        }
+                        $data['title'] = $inspection_type->name;
+                        $this->load->view($inspection_type->label, $data);
+                    }
+                } else {
+                    redirect(admin_url('inspection'));
+                }
             } else {
                 redirect(admin_url('inspection'));
             }

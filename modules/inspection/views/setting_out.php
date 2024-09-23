@@ -11,6 +11,11 @@
                         <?php echo form_open_multipart($this->uri->uri_string()); ?>
 
                         <?php
+                        $id = (isset($result) ? $result->id : '');
+                        echo form_hidden('id', $id);
+                        ?>
+
+                        <?php
                         $location = (isset($result) ? $result->location : '');
                         echo render_input('location','location', $location , 'text');
                         ?>
@@ -179,9 +184,8 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-info pull-right" name="submit"><?php echo _l('save_and_send_for_review'); ?></button>
-                        <button type="submit" class="btn btn-info pull-right" name="draft" style="margin-right: 10px"><?php echo _l('save_and_finish_later'); ?></button>
-
+                        <button type="submit" class="btn btn-info pull-right"><?php echo _l('save'); ?></button>
+                        <a href="<?php echo admin_url('inspection'); ?>" class="btn btn-default pull-right" style="margin-right: 10px"><?php echo _l('close'); ?></a>
                         <?php echo form_close(); ?>
                     </div>
                 </div>

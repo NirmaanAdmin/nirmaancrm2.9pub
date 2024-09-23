@@ -241,4 +241,114 @@ class Inspection_model extends App_Model
 
         return $this->db->get(db_prefix() . 'inspection_types')->result_array();
     }
+
+    public function add_perform_inspection($data, $label, $id)
+    {
+        if ($label == "setting_out") {
+            $this->add_setting_out($data, $label, $id);
+        }
+    }
+
+    public function update_perform_inspection($data, $label, $id, $checklist_id)
+    {
+        if ($label == "setting_out") {
+            $this->update_setting_out($data, $label, $id, $checklist_id);
+        }
+    }
+
+    public function get_checklist_data($label, $id)
+    {
+        if (is_numeric($id)) {
+            $this->db->where('inspection_id', $id);
+            return $this->db->get(db_prefix() . $label)->result_array();
+        }
+    }
+
+    public function add_setting_out($data, $label, $id)
+    {
+        $uploadedFiles1 = array();
+        if(isset($_FILES['attachment1'])) {
+            $uploadedFiles1 = handle_quality_attachments_array($label, $id, 'attachment1');
+        }
+
+        $uploadedFiles2 = array();
+        if(isset($_FILES['attachment2'])) {
+            $uploadedFiles2 = handle_quality_attachments_array($label, $id, 'attachment2');
+        }
+
+        $uploadedFiles3 = array();
+        if(isset($_FILES['attachment3'])) {
+            $uploadedFiles3 = handle_quality_attachments_array($label, $id, 'attachment3');
+        }
+
+        $uploadedFiles4 = array();
+        if(isset($_FILES['attachment4'])) {
+            $uploadedFiles4 = handle_quality_attachments_array($label, $id, 'attachment4');
+        }
+
+        if(!empty($uploadedFiles1)) {
+            $data['attachment1'] = $uploadedFiles1[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles2)) {
+            $data['attachment2'] = $uploadedFiles2[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles3)) {
+            $data['attachment3'] = $uploadedFiles3[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles4)) {
+            $data['attachment4'] = $uploadedFiles4[0]['file_name'];
+        }
+
+        $data['dateadded'] = date('Y-m-d H:i:s');
+        $data['inspection_id'] = $id;
+        $this->db->insert(db_prefix() . $label, $data);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
+    }
+
+    public function update_setting_out($data, $label, $id, $checklist_id)
+    {
+        $uploadedFiles1 = array();
+        if(isset($_FILES['attachment1'])) {
+            $uploadedFiles1 = handle_quality_attachments_array($label, $id, 'attachment1');
+        }
+
+        $uploadedFiles2 = array();
+        if(isset($_FILES['attachment2'])) {
+            $uploadedFiles2 = handle_quality_attachments_array($label, $id, 'attachment2');
+        }
+
+        $uploadedFiles3 = array();
+        if(isset($_FILES['attachment3'])) {
+            $uploadedFiles3 = handle_quality_attachments_array($label, $id, 'attachment3');
+        }
+
+        $uploadedFiles4 = array();
+        if(isset($_FILES['attachment4'])) {
+            $uploadedFiles4 = handle_quality_attachments_array($label, $id, 'attachment4');
+        }
+
+        if(!empty($uploadedFiles1)) {
+            $data['attachment1'] = $uploadedFiles1[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles2)) {
+            $data['attachment2'] = $uploadedFiles2[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles3)) {
+            $data['attachment3'] = $uploadedFiles3[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles4)) {
+            $data['attachment4'] = $uploadedFiles4[0]['file_name'];
+        }
+
+        $this->db->where('id', $checklist_id);
+        $this->db->update(db_prefix().$label, $data);
+        return $checklist_id;
+    }
 }

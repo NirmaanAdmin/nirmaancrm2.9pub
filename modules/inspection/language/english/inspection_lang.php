@@ -53,3 +53,5 @@ $lang['no'] = 'No';
 $lang['benchmark_available'] = 'Benchmark Available';
 $lang['level_of_bm'] = 'Level of BM';
 $lang['other_remarks'] = 'Other Remarks';
+$lang['save'] = 'Save';
+$lang['close'] = 'Close';
