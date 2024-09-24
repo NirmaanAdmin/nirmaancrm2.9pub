@@ -129,6 +129,7 @@ function app_format_money($amount, $currency, $excludeSymbol = false)
      * @var string
      */
     $amountFormatted = number_format($amount, $d, $currency->decimal_separator, $currency->thousand_separator);
+    $amountFormatted = amount_format($amount);
 
     /**
      * Maybe add the currency symbol
@@ -870,4 +871,34 @@ function get_base_currency()
     }
 
     return $CI->currencies_model->get_base_currency();
+}
+
+function amount_format($num, $type = 1)
+{
+    $num_full = number_format((float)$num,2,'.','');
+    if (strpos($num, '.') !== false) {
+    $num = substr($num_full, 0, strpos($num_full, "."));
+    }
+    
+    if($type == 1) { // '₹10,00,000.00/-'
+        $explrestunits = "" ;
+        if(strlen($num)>3) {
+            $lastthree = substr($num, strlen($num)-3, strlen($num));
+            $restunits = substr($num, 0, strlen($num)-3); // extracts the last three digits
+            $restunits = (strlen($restunits)%2 == 1)?"0".$restunits:$restunits; // explodes the remaining digits in 2's formats, adds a zero in the beginning to maintain the 2's grouping.
+            $expunit = str_split($restunits, 2);
+            for($i=0; $i<sizeof($expunit); $i++) {
+                // creates each of the 2's group and adds a comma to the end
+                if($i==0) {
+                    $explrestunits .= (int)$expunit[$i].","; // if is first value , convert into integer
+                } else {
+                    $explrestunits .= $expunit[$i].",";
+                }
+            }
+            $thecash = $explrestunits.$lastthree.substr($num_full, -3);
+        } else {
+            $thecash = $num.substr($num_full, -3);
+        }
+        return $thecash; // writes the final format where $currency is the currency symbol.
+    }
 }
