@@ -39,8 +39,11 @@ foreach ($rResult as $key => $aRow) {
     $outputName .= '<a href="' . admin_url('inspection/create_inspection/' . $aRow['id']) . '" class="display-block main-tasks-table-href-name">' . $aRow['inspection_name'] . '</a><span>' . $aRow['project_name'] . ' - ' . $aRow['client_name'] . '<br />' . $aRow['inspection_type'] . '</span>';
     $outputName .= '<div class="row-options">';
 
-    if($aRow['status'] == 0) {
+    if($aRow['status'] == 0 || $aRow['status'] == 1 || $aRow['status'] == 2) {
         $outputName .= '<span class="text-dark"></span><a href="' . admin_url('inspection/perform_inspection/' . $aRow['id']) . '">' . _l('perform') . '</a> | ';
+    }
+
+    if($aRow['status'] == 0 || $aRow['status'] == 1) {
         $outputName .= '<span class="text-dark"></span><a href="' . admin_url('inspection/create_inspection/' . $aRow['id']) . '">' . _l('edit') . '</a> | ';
     }
     
@@ -48,15 +51,35 @@ foreach ($rResult as $key => $aRow) {
     $outputName .= '</div>';
     $row[] = $outputName;
 
-    $row[] = 'Ready For Review';
+    if ($aRow['status'] == 0) {
+        $row[] = _l('not_started');
+    } else if($aRow['status'] == 1) {
+        $row[] = _l('progress_in');
+    } else if($aRow['status'] == 2) {
+        $row[] = _l('ready_for_review');
+    } else if($aRow['status'] == 3) {
+        $row[] = _l('passed');
+    } else if($aRow['status'] == 4) {
+        $row[] = _l('failed');
+    } else {
+        $row[] = _l('not_started');
+    }
 
     $row[] = date('d-m-Y', strtotime($aRow['dateadded']));
 
-    $done_by_list_ids = done_by_list_ids($aRow['done_by']);
-    $done_by_list_names = done_by_list_names($aRow['done_by']);
-    $row[] = format_members_by_ids_and_names($done_by_list_ids, $done_by_list_names);
+    if(!empty($aRow['done_by'])) {
+        $done_by_list_ids = done_by_list_ids($aRow['done_by']);
+        $done_by_list_names = done_by_list_names($aRow['done_by']);
+        $row[] = format_members_by_ids_and_names($done_by_list_ids, $done_by_list_names);
+    } else {
+        $row[] = '';
+    }
 
-    $row[] = render_tags($aRow['tags']);
+    if(!empty($aRow['tags'])) {
+        $row[] = render_tags($aRow['tags']);
+    } else {
+        $row[] = '';
+    }
 
     $row['DT_RowClass'] = 'has-row-options';
     $output['aaData'][] = $row;

@@ -23,18 +23,24 @@ class Inspection extends AdminController
     public function create_inspection($id = '')
     {
         if ($this->input->post()) {
+            $post_data = $this->input->post();
             if ($id == '') {
-                $id = $this->inspection_model->add($this->input->post());
+                $id = $this->inspection_model->add($post_data);
                 if ($id) {
                     set_alert('success', _l('added_successfully', _l('inspection')));
-                    redirect(admin_url('inspection/perform_inspection/' . $id));
                 }
             } else {
-                $success = $this->inspection_model->update($this->input->post(), $id);
+                $success = $this->inspection_model->update($post_data, $id);
                 if ($success) {
                     set_alert('success', _l('updated_successfully', _l('inspection')));
                 }
+            }
+            if(isset($post_data['perform'])) {
                 redirect(admin_url('inspection/perform_inspection/' . $id));
+            } else if(isset($post_data['draft'])) {
+                redirect(admin_url('inspection'));
+            } else {
+                redirect(admin_url('inspection'));
             }
         }
         if ($id == '') {
@@ -79,19 +85,27 @@ class Inspection extends AdminController
                         $add_data = $this->input->post();
                         $checklist_id = $add_data['id'];
                         if(empty($checklist_id)) {
-                            $id = $this->inspection_model->add_perform_inspection($add_data, $inspection_type->label, $id);
+                            $this->inspection_model->add_perform_inspection($add_data, $inspection_type->label, $id);
                             set_alert('success', _l('added_successfully'));
                         } else {
-                            $id = $this->inspection_model->update_perform_inspection($add_data, $inspection_type->label, $id, $checklist_id);
+                            $this->inspection_model->update_perform_inspection($add_data, $inspection_type->label, $id, $checklist_id);
                             set_alert('success', _l('updated_successfully'));
                         }
-                        redirect(admin_url('inspection'));
+                        if(isset($add_data['submit'])) {
+                            redirect(admin_url('inspection/perform_inspection/' . $id));
+                        } else if(isset($add_data['draft'])) {
+                            redirect(admin_url('inspection'));
+                        } else {
+                            redirect(admin_url('inspection'));
+                        }
                     } else {
                         $data = array();
                         $checklist_data = $this->inspection_model->get_checklist_data($inspection_type->label, $id);
                         if(!empty($checklist_data)) {
                             $data['result'] = (object) $checklist_data[0];
                         }
+                        $data['inspection_id'] = $id;
+                        $data['inspection_status'] = $inspection->status;
                         $data['title'] = $inspection_type->name;
                         $this->load->view($inspection_type->label, $data);
                     }
@@ -104,5 +118,12 @@ class Inspection extends AdminController
         } else {
             redirect(admin_url('inspection'));
         }
+    }
+
+    public function close_inspection($id, $status)
+    {
+        $this->inspection_model->close_inspection($id, $status);
+        set_alert('success', _l('updated_successfully'));
+        redirect(admin_url('inspection'));
     }
 }

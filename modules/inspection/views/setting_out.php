@@ -8,7 +8,7 @@
                     <div class="panel-body">
                         <h4 class="no-margin"><?php echo $title; ?></h4>
                         <hr class="hr-panel-heading" />
-                        <?php echo form_open_multipart($this->uri->uri_string()); ?>
+                        <?php echo form_open_multipart($this->uri->uri_string(), ['id' => 'checklist-form']); ?>
 
                         <?php
                         $id = (isset($result) ? $result->id : '');
@@ -184,8 +184,26 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-info pull-right"><?php echo _l('save'); ?></button>
-                        <a href="<?php echo admin_url('inspection'); ?>" class="btn btn-default pull-right" style="margin-right: 10px"><?php echo _l('close'); ?></a>
+                        <?php if($inspection_status == 0 || $inspection_status == 1) { ?>
+                            <div class="row">
+                                <div class="col-md-12"> 
+                                    <button type="submit" class="btn btn-info pull-right" name="submit" style="margin: 5px;"><?php echo _l('save_and_send_for_review'); ?></button>
+                                    <button type="submit" class="btn btn-default pull-right" name="draft" style="margin: 5px;"><?php echo _l('save_and_finish_later'); ?></button>
+                                </div>
+                            </div>
+                        <?php } ?>
+
+                        <?php if($inspection_status == 2) { ?>
+                            <div class="dropdown pull-right">
+                              <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown"><?php echo _l('close_inspection'); ?>
+                              <span class="caret"></span></button>
+                              <ul class="dropdown-menu">
+                                <li><a href="<?php echo admin_url('inspection/close_inspection/'.$inspection_id.'/3'); ?>"><?php echo _l('pass'); ?></a></li>
+                                <li><a href="<?php echo admin_url('inspection/close_inspection/'.$inspection_id.'/4'); ?>"><?php echo _l('fail'); ?></a></li>
+                              </ul>
+                            </div>
+                        <?php } ?>
+
                         <?php echo form_close(); ?>
                     </div>
                 </div>

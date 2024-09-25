@@ -134,8 +134,12 @@
                         echo render_textarea('extra_notes','extra_notes', $extra_notes); 
                         ?>
 
-                        <button type="submit" class="btn btn-info pull-right" name="submit"><?php echo _l('save_and_send_for_review'); ?></button>
-                        <button type="submit" class="btn btn-info pull-right" name="draft" style="margin-right: 10px"><?php echo _l('save_and_finish_later'); ?></button>
+                        <div class="row">
+                            <div class="col-md-12"> 
+                                <button type="submit" class="btn btn-info pull-right" name="perform" style="margin: 5px;"><?php echo _l('save_and_perform'); ?></button>
+                                <button type="submit" class="btn btn-default pull-right" name="draft" style="margin: 5px;"><?php echo _l('save_and_finish_later'); ?></button>
+                            </div>
+                        </div>
 
                         <?php echo form_close(); ?>
                     </div>
