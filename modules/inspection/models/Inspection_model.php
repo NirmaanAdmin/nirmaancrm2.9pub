@@ -244,7 +244,11 @@ class Inspection_model extends App_Model
             $this->add_setting_out($data, $label, $id);
         } else if($label == "excavation") {
             $this->add_excavation($data, $label, $id);
-        }
+        } else if($label == "anti_termite") {
+            $this->add_anti_termite($data, $label, $id);
+        } else if($label == "reinforcement") {
+            $this->add_reinforcement($data, $label, $id);
+        } 
     }
 
     public function update_perform_inspection($data, $label, $id, $checklist_id)
@@ -253,6 +257,10 @@ class Inspection_model extends App_Model
             $this->update_setting_out($data, $label, $id, $checklist_id);
         } else if($label == "excavation") {
             $this->update_excavation($data, $label, $id, $checklist_id);
+        } else if($label == "anti_termite") {
+            $this->update_anti_termite($data, $label, $id, $checklist_id);
+        } else if($label == "reinforcement") {
+            $this->update_reinforcement($data, $label, $id, $checklist_id);
         }
     }
 
@@ -552,6 +560,432 @@ class Inspection_model extends App_Model
 
         if(!empty($uploadedFiles8)) {
             $data['attachment8'] = $uploadedFiles8[0]['file_name'];
+        }
+
+        $idata = array();
+        if(isset($data['draft'])) {
+            $idata['status'] = 1;
+            unset($data['draft']);
+        }
+
+        if(isset($data['submit'])) {
+            $idata['status'] = 2;
+            unset($data['submit']);
+        }
+
+        $this->db->where('id', $checklist_id);
+        $this->db->update(db_prefix().$label, $data);
+        $this->db->where('id', $id);
+        $this->db->update(db_prefix() . 'inspections', $idata);
+        return $checklist_id;
+    }
+
+    public function add_anti_termite($data, $label, $id)
+    {
+        $uploadedFiles1 = array();
+        if(isset($_FILES['attachment1'])) {
+            $uploadedFiles1 = handle_quality_attachments_array($label, $id, 'attachment1');
+        }
+
+        $uploadedFiles2 = array();
+        if(isset($_FILES['attachment2'])) {
+            $uploadedFiles2 = handle_quality_attachments_array($label, $id, 'attachment2');
+        }
+
+        $uploadedFiles3 = array();
+        if(isset($_FILES['attachment3'])) {
+            $uploadedFiles3 = handle_quality_attachments_array($label, $id, 'attachment3');
+        }
+
+        $uploadedFiles4 = array();
+        if(isset($_FILES['attachment4'])) {
+            $uploadedFiles4 = handle_quality_attachments_array($label, $id, 'attachment4');
+        }
+
+        $uploadedFiles5 = array();
+        if(isset($_FILES['attachment5'])) {
+            $uploadedFiles5 = handle_quality_attachments_array($label, $id, 'attachment5');
+        }
+
+        $uploadedFiles6 = array();
+        if(isset($_FILES['attachment6'])) {
+            $uploadedFiles6 = handle_quality_attachments_array($label, $id, 'attachment6');
+        }
+
+        $uploadedFiles7 = array();
+        if(isset($_FILES['attachment7'])) {
+            $uploadedFiles7 = handle_quality_attachments_array($label, $id, 'attachment7');
+        }
+
+        $uploadedFiles8 = array();
+        if(isset($_FILES['attachment8'])) {
+            $uploadedFiles8 = handle_quality_attachments_array($label, $id, 'attachment8');
+        }
+
+        $uploadedFiles9 = array();
+        if(isset($_FILES['attachment9'])) {
+            $uploadedFiles9 = handle_quality_attachments_array($label, $id, 'attachment9');
+        }
+
+        if(!empty($uploadedFiles1)) {
+            $data['attachment1'] = $uploadedFiles1[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles2)) {
+            $data['attachment2'] = $uploadedFiles2[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles3)) {
+            $data['attachment3'] = $uploadedFiles3[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles4)) {
+            $data['attachment4'] = $uploadedFiles4[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles5)) {
+            $data['attachment5'] = $uploadedFiles5[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles6)) {
+            $data['attachment6'] = $uploadedFiles6[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles7)) {
+            $data['attachment7'] = $uploadedFiles7[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles8)) {
+            $data['attachment8'] = $uploadedFiles8[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles9)) {
+            $data['attachment9'] = $uploadedFiles9[0]['file_name'];
+        }
+
+        $idata = array();
+        if(isset($data['draft'])) {
+            $idata['status'] = 1;
+            unset($data['draft']);
+        }
+
+        if(isset($data['submit'])) {
+            $idata['status'] = 2;
+            unset($data['submit']);
+        }
+
+        $data['dateadded'] = date('Y-m-d H:i:s');
+        $data['inspection_id'] = $id;
+        $this->db->insert(db_prefix() . $label, $data);
+        $insert_id = $this->db->insert_id();
+        $this->db->where('id', $id);
+        $this->db->update(db_prefix() . 'inspections', $idata);
+        return $insert_id;
+    }
+
+    public function update_anti_termite($data, $label, $id, $checklist_id)
+    {
+        $uploadedFiles1 = array();
+        if(isset($_FILES['attachment1'])) {
+            $uploadedFiles1 = handle_quality_attachments_array($label, $id, 'attachment1');
+        }
+
+        $uploadedFiles2 = array();
+        if(isset($_FILES['attachment2'])) {
+            $uploadedFiles2 = handle_quality_attachments_array($label, $id, 'attachment2');
+        }
+
+        $uploadedFiles3 = array();
+        if(isset($_FILES['attachment3'])) {
+            $uploadedFiles3 = handle_quality_attachments_array($label, $id, 'attachment3');
+        }
+
+        $uploadedFiles4 = array();
+        if(isset($_FILES['attachment4'])) {
+            $uploadedFiles4 = handle_quality_attachments_array($label, $id, 'attachment4');
+        }
+
+        $uploadedFiles5 = array();
+        if(isset($_FILES['attachment5'])) {
+            $uploadedFiles5 = handle_quality_attachments_array($label, $id, 'attachment5');
+        }
+
+        $uploadedFiles6 = array();
+        if(isset($_FILES['attachment6'])) {
+            $uploadedFiles6 = handle_quality_attachments_array($label, $id, 'attachment6');
+        }
+
+        $uploadedFiles7 = array();
+        if(isset($_FILES['attachment7'])) {
+            $uploadedFiles7 = handle_quality_attachments_array($label, $id, 'attachment7');
+        }
+
+        $uploadedFiles8 = array();
+        if(isset($_FILES['attachment8'])) {
+            $uploadedFiles8 = handle_quality_attachments_array($label, $id, 'attachment8');
+        }
+
+        $uploadedFiles9 = array();
+        if(isset($_FILES['attachment9'])) {
+            $uploadedFiles9 = handle_quality_attachments_array($label, $id, 'attachment9');
+        }
+
+        if(!empty($uploadedFiles1)) {
+            $data['attachment1'] = $uploadedFiles1[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles2)) {
+            $data['attachment2'] = $uploadedFiles2[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles3)) {
+            $data['attachment3'] = $uploadedFiles3[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles4)) {
+            $data['attachment4'] = $uploadedFiles4[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles5)) {
+            $data['attachment5'] = $uploadedFiles5[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles6)) {
+            $data['attachment6'] = $uploadedFiles6[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles7)) {
+            $data['attachment7'] = $uploadedFiles7[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles8)) {
+            $data['attachment8'] = $uploadedFiles8[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles9)) {
+            $data['attachment9'] = $uploadedFiles9[0]['file_name'];
+        }
+
+        $idata = array();
+        if(isset($data['draft'])) {
+            $idata['status'] = 1;
+            unset($data['draft']);
+        }
+
+        if(isset($data['submit'])) {
+            $idata['status'] = 2;
+            unset($data['submit']);
+        }
+
+        $this->db->where('id', $checklist_id);
+        $this->db->update(db_prefix().$label, $data);
+        $this->db->where('id', $id);
+        $this->db->update(db_prefix() . 'inspections', $idata);
+        return $checklist_id;
+    }
+
+    public function add_reinforcement($data, $label, $id)
+    {
+        $uploadedFiles1 = array();
+        if(isset($_FILES['attachment1'])) {
+            $uploadedFiles1 = handle_quality_attachments_array($label, $id, 'attachment1');
+        }
+
+        $uploadedFiles2 = array();
+        if(isset($_FILES['attachment2'])) {
+            $uploadedFiles2 = handle_quality_attachments_array($label, $id, 'attachment2');
+        }
+
+        $uploadedFiles3 = array();
+        if(isset($_FILES['attachment3'])) {
+            $uploadedFiles3 = handle_quality_attachments_array($label, $id, 'attachment3');
+        }
+
+        $uploadedFiles4 = array();
+        if(isset($_FILES['attachment4'])) {
+            $uploadedFiles4 = handle_quality_attachments_array($label, $id, 'attachment4');
+        }
+
+        $uploadedFiles5 = array();
+        if(isset($_FILES['attachment5'])) {
+            $uploadedFiles5 = handle_quality_attachments_array($label, $id, 'attachment5');
+        }
+
+        $uploadedFiles6 = array();
+        if(isset($_FILES['attachment6'])) {
+            $uploadedFiles6 = handle_quality_attachments_array($label, $id, 'attachment6');
+        }
+
+        $uploadedFiles7 = array();
+        if(isset($_FILES['attachment7'])) {
+            $uploadedFiles7 = handle_quality_attachments_array($label, $id, 'attachment7');
+        }
+
+        $uploadedFiles8 = array();
+        if(isset($_FILES['attachment8'])) {
+            $uploadedFiles8 = handle_quality_attachments_array($label, $id, 'attachment8');
+        }
+
+        $uploadedFiles9 = array();
+        if(isset($_FILES['attachment9'])) {
+            $uploadedFiles9 = handle_quality_attachments_array($label, $id, 'attachment9');
+        }
+
+        $uploadedFiles10 = array();
+        if(isset($_FILES['attachment10'])) {
+            $uploadedFiles10 = handle_quality_attachments_array($label, $id, 'attachment10');
+        }
+
+        if(!empty($uploadedFiles1)) {
+            $data['attachment1'] = $uploadedFiles1[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles2)) {
+            $data['attachment2'] = $uploadedFiles2[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles3)) {
+            $data['attachment3'] = $uploadedFiles3[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles4)) {
+            $data['attachment4'] = $uploadedFiles4[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles5)) {
+            $data['attachment5'] = $uploadedFiles5[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles6)) {
+            $data['attachment6'] = $uploadedFiles6[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles7)) {
+            $data['attachment7'] = $uploadedFiles7[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles8)) {
+            $data['attachment8'] = $uploadedFiles8[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles9)) {
+            $data['attachment9'] = $uploadedFiles9[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles10)) {
+            $data['attachment10'] = $uploadedFiles10[0]['file_name'];
+        }
+
+        $idata = array();
+        if(isset($data['draft'])) {
+            $idata['status'] = 1;
+            unset($data['draft']);
+        }
+
+        if(isset($data['submit'])) {
+            $idata['status'] = 2;
+            unset($data['submit']);
+        }
+
+        $data['dateadded'] = date('Y-m-d H:i:s');
+        $data['inspection_id'] = $id;
+        $this->db->insert(db_prefix() . $label, $data);
+        $insert_id = $this->db->insert_id();
+        $this->db->where('id', $id);
+        $this->db->update(db_prefix() . 'inspections', $idata);
+        return $insert_id;
+    }
+
+    public function update_reinforcement($data, $label, $id, $checklist_id)
+    {
+        $uploadedFiles1 = array();
+        if(isset($_FILES['attachment1'])) {
+            $uploadedFiles1 = handle_quality_attachments_array($label, $id, 'attachment1');
+        }
+
+        $uploadedFiles2 = array();
+        if(isset($_FILES['attachment2'])) {
+            $uploadedFiles2 = handle_quality_attachments_array($label, $id, 'attachment2');
+        }
+
+        $uploadedFiles3 = array();
+        if(isset($_FILES['attachment3'])) {
+            $uploadedFiles3 = handle_quality_attachments_array($label, $id, 'attachment3');
+        }
+
+        $uploadedFiles4 = array();
+        if(isset($_FILES['attachment4'])) {
+            $uploadedFiles4 = handle_quality_attachments_array($label, $id, 'attachment4');
+        }
+
+        $uploadedFiles5 = array();
+        if(isset($_FILES['attachment5'])) {
+            $uploadedFiles5 = handle_quality_attachments_array($label, $id, 'attachment5');
+        }
+
+        $uploadedFiles6 = array();
+        if(isset($_FILES['attachment6'])) {
+            $uploadedFiles6 = handle_quality_attachments_array($label, $id, 'attachment6');
+        }
+
+        $uploadedFiles7 = array();
+        if(isset($_FILES['attachment7'])) {
+            $uploadedFiles7 = handle_quality_attachments_array($label, $id, 'attachment7');
+        }
+
+        $uploadedFiles8 = array();
+        if(isset($_FILES['attachment8'])) {
+            $uploadedFiles8 = handle_quality_attachments_array($label, $id, 'attachment8');
+        }
+
+        $uploadedFiles9 = array();
+        if(isset($_FILES['attachment9'])) {
+            $uploadedFiles9 = handle_quality_attachments_array($label, $id, 'attachment9');
+        }
+
+        $uploadedFiles10 = array();
+        if(isset($_FILES['attachment10'])) {
+            $uploadedFiles10 = handle_quality_attachments_array($label, $id, 'attachment10');
+        }
+
+        if(!empty($uploadedFiles1)) {
+            $data['attachment1'] = $uploadedFiles1[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles2)) {
+            $data['attachment2'] = $uploadedFiles2[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles3)) {
+            $data['attachment3'] = $uploadedFiles3[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles4)) {
+            $data['attachment4'] = $uploadedFiles4[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles5)) {
+            $data['attachment5'] = $uploadedFiles5[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles6)) {
+            $data['attachment6'] = $uploadedFiles6[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles7)) {
+            $data['attachment7'] = $uploadedFiles7[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles8)) {
+            $data['attachment8'] = $uploadedFiles8[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles9)) {
+            $data['attachment9'] = $uploadedFiles9[0]['file_name'];
+        }
+
+        if(!empty($uploadedFiles10)) {
+            $data['attachment10'] = $uploadedFiles10[0]['file_name'];
         }
 
         $idata = array();

@@ -15,25 +15,39 @@
                         echo form_hidden('id', $id);
                         ?>
 
-                        <?php
-                        $location = (isset($result) ? $result->location : '');
-                        echo render_input('location','location', $location , 'text');
-                        ?>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <?php
+                                $dwg_no = (isset($result) ? $result->dwg_no : '');
+                                echo render_input('dwg_no','dwg_no', $dwg_no , 'text');
+                                ?>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <?php
+                                $revision_no = (isset($result) ? $result->revision_no : '');
+                                echo render_input('revision_no','revision_no', $revision_no , 'text');
+                                ?>
+                            </div>
+                        </div>
 
                         <div class="row">
                             <div class="col-md-12">
-                                <label for="all_line_out_center_line_checked">1. <?php echo _l('all_line_out_center_line_checked'); ?></label>
+                                <label for="grade_of_steel">1. <?php echo _l('grade_of_steel'); ?></label>
                             </div>
 
-                            <div class="col-md-4 form-group">
-                               <input type="radio" name="question1" value="Yes" id="question1" <?php if(isset($result) && $result->question1 == "Yes"){ echo 'checked'; } ?>>
-                               <label for="yes"><?php echo _l('yes'); ?></label>
+                            <div class="col-md-3 form-group">
+                               <input type="radio" name="question1" value="Fe415" id="question1" <?php if(isset($result) && $result->question1 == "Fe415"){ echo 'checked'; } ?>>
+                               <label for="fe415"><?php echo _l('fe415'); ?></label>
                             </div>
-                            <div class="col-md-4 form-group">
-                               <input type="radio" name="question1" value="No" id="question1" <?php if(isset($result) && $result->question1 == "No"){ echo 'checked'; } ?>>
-                               <label for="no"><?php echo _l('no'); ?></label>
+                            <div class="col-md-3 form-group">
+                               <input type="radio" name="question1" value="Fe500" id="question1" <?php if(isset($result) && $result->question1 == "Fe500"){ echo 'checked'; } ?>>
+                               <label for="fe500"><?php echo _l('fe500'); ?></label>
                             </div>
-                            <div class="col-md-4 form-group">
+                            <div class="col-md-3 form-group">
+                               <input type="radio" name="question1" value="Other" id="question1" <?php if(isset($result) && $result->question1 == "Other"){ echo 'checked'; } ?>>
+                               <label for="Other"><?php echo _l('Other'); ?></label>
+                            </div>
+                            <div class="col-md-3 form-group">
                                <input type="radio" name="question1" value="NA" id="question1" <?php if(isset($result) && $result->question1 == "NA"){ echo 'checked'; } ?>>
                                <label for="na"><?php echo _l('na'); ?></label>
                             </div>
@@ -59,20 +73,7 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <label for="architectural_drawing_valid_for_construction_received_at_site">2. <?php echo _l('architectural_drawing_valid_for_construction_received_at_site'); ?></label>
-                            </div>
-
-                            <div class="col-md-4 form-group">
-                               <input type="radio" name="question2" value="Yes" id="question2" <?php if(isset($result) && $result->question2 == "Yes"){ echo 'checked'; } ?>>
-                               <label for="yes"><?php echo _l('yes'); ?></label>
-                            </div>
-                            <div class="col-md-4 form-group">
-                               <input type="radio" name="question2" value="No" id="question2" <?php if(isset($result) && $result->question2 == "No"){ echo 'checked'; } ?>>
-                               <label for="no"><?php echo _l('no'); ?></label>
-                            </div>
-                            <div class="col-md-4 form-group">
-                               <input type="radio" name="question2" value="NA" id="question2" <?php if(isset($result) && $result->question2 == "NA"){ echo 'checked'; } ?>>
-                               <label for="na"><?php echo _l('na'); ?></label>
+                                <label for="diameter_of_main_steel">2. <?php echo _l('diameter_of_main_steel'); ?></label>
                             </div>
 
                             <div class="col-md-7 form-group">
@@ -96,7 +97,7 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <label for="rcc_drawing_valid_for_construction_received_at_site">3. <?php echo _l('rcc_drawing_valid_for_construction_received_at_site'); ?></label>
+                                <label for="is_surface_of_steel_free_from_cracks">3. <?php echo _l('is_surface_of_steel_free_from_cracks'); ?></label>
                             </div>
 
                             <div class="col-md-4 form-group">
@@ -133,20 +134,7 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <label for="proper_side_slopes_given">4. <?php echo _l('proper_side_slopes_given'); ?></label>
-                            </div>
-
-                            <div class="col-md-4 form-group">
-                               <input type="radio" name="question4" value="Yes" id="question4" <?php if(isset($result) && $result->question4 == "Yes"){ echo 'checked'; } ?>>
-                               <label for="yes"><?php echo _l('yes'); ?></label>
-                            </div>
-                            <div class="col-md-4 form-group">
-                               <input type="radio" name="question4" value="No" id="question4" <?php if(isset($result) && $result->question4 == "No"){ echo 'checked'; } ?>>
-                               <label for="no"><?php echo _l('no'); ?></label>
-                            </div>
-                            <div class="col-md-4 form-group">
-                               <input type="radio" name="question4" value="NA" id="question4" <?php if(isset($result) && $result->question4 == "NA"){ echo 'checked'; } ?>>
-                               <label for="na"><?php echo _l('na'); ?></label>
+                                <label for="dia_of_stirrups">4. <?php echo _l('dia_of_stirrups'); ?></label>
                             </div>
 
                             <div class="col-md-7 form-group">
@@ -170,18 +158,22 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <label for="proper_shoring_done">5. <?php echo _l('proper_shoring_done'); ?></label>
+                                <label for="bar_bending_schedule">5. <?php echo _l('bar_bending_schedule'); ?></label>
                             </div>
 
-                            <div class="col-md-4 form-group">
-                               <input type="radio" name="question5" value="Yes" id="question5" <?php if(isset($result) && $result->question5 == "Yes"){ echo 'checked'; } ?>>
-                               <label for="yes"><?php echo _l('yes'); ?></label>
+                            <div class="col-md-3 form-group">
+                               <input type="radio" name="question5" value="Approved" id="question5" <?php if(isset($result) && $result->question5 == "Approved"){ echo 'checked'; } ?>>
+                               <label for="approved"><?php echo _l('approved'); ?></label>
                             </div>
-                            <div class="col-md-4 form-group">
-                               <input type="radio" name="question5" value="No" id="question5" <?php if(isset($result) && $result->question5 == "No"){ echo 'checked'; } ?>>
-                               <label for="no"><?php echo _l('no'); ?></label>
+                            <div class="col-md-3 form-group">
+                               <input type="radio" name="question5" value="Prepare but not approved" id="question5" <?php if(isset($result) && $result->question5 == "Prepare but not approved"){ echo 'checked'; } ?>>
+                               <label for="prepare_but_not_approved"><?php echo _l('prepare_but_not_approved'); ?></label>
                             </div>
-                            <div class="col-md-4 form-group">
+                            <div class="col-md-3 form-group">
+                               <input type="radio" name="question5" value="Not Prepared" id="question5" <?php if(isset($result) && $result->question5 == "Not Prepared"){ echo 'checked'; } ?>>
+                               <label for="not_prepared"><?php echo _l('not_prepared'); ?></label>
+                            </div>
+                            <div class="col-md-3 form-group">
                                <input type="radio" name="question5" value="NA" id="question5" <?php if(isset($result) && $result->question5 == "NA"){ echo 'checked'; } ?>>
                                <label for="na"><?php echo _l('na'); ?></label>
                             </div>
@@ -207,20 +199,7 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <label for="other_safety_measures_taken">6. <?php echo _l('other_safety_measures_taken'); ?></label>
-                            </div>
-
-                            <div class="col-md-4 form-group">
-                               <input type="radio" name="question6" value="Yes" id="question6" <?php if(isset($result) && $result->question6 == "Yes"){ echo 'checked'; } ?>>
-                               <label for="yes"><?php echo _l('yes'); ?></label>
-                            </div>
-                            <div class="col-md-4 form-group">
-                               <input type="radio" name="question6" value="No" id="question6" <?php if(isset($result) && $result->question6 == "No"){ echo 'checked'; } ?>>
-                               <label for="no"><?php echo _l('no'); ?></label>
-                            </div>
-                            <div class="col-md-4 form-group">
-                               <input type="radio" name="question6" value="NA" id="question6" <?php if(isset($result) && $result->question6 == "NA"){ echo 'checked'; } ?>>
-                               <label for="na"><?php echo _l('na'); ?></label>
+                                <label for="lap_length">6. <?php echo _l('lap_length'); ?></label>
                             </div>
 
                             <div class="col-md-7 form-group">
@@ -244,20 +223,7 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <label for="foundary_strata_levelled_properly">7. <?php echo _l('foundary_strata_levelled_properly'); ?></label>
-                            </div>
-
-                            <div class="col-md-4 form-group">
-                               <input type="radio" name="question7" value="Yes" id="question7" <?php if(isset($result) && $result->question7 == "Yes"){ echo 'checked'; } ?>>
-                               <label for="yes"><?php echo _l('yes'); ?></label>
-                            </div>
-                            <div class="col-md-4 form-group">
-                               <input type="radio" name="question7" value="No" id="question7" <?php if(isset($result) && $result->question7 == "No"){ echo 'checked'; } ?>>
-                               <label for="no"><?php echo _l('no'); ?></label>
-                            </div>
-                            <div class="col-md-4 form-group">
-                               <input type="radio" name="question7" value="NA" id="question7" <?php if(isset($result) && $result->question7 == "NA"){ echo 'checked'; } ?>>
-                               <label for="na"><?php echo _l('na'); ?></label>
+                                <label for="cover_to_reinforcement">7. <?php echo _l('cover_to_reinforcement'); ?></label>
                             </div>
 
                             <div class="col-md-7 form-group">
@@ -281,7 +247,7 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <label for="any_problems_to_start_the_concrete_work">8. <?php echo _l('any_problems_to_start_the_concrete_work'); ?></label>
+                                <label for="positioning_of_bars">8. <?php echo _l('positioning_of_bars'); ?></label>
                             </div>
 
                             <div class="col-md-7 form-group">
@@ -298,6 +264,54 @@
                                 <?php
                                 if(isset($result) && $result->attachment8 != '') { ?>
                                     <a href="#"><?php echo $result->attachment8; ?></a>
+                                <?php } ?>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="rigidity_of_bars">9. <?php echo _l('rigidity_of_bars'); ?></label>
+                            </div>
+
+                            <div class="col-md-7 form-group">
+                                <?php
+                                $remark9 = (isset($result) ? $result->remark9 : '');
+                                echo render_input('remark9','remark', $remark9 , 'text');
+                                ?>
+                            </div>
+                            <div class="col-md-5 form-group">
+                                <label for="attachment"><?php echo _l('attachment'); ?></label>
+                                <div class="input-group">
+                                    <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment9" accept="<?php echo get_ticket_form_accepted_mimes(); ?>">
+                                </div>
+                                <?php
+                                if(isset($result) && $result->attachment9 != '') { ?>
+                                    <a href="#"><?php echo $result->attachment9; ?></a>
+                                <?php } ?>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="binding_wire">10. <?php echo _l('binding_wire'); ?></label>
+                            </div>
+
+                            <div class="col-md-7 form-group">
+                                <?php
+                                $remark10 = (isset($result) ? $result->remark10 : '');
+                                echo render_input('remark10','remark', $remark10 , 'text');
+                                ?>
+                            </div>
+                            <div class="col-md-5 form-group">
+                                <label for="attachment"><?php echo _l('attachment'); ?></label>
+                                <div class="input-group">
+                                    <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment10" accept="<?php echo get_ticket_form_accepted_mimes(); ?>">
+                                </div>
+                                <?php
+                                if(isset($result) && $result->attachment10 != '') { ?>
+                                    <a href="#"><?php echo $result->attachment10; ?></a>
                                 <?php } ?>
                             </div>
 
@@ -334,7 +348,7 @@
 <script>
     $(function(){
        appValidateForm($('form'), {
-            location: 'required',
+            dwg_no: 'required',
         });
     });
     </script>

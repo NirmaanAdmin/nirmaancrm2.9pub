@@ -55,19 +55,19 @@
                                 <label for="boundary_line">1. <?php echo _l('boundary_line'); ?></label>
                             </div>
                             <div class="col-md-2 form-group">
-                               <input type="radio" name="boundary_line" value="checked" id="boundary_line" <?php if(isset($result) && $result->boundary_line == "checked"){ echo 'checked'; } ?>>
+                               <input type="radio" name="boundary_line" value="Checked" id="boundary_line" <?php if(isset($result) && $result->boundary_line == "Checked"){ echo 'checked'; } ?>>
                                <label for="checked"><?php echo _l('checked'); ?></label>
                             </div>
                             <div class="col-md-2 form-group">
-                               <input type="radio" name="boundary_line" value="found_okay" id="boundary_line" <?php if(isset($result) && $result->boundary_line == "found_okay"){ echo 'checked'; } ?>>
+                               <input type="radio" name="boundary_line" value="Found Okay" id="boundary_line" <?php if(isset($result) && $result->boundary_line == "Found Okay"){ echo 'checked'; } ?>>
                                <label for="found_okay"><?php echo _l('found_okay'); ?></label>
                             </div>
                             <div class="col-md-2 form-group">
-                               <input type="radio" name="boundary_line" value="not_okay" id="boundary_line" <?php if(isset($result) && $result->boundary_line == "not_okay"){ echo 'checked'; } ?>>
+                               <input type="radio" name="boundary_line" value="Not Okay" id="boundary_line" <?php if(isset($result) && $result->boundary_line == "Not Okay"){ echo 'checked'; } ?>>
                                <label for="not_okay"><?php echo _l('not_okay'); ?></label>
                             </div>
                             <div class="col-md-2 form-group">
-                               <input type="radio" name="boundary_line" value="na" id="boundary_line" <?php if(isset($result) && $result->boundary_line == "na"){ echo 'checked'; } ?>>
+                               <input type="radio" name="boundary_line" value="NA" id="boundary_line" <?php if(isset($result) && $result->boundary_line == "NA"){ echo 'checked'; } ?>>
                                <label for="na"><?php echo _l('na'); ?></label>
                             </div>
                         </div>
@@ -96,15 +96,15 @@
                                 <label for="back_distances_available">2. <?php echo _l('back_distances_available'); ?></label>
                             </div>
                             <div class="col-md-3 form-group">
-                               <input type="radio" name="back_distances_available" value="yes" id="back_distances_available" <?php if(isset($result) && $result->back_distances_available == "yes"){ echo 'checked'; } ?>>
+                               <input type="radio" name="back_distances_available" value="Yes" id="back_distances_available" <?php if(isset($result) && $result->back_distances_available == "Yes"){ echo 'checked'; } ?>>
                                <label for="yes"><?php echo _l('yes'); ?></label>
                             </div>
                             <div class="col-md-2 form-group">
-                               <input type="radio" name="back_distances_available" value="no" id="back_distances_available" <?php if(isset($result) && $result->back_distances_available == "no"){ echo 'checked'; } ?>>
+                               <input type="radio" name="back_distances_available" value="No" id="back_distances_available" <?php if(isset($result) && $result->back_distances_available == "No"){ echo 'checked'; } ?>>
                                <label for="no"><?php echo _l('no'); ?></label>
                             </div>
                             <div class="col-md-2 form-group">
-                               <input type="radio" name="back_distances_available" value="na" id="back_distances_available" <?php if(isset($result) && $result->back_distances_available == "na"){ echo 'checked'; } ?>>
+                               <input type="radio" name="back_distances_available" value="NA" id="back_distances_available" <?php if(isset($result) && $result->back_distances_available == "NA"){ echo 'checked'; } ?>>
                                <label for="na"><?php echo _l('na'); ?></label>
                             </div>
                         </div>
@@ -133,15 +133,15 @@
                                 <label for="benchmark_available">3. <?php echo _l('benchmark_available'); ?></label>
                             </div>
                             <div class="col-md-3 form-group">
-                               <input type="radio" name="benchmark_available" value="yes" id="benchmark_available" <?php if(isset($result) && $result->benchmark_available == "yes"){ echo 'checked'; } ?>>
+                               <input type="radio" name="benchmark_available" value="Yes" id="benchmark_available" <?php if(isset($result) && $result->benchmark_available == "Yes"){ echo 'checked'; } ?>>
                                <label for="yes"><?php echo _l('yes'); ?></label>
                             </div>
                             <div class="col-md-2 form-group">
-                               <input type="radio" name="benchmark_available" value="no" id="benchmark_available" <?php if(isset($result) && $result->benchmark_available == "no"){ echo 'checked'; } ?>>
+                               <input type="radio" name="benchmark_available" value="No" id="benchmark_available" <?php if(isset($result) && $result->benchmark_available == "No"){ echo 'checked'; } ?>>
                                <label for="no"><?php echo _l('no'); ?></label>
                             </div>
                             <div class="col-md-2 form-group">
-                               <input type="radio" name="benchmark_available" value="na" id="benchmark_available" <?php if(isset($result) && $result->benchmark_available == "na"){ echo 'checked'; } ?>>
+                               <input type="radio" name="benchmark_available" value="NA" id="benchmark_available" <?php if(isset($result) && $result->benchmark_available == "NA"){ echo 'checked'; } ?>>
                                <label for="na"><?php echo _l('na'); ?></label>
                             </div>
                         </div>

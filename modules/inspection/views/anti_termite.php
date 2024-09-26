@@ -22,7 +22,13 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <label for="all_line_out_center_line_checked">1. <?php echo _l('all_line_out_center_line_checked'); ?></label>
+                                <h3 style="text-align: center; font-weight: 500;"><?php echo _l('pre_execution_checks'); ?></h3>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="has_the_area_been_levelled_rammed_well_compacted">1. <?php echo _l('has_the_area_been_levelled_rammed_well_compacted'); ?></label>
                             </div>
 
                             <div class="col-md-4 form-group">
@@ -59,7 +65,7 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <label for="architectural_drawing_valid_for_construction_received_at_site">2. <?php echo _l('architectural_drawing_valid_for_construction_received_at_site'); ?></label>
+                                <label for="is_the_treatment_being_carried_out_by_specialist_agency">2. <?php echo _l('is_the_treatment_being_carried_out_by_specialist_agency'); ?></label>
                             </div>
 
                             <div class="col-md-4 form-group">
@@ -96,7 +102,7 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <label for="rcc_drawing_valid_for_construction_received_at_site">3. <?php echo _l('rcc_drawing_valid_for_construction_received_at_site'); ?></label>
+                                <label for="is_chemical_and_method_of_application_confirming_standards">3. <?php echo _l('is_chemical_and_method_of_application_confirming_standards'); ?></label>
                             </div>
 
                             <div class="col-md-4 form-group">
@@ -133,7 +139,7 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <label for="proper_side_slopes_given">4. <?php echo _l('proper_side_slopes_given'); ?></label>
+                                <label for="are_required_tools_safety_equipment_available">4. <?php echo _l('are_required_tools_safety_equipment_available'); ?></label>
                             </div>
 
                             <div class="col-md-4 form-group">
@@ -170,7 +176,13 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <label for="proper_shoring_done">5. <?php echo _l('proper_shoring_done'); ?></label>
+                                <h3 style="text-align: center; font-weight: 500;"><?php echo _l('checks_during_execution'); ?></h3>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="is_the_application_being_done_by_trained_personnel">5. <?php echo _l('is_the_application_being_done_by_trained_personnel'); ?></label>
                             </div>
 
                             <div class="col-md-4 form-group">
@@ -207,7 +219,7 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <label for="other_safety_measures_taken">6. <?php echo _l('other_safety_measures_taken'); ?></label>
+                                <label for="is_the_dosage_of_chemical_on_horizontal_and_vertical_surfaces">6. <?php echo _l('is_the_dosage_of_chemical_on_horizontal_and_vertical_surfaces'); ?></label>
                             </div>
 
                             <div class="col-md-4 form-group">
@@ -244,7 +256,7 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <label for="foundary_strata_levelled_properly">7. <?php echo _l('foundary_strata_levelled_properly'); ?></label>
+                                <label for="has_the_chemical_been_poured_along_the_perimeter">7. <?php echo _l('has_the_chemical_been_poured_along_the_perimeter'); ?></label>
                             </div>
 
                             <div class="col-md-4 form-group">
@@ -281,7 +293,26 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <label for="any_problems_to_start_the_concrete_work">8. <?php echo _l('any_problems_to_start_the_concrete_work'); ?></label>
+                                <h3 style="text-align: center; font-weight: 500;"><?php echo _l('checks_post_execution'); ?></h3>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="has_it_been_ensured_that_the_treated_area_is_protected">8. <?php echo _l('has_it_been_ensured_that_the_treated_area_is_protected'); ?></label>
+                            </div>
+
+                            <div class="col-md-4 form-group">
+                               <input type="radio" name="question8" value="Yes" id="question8" <?php if(isset($result) && $result->question8 == "Yes"){ echo 'checked'; } ?>>
+                               <label for="yes"><?php echo _l('yes'); ?></label>
+                            </div>
+                            <div class="col-md-4 form-group">
+                               <input type="radio" name="question8" value="No" id="question8" <?php if(isset($result) && $result->question8 == "No"){ echo 'checked'; } ?>>
+                               <label for="no"><?php echo _l('no'); ?></label>
+                            </div>
+                            <div class="col-md-4 form-group">
+                               <input type="radio" name="question8" value="NA" id="question8" <?php if(isset($result) && $result->question8 == "NA"){ echo 'checked'; } ?>>
+                               <label for="na"><?php echo _l('na'); ?></label>
                             </div>
 
                             <div class="col-md-7 form-group">
@@ -298,6 +329,43 @@
                                 <?php
                                 if(isset($result) && $result->attachment8 != '') { ?>
                                     <a href="#"><?php echo $result->attachment8; ?></a>
+                                <?php } ?>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="has_it_been_ensured_that_the_treated_area_is_not_exposed_to_atmosphere">9. <?php echo _l('has_it_been_ensured_that_the_treated_area_is_not_exposed_to_atmosphere'); ?></label>
+                            </div>
+
+                            <div class="col-md-4 form-group">
+                               <input type="radio" name="question9" value="Yes" id="question9" <?php if(isset($result) && $result->question9 == "Yes"){ echo 'checked'; } ?>>
+                               <label for="yes"><?php echo _l('yes'); ?></label>
+                            </div>
+                            <div class="col-md-4 form-group">
+                               <input type="radio" name="question9" value="No" id="question9" <?php if(isset($result) && $result->question9 == "No"){ echo 'checked'; } ?>>
+                               <label for="no"><?php echo _l('no'); ?></label>
+                            </div>
+                            <div class="col-md-4 form-group">
+                               <input type="radio" name="question9" value="NA" id="question9" <?php if(isset($result) && $result->question9 == "NA"){ echo 'checked'; } ?>>
+                               <label for="na"><?php echo _l('na'); ?></label>
+                            </div>
+
+                            <div class="col-md-7 form-group">
+                                <?php
+                                $remark9 = (isset($result) ? $result->remark9 : '');
+                                echo render_input('remark9','remark', $remark9 , 'text');
+                                ?>
+                            </div>
+                            <div class="col-md-5 form-group">
+                                <label for="attachment"><?php echo _l('attachment'); ?></label>
+                                <div class="input-group">
+                                    <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment9" accept="<?php echo get_ticket_form_accepted_mimes(); ?>">
+                                </div>
+                                <?php
+                                if(isset($result) && $result->attachment9 != '') { ?>
+                                    <a href="#"><?php echo $result->attachment9; ?></a>
                                 <?php } ?>
                             </div>
 
