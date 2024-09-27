@@ -53,7 +53,7 @@
                             <div class="col-md-5 form-group">
                                 <label for="attachment"><?php echo _l('attachment'); ?></label>
                                 <div class="input-group">
-                                    <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment1" accept="<?php echo get_ticket_form_accepted_mimes(); ?>">
+                                    <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment1[]" accept="<?php echo get_ticket_form_accepted_mimes(); ?>" multiple="true">
                                 </div>
                                 <?php
                                 if(isset($result) && $result->attachment1 != '') { ?>
@@ -90,7 +90,7 @@
                             <div class="col-md-5 form-group">
                                 <label for="attachment"><?php echo _l('attachment'); ?></label>
                                 <div class="input-group">
-                                    <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment2" accept="<?php echo get_ticket_form_accepted_mimes(); ?>">
+                                    <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment2[]" accept="<?php echo get_ticket_form_accepted_mimes(); ?>" multiple="true">
                                 </div>
                                 <?php
                                 if(isset($result) && $result->attachment2 != '') { ?>
@@ -127,7 +127,7 @@
                             <div class="col-md-5 form-group">
                                 <label for="attachment"><?php echo _l('attachment'); ?></label>
                                 <div class="input-group">
-                                    <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment3" accept="<?php echo get_ticket_form_accepted_mimes(); ?>">
+                                    <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment3[]" accept="<?php echo get_ticket_form_accepted_mimes(); ?>" multiple="true">
                                 </div>
                                 <?php
                                 if(isset($result) && $result->attachment3 != '') { ?>
@@ -164,7 +164,7 @@
                             <div class="col-md-5 form-group">
                                 <label for="attachment"><?php echo _l('attachment'); ?></label>
                                 <div class="input-group">
-                                    <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment4" accept="<?php echo get_ticket_form_accepted_mimes(); ?>">
+                                    <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment4[]" accept="<?php echo get_ticket_form_accepted_mimes(); ?>" multiple="true">
                                 </div>
                                 <?php
                                 if(isset($result) && $result->attachment4 != '') { ?>
@@ -207,7 +207,7 @@
                             <div class="col-md-5 form-group">
                                 <label for="attachment"><?php echo _l('attachment'); ?></label>
                                 <div class="input-group">
-                                    <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment5" accept="<?php echo get_ticket_form_accepted_mimes(); ?>">
+                                    <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment5[]" accept="<?php echo get_ticket_form_accepted_mimes(); ?>" multiple="true">
                                 </div>
                                 <?php
                                 if(isset($result) && $result->attachment5 != '') { ?>
@@ -244,7 +244,7 @@
                             <div class="col-md-5 form-group">
                                 <label for="attachment"><?php echo _l('attachment'); ?></label>
                                 <div class="input-group">
-                                    <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment6" accept="<?php echo get_ticket_form_accepted_mimes(); ?>">
+                                    <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment6[]" accept="<?php echo get_ticket_form_accepted_mimes(); ?>" multiple="true">
                                 </div>
                                 <?php
                                 if(isset($result) && $result->attachment6 != '') { ?>
@@ -281,7 +281,7 @@
                             <div class="col-md-5 form-group">
                                 <label for="attachment"><?php echo _l('attachment'); ?></label>
                                 <div class="input-group">
-                                    <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment7" accept="<?php echo get_ticket_form_accepted_mimes(); ?>">
+                                    <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment7[]" accept="<?php echo get_ticket_form_accepted_mimes(); ?>" multiple="true">
                                 </div>
                                 <?php
                                 if(isset($result) && $result->attachment7 != '') { ?>
@@ -324,7 +324,7 @@
                             <div class="col-md-5 form-group">
                                 <label for="attachment"><?php echo _l('attachment'); ?></label>
                                 <div class="input-group">
-                                    <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment8" accept="<?php echo get_ticket_form_accepted_mimes(); ?>">
+                                    <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment8[]" accept="<?php echo get_ticket_form_accepted_mimes(); ?>" multiple="true">
                                 </div>
                                 <?php
                                 if(isset($result) && $result->attachment8 != '') { ?>
@@ -361,7 +361,7 @@
                             <div class="col-md-5 form-group">
                                 <label for="attachment"><?php echo _l('attachment'); ?></label>
                                 <div class="input-group">
-                                    <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment9" accept="<?php echo get_ticket_form_accepted_mimes(); ?>">
+                                    <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment9[]" accept="<?php echo get_ticket_form_accepted_mimes(); ?>" multiple="true">
                                 </div>
                                 <?php
                                 if(isset($result) && $result->attachment9 != '') { ?>

@@ -128,12 +128,7 @@
                              </div>
                           </div>
                         </div>
-
-                        <?php 
-                        $extra_notes = (isset($inspection) ? $inspection->extra_notes : '');
-                        echo render_textarea('extra_notes','extra_notes', $extra_notes); 
-                        ?>
-
+                        
                         <div class="row">
                             <div class="col-md-12"> 
                                 <button type="submit" class="btn btn-info pull-right" name="perform" style="margin: 5px;"><?php echo _l('save_and_perform'); ?></button>

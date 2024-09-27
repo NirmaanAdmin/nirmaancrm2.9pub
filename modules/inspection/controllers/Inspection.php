@@ -105,6 +105,7 @@ class Inspection extends AdminController
                             $data['result'] = (object) $checklist_data[0];
                         }
                         $data['inspection_id'] = $id;
+                        $data['label'] = $inspection_type->label;
                         $data['inspection_status'] = $inspection->status;
                         $data['title'] = $inspection_type->name;
                         $this->load->view($inspection_type->label, $data);
