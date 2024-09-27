@@ -37,14 +37,13 @@
           </div>
           <div class="form-group">
             <a href="<?php echo admin_url('authentication/forgot_password'); ?>"><?php echo _l('admin_auth_login_fp'); ?></a>
+            <br />
+            <a href="<?php echo base_url('authentication/login'); ?>" style="font-weight: 500;">Client? Login Here >></a>
           </div>
 
           <?php hooks()->do_action('before_admin_login_form_close'); ?>
           <?php echo form_close(); ?>
         </div>
-        <p class="login-heading text-center" style="margin-top: 20px;">
-          <a href="<?php echo base_url('authentication/login'); ?>" style="font-size: 20px; font-weight: 500; color: white;">Client? Login Here >></a>
-        </p>
         <footer class="login-footer">
           <p><a href="https://www.nirmaan360.com/" target="_blank"><img src="<?php echo base_url('assets/images/nirmaan_360.png'); ?>" alt="nirmaan360 logo" width="50" height="50" class="footer-logo"></a> Powered by <a href="https://www.nirmaan360.com/" target="_blank">Nirmaan360</a></p>
         </footer>
