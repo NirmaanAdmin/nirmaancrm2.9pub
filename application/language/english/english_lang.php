@@ -813,7 +813,7 @@ $lang['clients_ticket_single_add_reply_btn']       = 'Add Reply';
 $lang['clients_ticket_single_add_reply_heading']   = 'Add reply to this ticket';
 
 # Login
-$lang['clients_login_heading_no_register'] = 'Please login';
+$lang['clients_login_heading_no_register'] = 'Client login';
 $lang['clients_login_heading_register']    = 'Please login or register';
 $lang['clients_login_email']               = 'Email Address';
 $lang['clients_login_password']            = 'Password';
@@ -1157,7 +1157,7 @@ $lang['customers_summary_logged_in_today'] = 'Contacts Logged In Today';
 # Authentication
 $lang['admin_auth_forgot_password_email']     = 'Email Address';
 $lang['admin_auth_forgot_password_heading']   = 'Forgot Password';
-$lang['admin_auth_login_heading']             = 'Login';
+$lang['admin_auth_login_heading']             = 'Staff Login';
 $lang['admin_auth_login_email']               = 'Email Address';
 $lang['admin_auth_login_password']            = 'Password';
 $lang['admin_auth_login_remember_me']         = 'Remember me';

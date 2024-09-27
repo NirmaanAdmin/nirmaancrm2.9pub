@@ -60,5 +60,8 @@
             <?php echo form_close(); ?>
          </div>
       </div>
+      <p class="login-heading text-center">
+         <a href="<?php echo base_url('admin/authentication'); ?>" style="font-size: 20px; font-weight: 500; color: black;">Staff? Login Here >></a>
+      </p>
    </div>
 </div>
