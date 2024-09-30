@@ -56,9 +56,15 @@
                                     <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment1[]" accept="<?php echo get_ticket_form_accepted_mimes(); ?>" multiple="true">
                                 </div>
                                 <?php
-                                if(isset($result) && $result->attachment1 != '') { ?>
-                                    <a href="#"><?php echo $result->attachment1; ?></a>
-                                <?php } ?>
+                                if(isset($result) && !empty($result->attachments)) {
+                                    foreach ($result->attachments as $key => $value) { 
+                                        if($value['attachment_name'] == "attachment1") { ?>
+                                        <span class="inline-block label" style="color:#764abc;border:1px solid #764abc;margin: 2px;"><?php echo $value['file_name']; ?>
+                                            <div class="inline-block mleft5">
+                                                <a href="<?php echo admin_url('inspection/delete_inspection_file/'.$label.'/'.$value['id']); ?>" style="font-size:14px;vertical-align:middle;"><i class="fa fa-close" aria-hidden="true"></i></a>
+                                            </div>
+                                        </span>
+                                <?php } } } ?>
                             </div>
 
                         </div>
@@ -93,9 +99,15 @@
                                     <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment2[]" accept="<?php echo get_ticket_form_accepted_mimes(); ?>" multiple="true">
                                 </div>
                                 <?php
-                                if(isset($result) && $result->attachment2 != '') { ?>
-                                    <a href="#"><?php echo $result->attachment2; ?></a>
-                                <?php } ?>
+                                if(isset($result) && !empty($result->attachments)) {
+                                    foreach ($result->attachments as $key => $value) { 
+                                        if($value['attachment_name'] == "attachment2") { ?>
+                                        <span class="inline-block label" style="color:#764abc;border:1px solid #764abc;margin: 2px;"><?php echo $value['file_name']; ?>
+                                            <div class="inline-block mleft5">
+                                                <a href="<?php echo admin_url('inspection/delete_inspection_file/'.$label.'/'.$value['id']); ?>" style="font-size:14px;vertical-align:middle;"><i class="fa fa-close" aria-hidden="true"></i></a>
+                                            </div>
+                                        </span>
+                                <?php } } } ?>
                             </div>
 
                         </div>
@@ -130,9 +142,15 @@
                                     <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment3[]" accept="<?php echo get_ticket_form_accepted_mimes(); ?>" multiple="true">
                                 </div>
                                 <?php
-                                if(isset($result) && $result->attachment3 != '') { ?>
-                                    <a href="#"><?php echo $result->attachment3; ?></a>
-                                <?php } ?>
+                                if(isset($result) && !empty($result->attachments)) {
+                                    foreach ($result->attachments as $key => $value) { 
+                                        if($value['attachment_name'] == "attachment3") { ?>
+                                        <span class="inline-block label" style="color:#764abc;border:1px solid #764abc;margin: 2px;"><?php echo $value['file_name']; ?>
+                                            <div class="inline-block mleft5">
+                                                <a href="<?php echo admin_url('inspection/delete_inspection_file/'.$label.'/'.$value['id']); ?>" style="font-size:14px;vertical-align:middle;"><i class="fa fa-close" aria-hidden="true"></i></a>
+                                            </div>
+                                        </span>
+                                <?php } } } ?>
                             </div>
 
                         </div>
@@ -167,9 +185,15 @@
                                     <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment4[]" accept="<?php echo get_ticket_form_accepted_mimes(); ?>" multiple="true">
                                 </div>
                                 <?php
-                                if(isset($result) && $result->attachment4 != '') { ?>
-                                    <a href="#"><?php echo $result->attachment4; ?></a>
-                                <?php } ?>
+                                if(isset($result) && !empty($result->attachments)) {
+                                    foreach ($result->attachments as $key => $value) { 
+                                        if($value['attachment_name'] == "attachment4") { ?>
+                                        <span class="inline-block label" style="color:#764abc;border:1px solid #764abc;margin: 2px;"><?php echo $value['file_name']; ?>
+                                            <div class="inline-block mleft5">
+                                                <a href="<?php echo admin_url('inspection/delete_inspection_file/'.$label.'/'.$value['id']); ?>" style="font-size:14px;vertical-align:middle;"><i class="fa fa-close" aria-hidden="true"></i></a>
+                                            </div>
+                                        </span>
+                                <?php } } } ?>
                             </div>
 
                         </div>
@@ -210,9 +234,15 @@
                                     <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment5[]" accept="<?php echo get_ticket_form_accepted_mimes(); ?>" multiple="true">
                                 </div>
                                 <?php
-                                if(isset($result) && $result->attachment5 != '') { ?>
-                                    <a href="#"><?php echo $result->attachment5; ?></a>
-                                <?php } ?>
+                                if(isset($result) && !empty($result->attachments)) {
+                                    foreach ($result->attachments as $key => $value) { 
+                                        if($value['attachment_name'] == "attachment5") { ?>
+                                        <span class="inline-block label" style="color:#764abc;border:1px solid #764abc;margin: 2px;"><?php echo $value['file_name']; ?>
+                                            <div class="inline-block mleft5">
+                                                <a href="<?php echo admin_url('inspection/delete_inspection_file/'.$label.'/'.$value['id']); ?>" style="font-size:14px;vertical-align:middle;"><i class="fa fa-close" aria-hidden="true"></i></a>
+                                            </div>
+                                        </span>
+                                <?php } } } ?>
                             </div>
 
                         </div>
@@ -247,9 +277,15 @@
                                     <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment6[]" accept="<?php echo get_ticket_form_accepted_mimes(); ?>" multiple="true">
                                 </div>
                                 <?php
-                                if(isset($result) && $result->attachment6 != '') { ?>
-                                    <a href="#"><?php echo $result->attachment6; ?></a>
-                                <?php } ?>
+                                if(isset($result) && !empty($result->attachments)) {
+                                    foreach ($result->attachments as $key => $value) { 
+                                        if($value['attachment_name'] == "attachment6") { ?>
+                                        <span class="inline-block label" style="color:#764abc;border:1px solid #764abc;margin: 2px;"><?php echo $value['file_name']; ?>
+                                            <div class="inline-block mleft5">
+                                                <a href="<?php echo admin_url('inspection/delete_inspection_file/'.$label.'/'.$value['id']); ?>" style="font-size:14px;vertical-align:middle;"><i class="fa fa-close" aria-hidden="true"></i></a>
+                                            </div>
+                                        </span>
+                                <?php } } } ?>
                             </div>
 
                         </div>
@@ -284,9 +320,15 @@
                                     <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment7[]" accept="<?php echo get_ticket_form_accepted_mimes(); ?>" multiple="true">
                                 </div>
                                 <?php
-                                if(isset($result) && $result->attachment7 != '') { ?>
-                                    <a href="#"><?php echo $result->attachment7; ?></a>
-                                <?php } ?>
+                                if(isset($result) && !empty($result->attachments)) {
+                                    foreach ($result->attachments as $key => $value) { 
+                                        if($value['attachment_name'] == "attachment7") { ?>
+                                        <span class="inline-block label" style="color:#764abc;border:1px solid #764abc;margin: 2px;"><?php echo $value['file_name']; ?>
+                                            <div class="inline-block mleft5">
+                                                <a href="<?php echo admin_url('inspection/delete_inspection_file/'.$label.'/'.$value['id']); ?>" style="font-size:14px;vertical-align:middle;"><i class="fa fa-close" aria-hidden="true"></i></a>
+                                            </div>
+                                        </span>
+                                <?php } } } ?>
                             </div>
 
                         </div>
@@ -327,9 +369,15 @@
                                     <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment8[]" accept="<?php echo get_ticket_form_accepted_mimes(); ?>" multiple="true">
                                 </div>
                                 <?php
-                                if(isset($result) && $result->attachment8 != '') { ?>
-                                    <a href="#"><?php echo $result->attachment8; ?></a>
-                                <?php } ?>
+                                if(isset($result) && !empty($result->attachments)) {
+                                    foreach ($result->attachments as $key => $value) { 
+                                        if($value['attachment_name'] == "attachment8") { ?>
+                                        <span class="inline-block label" style="color:#764abc;border:1px solid #764abc;margin: 2px;"><?php echo $value['file_name']; ?>
+                                            <div class="inline-block mleft5">
+                                                <a href="<?php echo admin_url('inspection/delete_inspection_file/'.$label.'/'.$value['id']); ?>" style="font-size:14px;vertical-align:middle;"><i class="fa fa-close" aria-hidden="true"></i></a>
+                                            </div>
+                                        </span>
+                                <?php } } } ?>
                             </div>
 
                         </div>
@@ -364,12 +412,23 @@
                                     <input type="file" extension="<?php echo str_replace(['.', ' '], '', get_option('ticket_attachments_file_extensions')); ?>" filesize="<?php echo file_upload_max_size(); ?>" class="form-control" name="attachment9[]" accept="<?php echo get_ticket_form_accepted_mimes(); ?>" multiple="true">
                                 </div>
                                 <?php
-                                if(isset($result) && $result->attachment9 != '') { ?>
-                                    <a href="#"><?php echo $result->attachment9; ?></a>
-                                <?php } ?>
+                                if(isset($result) && !empty($result->attachments)) {
+                                    foreach ($result->attachments as $key => $value) { 
+                                        if($value['attachment_name'] == "attachment9") { ?>
+                                        <span class="inline-block label" style="color:#764abc;border:1px solid #764abc;margin: 2px;"><?php echo $value['file_name']; ?>
+                                            <div class="inline-block mleft5">
+                                                <a href="<?php echo admin_url('inspection/delete_inspection_file/'.$label.'/'.$value['id']); ?>" style="font-size:14px;vertical-align:middle;"><i class="fa fa-close" aria-hidden="true"></i></a>
+                                            </div>
+                                        </span>
+                                <?php } } } ?>
                             </div>
 
                         </div>
+
+                        <?php 
+                        $extra_notes = (isset($result) ? $result->extra_notes : '');
+                        echo render_textarea('extra_notes','extra_notes', $extra_notes); 
+                        ?>
 
                         <?php if($inspection_status == 0 || $inspection_status == 1) { ?>
                             <div class="row">

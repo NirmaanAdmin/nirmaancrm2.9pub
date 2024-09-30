@@ -263,7 +263,6 @@ class Inspection_model extends App_Model
                     foreach ($uploadedFiles as $file) {
                         $attach = array();
                         $attach['inspection_id'] = $id;
-                        $attach['module_id'] = $insert_id;
                         $attach['attachment_name'] = 'attachment'.$i;
                         $attach['file_name'] = $file['file_name'];
                         $attach['filetype']  = $file['filetype'];
@@ -303,7 +302,6 @@ class Inspection_model extends App_Model
                     foreach ($uploadedFiles as $file) {
                         $attach = array();
                         $attach['inspection_id'] = $id;
-                        $attach['module_id'] = $checklist_id;
                         $attach['attachment_name'] = 'attachment'.$i;
                         $attach['file_name'] = $file['file_name'];
                         $attach['filetype']  = $file['filetype'];
@@ -340,5 +338,15 @@ class Inspection_model extends App_Model
         $data['status'] = $status;
         $this->db->where('id', $id);
         $this->db->update(db_prefix() . 'inspections', $data);
+    }
+
+    public function delete_inspection_file($label, $id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete(db_prefix() . $label. '_files');
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        }
+        return false;
     }
 }

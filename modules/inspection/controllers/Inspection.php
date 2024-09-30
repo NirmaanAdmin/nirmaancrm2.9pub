@@ -127,4 +127,18 @@ class Inspection extends AdminController
         set_alert('success', _l('updated_successfully'));
         redirect(admin_url('inspection'));
     }
+
+    public function delete_inspection_file($label, $id)
+    {
+        if (!$label && !$id) {
+            redirect(admin_url('inspection'));
+        }
+        $response = $this->inspection_model->delete_inspection_file($label, $id);
+        if ($response == true) {
+            set_alert('success', _l('deleted', _l('inspection')));
+        } else {
+            set_alert('warning', _l('problem_deleting', _l('inspection')));
+        }
+        redirect(admin_url('inspection'));
+    }
 }
