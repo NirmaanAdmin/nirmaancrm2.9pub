@@ -154,7 +154,7 @@ function app_init_admin_sidebar_menu_items()
         $enable_badge = get_option('enable_support_menu_badges');
         $CI->app_menu->add_sidebar_menu_item('support', [
             'collapse' => $enable_badge,
-            'name'     => _l('Ticketing'),
+            'name'     => _l('RFI'),
             'href'     => admin_url('tickets'),
             'icon'     => 'fa fa-ticket',
             'position' => 8,
@@ -356,7 +356,7 @@ function app_init_admin_sidebar_menu_items()
         ]);
         $CI->app_menu->add_setup_menu_item('support', [
             'collapse' => true,
-            'name'     => _l('Ticketing'),
+            'name'     => _l('RFI'),
             'position' => 15,
             'badge'    => [],
         ]);

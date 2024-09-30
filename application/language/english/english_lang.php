@@ -79,7 +79,7 @@ $lang['client_password_last_changed']            = 'Password last changed:';
 $lang['login_as_client']                         = 'Login as client';
 $lang['client_invoices_tab']                     = 'Invoices';
 $lang['contracts_invoices_tab']                  = 'Contracts';
-$lang['contracts_tickets_tab']                   = 'Tickets';
+$lang['contracts_tickets_tab']                   = 'RFI';
 $lang['contracts_notes_tab']                     = 'Notes';
 $lang['note_description']                        = 'Note description';
 $lang['client_do_not_send_welcome_email']        = 'Do not send welcome email';
@@ -136,7 +136,7 @@ $lang['email_templates']                        = 'Email Templates';
 $lang['email_template']                         = 'Email Template';
 $lang['email_template_lowercase']               = 'email template';
 $lang['email_templates_lowercase']              = 'email templates';
-$lang['email_template_ticket_fields_heading']   = 'Tickets';
+$lang['email_template_ticket_fields_heading']   = 'RFI';
 $lang['email_template_invoices_fields_heading'] = 'Invoices';
 $lang['email_template_clients_fields_heading']  = 'Customers';
 
@@ -154,14 +154,14 @@ $lang['home_latest_todos']                         = 'Latest to do\'s';
 $lang['home_no_latest_todos']                      = 'No todos found';
 $lang['home_latest_finished_todos']                = 'Latest finished to do\'s';
 $lang['home_no_finished_todos_found']              = 'No finished todos found';
-$lang['home_tickets_awaiting_reply_by_department'] = 'Tickets Awaiting Reply by Department';
-$lang['home_tickets_awaiting_reply_by_status']     = 'Tickets Awaiting Reply by Status';
+$lang['home_tickets_awaiting_reply_by_department'] = 'RFI Awaiting Reply by Department';
+$lang['home_tickets_awaiting_reply_by_status']     = 'RFI Awaiting Reply by Status';
 $lang['home_this_week_events']                     = 'This Week events';
 $lang['home_upcoming_events_next_week']            = 'Upcoming events Next Week';
 $lang['home_event_added_by']                       = 'Event added by';
 $lang['home_public_event']                         = 'Public event';
 $lang['home_weekly_payment_records']               = 'Weekly Payment Records';
-$lang['home_weekend_ticket_opening_statistics']    = 'Weekly Ticket Openings Statistics';
+$lang['home_weekend_ticket_opening_statistics']    = 'Weekly RFI Openings Statistics';
 # Newsfeed
 $lang['whats_on_your_mind']                                 = 'Share documents, ideas..';
 $lang['new_post']                                           = 'Post';
@@ -292,7 +292,7 @@ $lang['payment_mode_add_edit_name'] = 'Payment Mode Name';
 $lang['payment_mode_edit_heading']  = 'Edit Payment Mode';
 $lang['payment_mode_add_heading']   = 'Add New Payment Mode';
 
-# Predefined Ticket Replies
+# Predefined RFI Replies
 $lang['new_predefined_reply']              = 'New Predefined Reply';
 $lang['predefined_replies']                = 'Predefined Replies';
 $lang['predefined_reply']                  = 'Predefined Reply';
@@ -301,13 +301,13 @@ $lang['predefined_replies_dt_name']        = 'Predefined Reply Name';
 $lang['predefined_reply_add_edit_name']    = 'Predefined Reply Name';
 $lang['predefined_reply_add_edit_content'] = 'Reply Content';
 
-# Ticket Priorities
+# RFI Priorities
 $lang['new_ticket_priority']           = 'New Priority';
-$lang['ticket_priorities']             = 'Ticket Priorities';
-$lang['ticket_priority']               = 'Ticket Priority';
-$lang['ticket_priority_lowercase']     = 'ticket priority';
-$lang['no_ticket_priorities_found']    = 'No Ticket Priorities Found';
-$lang['ticket_priority_dt_name']       = 'Ticket Priority Name';
+$lang['ticket_priorities']             = 'RFI Priorities';
+$lang['ticket_priority']               = 'RFI Priority';
+$lang['ticket_priority_lowercase']     = 'RFI priority';
+$lang['no_ticket_priorities_found']    = 'No RFI Priorities Found';
+$lang['ticket_priority_dt_name']       = 'RFI Priority Name';
 $lang['ticket_priority_add_edit_name'] = 'Priority Name';
 
 # Reports
@@ -359,7 +359,7 @@ $lang['settings_updated']                                          = 'Settings U
 $lang['settings_save']                                             = 'Save Settings';
 $lang['settings_group_general']                                    = 'General';
 $lang['settings_group_localization']                               = 'Localization';
-$lang['settings_group_tickets']                                    = 'Tickets';
+$lang['settings_group_tickets']                                    = 'RFI';
 $lang['settings_group_sales']                                      = 'Finance';
 $lang['settings_group_email']                                      = 'Email';
 $lang['settings_group_clients']                                    = 'Customers';
@@ -397,8 +397,8 @@ $lang['settings_newsfeed_max_file_upload_post']                    = 'Maximum fi
 $lang['settings_reminders_contracts']                              = 'Contract expiration reminder before';
 $lang['settings_reminders_contracts_tooltip']                      = 'Expiration reminder notification in days';
 $lang['settings_tickets_use_services']                             = 'Use services';
-$lang['settings_tickets_max_attachments']                          = 'Maximum ticket attachments';
-$lang['settings_tickets_allow_departments_access']                 = 'Allow staff to access only ticket that belongs to staff departments';
+$lang['settings_tickets_max_attachments']                          = 'Maximum RFI attachments';
+$lang['settings_tickets_allow_departments_access']                 = 'Allow staff to access only RFI that belongs to staff departments';
 $lang['settings_tickets_allowed_file_extensions']                  = 'Allowed attachments file extensions';
 $lang['settings_sales_general']                                    = 'General';
 $lang['settings_sales_general_note']                               = 'General settings';
@@ -521,8 +521,8 @@ $lang['als_calendar_submenu']      = 'Calendar';
 $lang['als_activity_log_submenu']  = 'Activity Log';
 
 # Admin Customizer Sidebar
-$lang['acs_ticket_priority_submenu']           = 'Ticket Priority';
-$lang['acs_ticket_statuses_submenu']           = 'Ticket Statuses';
+$lang['acs_ticket_priority_submenu']           = 'RFI Priority';
+$lang['acs_ticket_statuses_submenu']           = 'RFI Statuses';
 $lang['acs_ticket_predefined_replies_submenu'] = 'Predefined Replies';
 $lang['acs_ticket_services_submenu']           = 'Services';
 $lang['acs_departments']                       = 'Departments';
@@ -536,27 +536,27 @@ $lang['acs_email_templates']                   = 'Email Templates';
 $lang['acs_roles']                             = 'Roles';
 $lang['acs_settings']                          = 'Settings';
 
-# Tickets
-$lang['new_ticket']                                          = 'Open New Ticket';
-$lang['tickets']                                             = 'Tickets';
-$lang['ticket']                                              = 'Ticket';
-$lang['ticket_lowercase']                                    = 'ticket';
-$lang['support_tickets']                                     = 'Support Tickets';
-$lang['support_ticket']                                      = 'Support Ticket';
+# RFI
+$lang['new_ticket']                                          = 'Open New RFI';
+$lang['tickets']                                             = 'RFI';
+$lang['ticket']                                              = 'RFI';
+$lang['ticket_lowercase']                                    = 'RFI';
+$lang['support_tickets']                                     = 'Support RFI';
+$lang['support_ticket']                                      = 'Support RFI';
 $lang['ticket_settings_to']                                  = 'Name';
 $lang['ticket_settings_email']                               = 'Email address';
 $lang['ticket_settings_departments']                         = 'Department';
 $lang['ticket_settings_service']                             = 'Service';
 $lang['ticket_settings_priority']                            = 'Priority';
 $lang['ticket_settings_subject']                             = 'Subject';
-$lang['ticket_settings_assign_to']                           = 'Assign ticket (default is current user)';
-$lang['ticket_add_body']                                     = 'Ticket Body';
+$lang['ticket_settings_assign_to']                           = 'Assign RFI (default is current user)';
+$lang['ticket_add_body']                                     = 'RFI Body';
 $lang['ticket_add_attachments']                              = 'Attachments';
 $lang['ticket_no_reply_yet']                                 = 'No Reply Yet';
-$lang['new_ticket_added_successfully']                       = 'Ticket #%s added successfully';
-$lang['replied_to_ticket_successfully']                      = 'Replied to ticket #%s successfully';
-$lang['ticket_settings_updated_successfully']                = 'Ticket settings updated successfully';
-$lang['ticket_settings_updated_successfully_and_reassigned'] = 'Ticket settings updated successfully - reassigned to department %s';
+$lang['new_ticket_added_successfully']                       = 'RFI #%s added successfully';
+$lang['replied_to_ticket_successfully']                      = 'Replied to RFI #%s successfully';
+$lang['ticket_settings_updated_successfully']                = 'RFI settings updated successfully';
+$lang['ticket_settings_updated_successfully_and_reassigned'] = 'RFI settings updated successfully - reassigned to department %s';
 $lang['ticket_dt_subject']                                   = 'Subject';
 $lang['ticket_dt_department']                                = 'Department';
 $lang['ticket_dt_service']                                   = 'Service';
@@ -566,14 +566,14 @@ $lang['ticket_dt_priority']                                  = 'Priority';
 $lang['ticket_dt_last_reply']                                = 'Last Reply';
 $lang['ticket_single_add_reply']                             = 'Add Reply';
 $lang['ticket_single_add_note']                              = 'Add Note';
-$lang['ticket_single_other_user_tickets']                    = 'Other Tickets';
+$lang['ticket_single_other_user_tickets']                    = 'Other RFI';
 $lang['ticket_single_settings']                              = 'Settings';
 $lang['ticket_single_priority']                              = 'Priority: %s';
 $lang['ticket_single_last_reply']                            = 'Last Reply: %s';
-$lang['ticket_single_ticket_note_by']                        = 'Ticket note by %s';
+$lang['ticket_single_ticket_note_by']                        = 'RFI note by %s';
 $lang['ticket_single_note_added']                            = 'Note added: %s';
 $lang['ticket_single_change_status']                         = 'Change Status';
-$lang['ticket_single_assign_to_me_on_update']                = 'Assign this ticket to me automatically';
+$lang['ticket_single_assign_to_me_on_update']                = 'Assign this RFI to me automatically';
 $lang['ticket_single_insert_predefined_reply']               = 'Insert predefined reply';
 $lang['ticket_single_insert_knowledge_base_link']            = 'Insert knowledge base link';
 $lang['ticket_single_attachments']                           = 'Attachments';
@@ -581,12 +581,12 @@ $lang['ticket_single_add_response']                          = 'Add Response';
 $lang['ticket_single_note_heading']                          = 'Note';
 $lang['ticket_single_add_note']                              = 'Add Note';
 $lang['ticket_settings_none_assigned']                       = 'None';
-$lang['ticket_status_changed_successfully']                  = 'Ticket Status Changed';
-$lang['ticket_status_changed_fail']                          = 'Problem Changing Ticket Status';
+$lang['ticket_status_changed_successfully']                  = 'RFI Status Changed';
+$lang['ticket_status_changed_fail']                          = 'Problem Changing RFI Status';
 $lang['ticket_staff_string']                                 = 'Staff';
 $lang['ticket_client_string']                                = 'Customer';
 $lang['ticket_posted']                                       = 'Posted: %s';
-$lang['ticket_access_by_department_denied']                  = 'You do not have access to this ticket. This ticket belongs to department that you are not assigned.';
+$lang['ticket_access_by_department_denied']                  = 'You do not have access to this RFI. This RFI belongs to department that you are not assigned.';
 
 # Staff
 $lang['new_staff']                                     = 'New Staff Member';
@@ -682,15 +682,15 @@ $lang['tax_add_edit_rate'] = 'Tax Rate (percent)';
 $lang['tax_edit_title']    = 'Edit Tax';
 $lang['tax_add_title']     = 'Add New Tax';
 
-# Ticket Statuses
-$lang['new_ticket_status']            = 'New Ticket Status';
-$lang['ticket_statuses']              = 'Ticket Statuses';
-$lang['ticket_status']                = 'Ticket Status';
-$lang['ticket_status_lowercase']      = 'ticket status';
-$lang['ticket_statuses_dt_name']      = 'Ticket Status Name';
-$lang['no_ticket_statuses_found']     = 'No ticket statuses found';
+# RFI Statuses
+$lang['new_ticket_status']            = 'New RFI Status';
+$lang['ticket_statuses']              = 'RFI Statuses';
+$lang['ticket_status']                = 'RFI Status';
+$lang['ticket_status_lowercase']      = 'RFI status';
+$lang['ticket_statuses_dt_name']      = 'RFI Status Name';
+$lang['no_ticket_statuses_found']     = 'No RFI statuses found';
 $lang['ticket_statuses_table_total']  = 'Total %s';
-$lang['ticket_status_add_edit_name']  = 'Ticket Status Name';
+$lang['ticket_status_add_edit_name']  = 'RFI Status Name';
 $lang['ticket_status_add_edit_color'] = 'Pick Color';
 $lang['ticket_status_add_edit_order'] = 'Status Order';
 
@@ -788,18 +788,18 @@ $lang['clients_knowledge_base_find_useful_no']     = 'No';
 $lang['clients_article_only_1_vote_today']         = 'You can vote once in 24 hours';
 $lang['clients_article_voted_thanks_for_feedback'] = 'Thanks for your feedback';
 
-# Tickets
-$lang['clients_ticket_open_subject']               = 'Open Ticket';
+# RFI
+$lang['clients_ticket_open_subject']               = 'Open RFI';
 $lang['clients_ticket_open_departments']           = 'Department';
-$lang['clients_tickets_heading']                   = 'Support Tickets';
+$lang['clients_tickets_heading']                   = 'Support RFI';
 $lang['clients_ticket_open_service']               = 'Service';
 $lang['clients_ticket_open_priority']              = 'Priority';
-$lang['clients_ticket_open_body']                  = 'Ticket Body';
+$lang['clients_ticket_open_body']                  = 'RFI Body';
 $lang['clients_ticket_attachments']                = 'Attachments';
-$lang['clients_single_ticket_string']              = 'Ticket';
+$lang['clients_single_ticket_string']              = 'RFI';
 $lang['clients_single_ticket_replied']             = 'Replied: %s';
-$lang['clients_single_ticket_information_heading'] = 'Ticket Information';
-$lang['clients_tickets_dt_number']                 = 'Ticket #';
+$lang['clients_single_ticket_information_heading'] = 'RFI Information';
+$lang['clients_tickets_dt_number']                 = 'RFI #';
 $lang['clients_tickets_dt_subject']                = 'Subject';
 $lang['clients_tickets_dt_department']             = 'Department';
 $lang['clients_tickets_dt_service']                = 'Service';
@@ -810,7 +810,7 @@ $lang['clients_ticket_single_submitted']           = 'Submitted: %s';
 $lang['clients_ticket_single_status']              = 'Status:';
 $lang['clients_ticket_single_priority']            = 'Priority: %s';
 $lang['clients_ticket_single_add_reply_btn']       = 'Add Reply';
-$lang['clients_ticket_single_add_reply_heading']   = 'Add reply to this ticket';
+$lang['clients_ticket_single_add_reply_heading']   = 'Add reply to this RFI';
 
 # Login
 $lang['clients_login_heading_no_register'] = 'Client login';
@@ -906,8 +906,8 @@ $lang['clients_profile_updated']                   = 'Your profile has been upda
 $lang['clients_successfully_registered']           = 'Thank your for registering';
 $lang['clients_account_created_but_not_logged_in'] = 'Your account has been created but you are not logged in our system automatically. Please try to login';
 
-# Tickets
-$lang['clients_tickets_heading'] = 'Support Tickets';
+# RFI
+$lang['clients_tickets_heading'] = 'Support RFI';
 
 # Payments
 $lang['payment_for_invoice'] = 'Payment for Invoice';
@@ -1124,8 +1124,8 @@ $lang['custom_field_dt_field_type']            = 'Type';
 $lang['custom_field_add_edit_active']          = 'Active';
 $lang['custom_field_add_edit_disabled']        = 'Disabled';
 
-# Ticket replies
-$lang['ticket_reply'] = 'Ticket Reply';
+# RFI replies
+$lang['ticket_reply'] = 'RFI Reply';
 
 # Admin Customizer Sidebar
 $lang['asc_custom_fields'] = 'Custom Fields';
@@ -1317,7 +1317,7 @@ $lang['custom_field_expenses']    = 'Expenses';
 $lang['custom_field_invoice']     = 'Invoice';
 $lang['custom_field_estimate']    = 'Estimate';
 
-# Tickets
+# RFI
 $lang['ticket_single_private_staff_notes'] = 'Private Staff Notes';
 
 # Business News
@@ -1569,7 +1569,7 @@ $lang['bulk_export_pdf_proposals'] = 'Proposals';
 $lang['delete_invoice'] = 'Delete';
 $lang['items']          = 'Items';
 $lang['support']        = 'Support';
-$lang['new_ticket']     = 'New Ticket';
+$lang['new_ticket']     = 'New RFI';
 
 # Reminders
 $lang['calendar_lead_reminder']  = 'Lead Reminder';
@@ -1578,12 +1578,12 @@ $lang['set_reminder_tooltip']    = 'This option allows you to never forget anyth
 $lang['client_reminders_tab']    = 'Reminders';
 $lang['leads_reminders_tab']     = 'Reminders';
 
-# Tickets
+# RFI
 $lang['delete_ticket_reply']  = 'Delete Reply';
 $lang['ticket_priority_edit'] = 'Edit Priority';
 $lang['ticket_priority_add']  = 'Add Priority';
-$lang['ticket_status_edit']   = 'Edit Ticket Status';
-$lang['ticket_service_edit']  = 'Edit Ticket Service';
+$lang['ticket_status_edit']   = 'Edit RFI Status';
+$lang['ticket_service_edit']  = 'Edit RFI Service';
 $lang['edit_department']      = 'Edit Department';
 
 # Expenses
@@ -1607,7 +1607,7 @@ $lang['reminder_set_to']                                          = 'Set reminde
 $lang['reminder_deleted']                                         = 'Reminder deleted successfully';
 $lang['reminder_failed_to_delete']                                = 'Failed to delete the reminder';
 $lang['show_invoice_estimate_status_on_pdf']                      = 'Show invoice/estimate status on PDF';
-$lang['email_piping_default_priority']                            = 'Default priority on piped ticket';
+$lang['email_piping_default_priority']                            = 'Default priority on piped RFI';
 $lang['show_lead_reminders_on_calendar']                          = 'Lead Reminders';
 $lang['tickets_piping']                                           = 'Email Piping';
 $lang['email_piping_only_replies']                                = 'Only Replies Allowed by Email';
@@ -1729,7 +1729,7 @@ $lang['view_articles_list_all'] = 'All Articles';
 $lang['als_all_articles']       = 'Articles';
 $lang['als_kb_groups']          = 'Groups';
 
-# Spam Filter - Tickets
+# Spam Filter - RFI
 $lang['spam_filters']                 = 'Spam Filters';
 $lang['spam_filter']                  = 'Spam Filter';
 $lang['new_spam_filter']              = 'New Spam Filter';
@@ -1744,7 +1744,7 @@ $lang['spamfilter_type_subject']      = 'Subject';
 $lang['spamfilter_type_sender']       = 'Sender';
 $lang['spamfilter_type_phrase']       = 'Phrase';
 
-# Tickets
+# RFI
 $lang['block_sender']                = 'Block Sender';
 $lang['sender_blocked']              = 'Sender Blocked';
 $lang['sender_blocked_successfully'] = 'Sender Blocked Successfully';
@@ -1764,7 +1764,7 @@ $lang['contract_type_edit'] = 'Edit Contract Type';
 $lang['report_by_customer_groups'] = 'Total Value By Customer Groups';
 
 #Utilities
-$lang['ticket_pipe_log']      = 'Ticket Pipe Log';
+$lang['ticket_pipe_log']      = 'RFI Pipe Log';
 $lang['ticket_pipe_name']     = 'From Name';
 $lang['ticket_pipe_email_to'] = 'To';
 $lang['ticket_pipe_email']    = 'From Email';
@@ -1837,8 +1837,8 @@ $lang['not_task_will_do_user']                                    = 'will do tas
 $lang['not_task_new_attachment']                                  = 'New Attachment Added';
 $lang['not_task_marked_as_complete']                              = 'marked task as complete %s';
 $lang['not_task_unmarked_as_complete']                            = 'unmarked task as complete %s';
-$lang['not_ticket_assigned_to_you']                               = 'Ticket assigned to you - %s ...';
-$lang['not_ticket_reassigned_to_you']                             = 'Ticket reassigned to you - %s ...';
+$lang['not_ticket_assigned_to_you']                               = 'RFI assigned to you - %s ...';
+$lang['not_ticket_reassigned_to_you']                             = 'RFI reassigned to you - %s ...';
 $lang['not_estimate_customer_accepted']                           = 'Congratulations! Client accepted estimate with number %s';
 $lang['not_estimate_customer_declined']                           = 'Client declined estimate with number %s';
 $lang['estimate_activity_converted']                              = 'converted this estimate to invoice.<br /> %s';
@@ -1991,7 +1991,7 @@ $lang['task_is_billed']         = 'This task is billed on invoice with number %s
 $lang['task_statistics']        = 'Statistics';
 $lang['task_milestone']         = 'Milestone';
 
-# Tickets
+# RFI
 $lang['ticket_message_updated_successfully'] = 'Message updated successfully';
 
 # Invoices
@@ -2224,7 +2224,7 @@ $lang['task_comments']                                         = 'Comments';
 $lang['invoice_total_tax']                                     = 'Total Tax';
 $lang['estimates_total_tax']                                   = 'Total Tax';
 $lang['report_invoice_total_tax']                              = 'Total Tax';
-$lang['home_tickets']                                          = 'Tickets';
+$lang['home_tickets']                                          = 'RFI';
 $lang['home_project_activity']                                 = 'Latest Project Activity';
 $lang['view_tracking']                                         = 'Views Tracking';
 $lang['view_date']                                             = 'Date';
@@ -2261,12 +2261,12 @@ $lang['invoice_reminders']                       = 'Reminders';
 $lang['estimate_notes']                          = 'Notes';
 $lang['estimate_add_note']                       = 'Add Note';
 $lang['dropdown_non_selected_tex']               = 'Nothing selected';
-$lang['auto_close_ticket_after']                 = 'Auto close ticket after (Hours)';
+$lang['auto_close_ticket_after']                 = 'Auto close RFI after (Hours)';
 $lang['event_description']                       = 'Description';
 $lang['delete_event']                            = 'Delete';
-$lang['not_new_ticket_created']                  = 'New ticket opened in your department - %s';
-$lang['receive_notification_on_new_ticket']      = 'Receive notification on new ticket opened';
-$lang['receive_notification_on_new_ticket_help'] = 'All staff members which belong to the ticket department will receive notification that new ticket is opened';
+$lang['not_new_ticket_created']                  = 'New RFI opened in your department - %s';
+$lang['receive_notification_on_new_ticket']      = 'Receive notification on new RFI opened';
+$lang['receive_notification_on_new_ticket_help'] = 'All staff members which belong to the RFI department will receive notification that new RFI is opened';
 $lang['event_updated']                           = 'Event updated successfully';
 $lang['customer_contacts']                       = 'Contacts';
 $lang['new_contact']                             = 'New Contact';
@@ -2360,7 +2360,7 @@ $lang['proposals_sort_datecreated']                       = 'Date Created';
 $lang['proposals_sort_proposal_date']                     = 'Proposal Date';
 $lang['is_not_staff_member']                              = 'Not Staff Member';
 $lang['lead_created']                                     = 'Created';
-$lang['access_tickets_to_none_staff_members']             = 'Allow access to tickets for non staff members';
+$lang['access_tickets_to_none_staff_members']             = 'Allow access to RFI for non staff members';
 $lang['project_expenses']                                 = 'Expenses';
 $lang['expense_currency']                                 = 'Currency';
 $lang['currency_valid_code_help']                         = 'Make sure to enter valid currency ISO code.';
@@ -2416,7 +2416,7 @@ $lang['task_filter_detailed_all_months']     = 'All Months';
 $lang['kb_article_slug']                     = 'Slug';
 
 # Version 1.1.7
-$lang['email_template_ticket_warning']          = 'If ticket is imported with email piping and the contact does not exists in the CRM the fields won\'t be replaced.';
+$lang['email_template_ticket_warning']          = 'If RFI is imported with email piping and the contact does not exists in the CRM the fields won\'t be replaced.';
 $lang['auto_stop_tasks_timers_on_new_timer']    = 'Stop all other started timers when starting new timer';
 $lang['notification_when_customer_pay_invoice'] = 'Receive notification when customer pay invoice (built-in)';
 $lang['not_invoice_payment_recorded']           = 'New invoice payment - %s';
@@ -2446,7 +2446,7 @@ $lang['calendar_proposal_reminder']             = 'Proposal Reminder';
 $lang['proposal_due_after']                     = 'Proposal Due After (days)';
 $lang['project_progress']                       = 'Progress';
 $lang['calculate_progress_through_tasks']       = 'Calculate progress through tasks';
-$lang['allow_customer_to_change_ticket_status'] = 'Allow customer to change ticket status from customers area';
+$lang['allow_customer_to_change_ticket_status'] = 'Allow customer to change RFI status from customers area';
 $lang['switch_to_general_report']               = 'Switch to staff report';
 $lang['switch_to_staff_report']                 = 'Switch to general report';
 $lang['generate']                               = 'Generate';
@@ -2504,7 +2504,7 @@ $lang['item_description_placeholder']           = 'Description';
 $lang['item_long_description_placeholder']      = 'Long description';
 $lang['item_quantity_placeholder']              = 'Quantity';
 $lang['item_rate_placeholder']                  = 'Rate';
-$lang['tickets_summary']                        = 'Tickets Summary';
+$lang['tickets_summary']                        = 'RFI Summary';
 $lang['tasks_list_priority']                    = 'Priority';
 $lang['ticket_status_db_2']                     = 'In Progress';
 $lang['ticket_status_db_1']                     = 'Open';
@@ -2517,7 +2517,7 @@ $lang['ticket_priority_db_3']                   = 'High';
 $lang['customer_have_projects_by']              = 'Contains projects by status %s';
 $lang['customer_have_proposals_by']             = 'Contains proposals by status %s';
 $lang['do_not_redirect_payment']                = 'Do not redirect me to the payment processor';
-$lang['project_tickets']                        = 'Tickets';
+$lang['project_tickets']                        = 'RFI';
 $lang['invoice_report']                         = 'Invoices Report';
 $lang['payment_modes_report']                   = 'Payment Modes (Transactions)';
 $lang['customer_admins']                        = 'Customer Admins';
@@ -2573,7 +2573,7 @@ $lang['task_stats_logged_hours']                  = 'Logged Hours';
 $lang['leads_converted_to_client']                = 'Converted Leads';
 $lang['task_assigned_from']                       = 'This task is assigned to you by %s';
 $lang['new_note']                                 = 'New Note';
-$lang['my_tickets_assigned']                      = 'Tickets assigned to me';
+$lang['my_tickets_assigned']                      = 'RFI assigned to me';
 $lang['filter_by_assigned']                       = 'By Assigned Member';
 $lang['staff_stats_total_logged_time']            = 'Total Logged Time';
 $lang['staff_stats_last_month_total_logged_time'] = 'Last Month Logged Time';
@@ -2613,7 +2613,7 @@ $lang['invoice_recurring_weeks']  = $lang['expense_recurring_weeks'];
 $lang['document_direction']                                 = 'Direction';
 $lang['notify_project_members_status_change']               = 'Notify project members that status is changed';
 $lang['not_project_status_updated']                         = 'Project status updated from %s to %s';
-$lang['ticket_not_found']                                   = 'Ticket not found';
+$lang['ticket_not_found']                                   = 'RFI not found';
 $lang['project_not_found']                                  = 'Project not found';
 $lang['export_project_data']                                = 'Export project data';
 $lang['total_project_members']                              = 'Total Project Members';
@@ -2632,14 +2632,14 @@ $lang['total_milestones']                                   = 'Total milestones'
 $lang['total_project_worked_days']                          = 'Total days worked';
 $lang['finance_overview']                                   = 'Finance Overview';
 $lang['project_custom_fields']                              = 'Custom fields';
-$lang['total_tickets_related_to_project']                   = 'Total tickets linked to project';
+$lang['total_tickets_related_to_project']                   = 'Total RFI linked to project';
 $lang['projects_total_invoices_created']                    = 'Total invoices created';
 $lang['do_not_send_invoice_payment_email_template_contact'] = 'Do not send invoice payment recorded email to customer contacts';
 $lang['no_preview_available_for_file']                      = 'No preview available for this file.';
 $lang['project_activity_deleted_file_discussion_comment']   = 'File discussion comment deleted';
 $lang['email_template_discussion_info']                     = 'This template is used for both project discussion comments emails. (files discussions and regular discussions)';
 $lang['format_a4_portrait_size']                            = 'Portrait';
-$lang['only_show_contact_tickets']                          = 'In customers area only show tickets related to the logged in contact (Primary contact not applied)';
+$lang['only_show_contact_tickets']                          = 'In customers area only show RFI related to the logged in contact (Primary contact not applied)';
 $lang['cancel_overdue_reminders_invoice']                   = 'Prevent sending overdue reminders for this invoice';
 $lang['customer_shipping_address_notice']                   = 'Do not fill shipping address information if you won\'t use shipping address on customer invoices';
 $lang['timesheets_overview']                                = 'Timesheets overview';
@@ -2746,7 +2746,7 @@ $lang['show_pay_link_to_invoice_pdf']                = 'Show Pay Invoice link to
 $lang['no_leads_found']                              = 'No Leads Found';
 $lang['created_today']                               = 'Created Today';
 $lang['total_tasks_deleted']                         = 'Total Tasks Deleted: %s';
-$lang['total_tickets_delete']                        = 'Total Tickets Deleted: %s';
+$lang['total_tickets_delete']                        = 'Total RFI Deleted: %s';
 $lang['format_letter_portrait']                      = 'Letter Portrait';
 $lang['format_letter_landscape']                     = 'Letter Landscape';
 $lang['period_datepicker']                           = 'Period';
@@ -2912,10 +2912,10 @@ $lang['cf_translate_input_link_tip']       = 'Click here to add link';
 $lang['task_edit_delete_timesheet_notice'] = 'Timesheet task is %s, you cant %s the timesheet.';
 $lang['department_username']               = 'IMAP Username';
 $lang['department_username_help']          = 'Only fill this field if your IMAP server use username to login instead email address. Note that you will still need to add email address.';
-$lang['total_tickets_deleted']             = 'Total tickets deleted: %s';
+$lang['total_tickets_deleted']             = 'Total RFI deleted: %s';
 
 # Version 1.5.1
-$lang['ticket_linked_to_project']                                = 'This ticket is linked to project: %s';
+$lang['ticket_linked_to_project']                                = 'This RFI is linked to project: %s';
 $lang['only_own_files_contacts']                                 = 'Contacts see only own files uploaded in customer area (files uploaded in customer profile)';
 $lang['only_own_files_contacts_help']                            = 'If you share the file manually from customer profile to other contacts they wil be able to see the file.';
 $lang['share_file_with']                                         = 'Share File With';
@@ -2935,8 +2935,8 @@ $lang['fetch_from_google']                               = 'Fetch from google';
 $lang['customer_fetch_lat_lng_usage']                    = 'Fill address, city and country before fetching to get best result.';
 $lang['g_search_address_not_found']                      = 'The address couldn\'t be found, please try again';
 $lang['proposals_report']                                = 'Proposals Report';
-$lang['staff_members_open_tickets_to_all_contacts_help'] = 'If staff member don\'t have permission for customers VIEW only will be able to create new tickets from admin area to customer contacts where is assigned as customer admin.';
-$lang['staff_members_open_tickets_to_all_contacts']      = 'Allow staff members to open tickets to all contacts?';
+$lang['staff_members_open_tickets_to_all_contacts_help'] = 'If staff member don\'t have permission for customers VIEW only will be able to create new RFI from admin area to customer contacts where is assigned as customer admin.';
+$lang['staff_members_open_tickets_to_all_contacts']      = 'Allow staff members to open RFI to all contacts?';
 $lang['charts_based_report']                             = 'Charts Based Report';
 $lang['responsible_admin']                               = 'Responsible admin';
 $lang['tags']                                            = 'Tags';
@@ -3051,7 +3051,7 @@ $lang['view_account_statement']                              = 'View Account Sta
 $lang['text_not_recommended_for_servers_limited_resources']  = 'Not recommended if the server have limited resources. Eq shared hosting';
 $lang['tasks_bull_actions_assign_notice']                    = 'If the task is linked to project and the staff member you are assigning the task to is not project member this staff will be auto added as member.';
 $lang['company_information']                                 = 'Company Information';
-$lang['ticket_form']                                         = 'Ticket Form';
+$lang['ticket_form']                                         = 'RFI Form';
 $lang['ticket_form_subject']                                 = 'Subject';
 $lang['ticket_form_name']                                    = 'Your name';
 $lang['ticket_form_email']                                   = 'Email Address';
@@ -3066,7 +3066,7 @@ $lang['vault_entry_share_on_projects']                       = 'Share this vault
 $lang['project_shared_vault_entry_login_details']            = 'View Customer Site Login Details';
 $lang['iso_code']                                            = 'ISO Code';
 $lang['estimates_not_invoiced']                              = 'Not Invoiced';
-$lang['show_on_ticket_form']                                 = 'Show on ticket form';
+$lang['show_on_ticket_form']                                 = 'Show on RFI form';
 $lang['cancel_upload']                                       = 'Cancel Upload';
 $lang['show_table_export_button']                            = 'Show table export button';
 $lang['show_table_export_all']                               = 'To all staff members';
@@ -3107,7 +3107,7 @@ $lang['private']                                       = 'Private';
 $lang['task_created_at']                               = 'Created at %s';
 $lang['hide_notified_reminders_from_calendar']         = 'Hide notified reminders from calendar';
 $lang['last_active']                                   = 'Last Active';
-$lang['open_ticket']                                   = 'Open Ticket';
+$lang['open_ticket']                                   = 'Open RFI';
 $lang['task_add_description']                          = 'Add Description';
 $lang['project_setting_create_tasks']                  = 'create tasks';
 $lang['project_setting_edit_tasks']                    = 'edit tasks (only tasks created from contact)';
@@ -3140,8 +3140,8 @@ $lang['payment_gateway_payu_money_salt']         = 'PayU Money Salt';
 $lang['settings_paymentmethod_description']      = 'Gateway Dashbord Payment Description';
 
 # Version 1.9.3
-$lang['default_ticket_reply_status']          = 'Default status selected when replying to ticket';
-$lang['ticket_add_response_and_back_to_list'] = 'Return to ticket list after response is submitted';
+$lang['default_ticket_reply_status']          = 'Default status selected when replying to RFI';
+$lang['ticket_add_response_and_back_to_list'] = 'Return to RFI list after response is submitted';
 
 # Version 1.9.4
 $lang['default_task_status']                               = 'Default status when new task is created';
@@ -3155,8 +3155,8 @@ $lang['enable']                                            = 'Enable';
 $lang['auto_dismiss_desktop_notifications_after']          = 'Auto Dismiss Desktop Notifications After X Seconds (0 to disable)';
 $lang['proposal_info_format']                              = 'Proposal Info Format (PDF and HTML)';
 $lang['hide_tasks_on_main_tasks_table']                    = 'Hide project tasks on main tasks table (admin area)';
-$lang['ticket_replies_order']                              = 'Ticket Replies Order';
-$lang['ticket_replies_order_notice']                       = 'The initial ticket message will be always shown as first.';
+$lang['ticket_replies_order']                              = 'RFI Replies Order';
+$lang['ticket_replies_order_notice']                       = 'The initial RFI message will be always shown as first.';
 $lang['invoice_cancelled_email_disabled']                  = 'Invoice is cancelled. Unmark as cancelled to enable email to client';
 $lang['email_notifications']                               = 'Email Notifications';
 $lang['invoice_activity_record_payment_email_to_customer'] = 'Payment recorded, email sent to: %s';
@@ -3290,7 +3290,7 @@ $lang['reset']                                    = 'Reset';
 $lang['save_message_as_predefined_reply']         = 'Save Message as Predefined Reply';
 $lang['inline_create_option']                     = 'Allow non-admin staff members to create %s in %s create/edit area?';
 $lang['inline_create']                            = 'Inline Create';
-$lang['inline_create_option_predefined_replies']  = 'Allow non-admin staff members to save predefined replies from ticket message';
+$lang['inline_create_option_predefined_replies']  = 'Allow non-admin staff members to save predefined replies from RFI message';
 $lang['reminders_view_none_admin']                = 'Showing your reminders and reminders created by you.';
 $lang['show_tabs_and_options']                    = 'Show Tabs & Options';
 $lang['no_milestones_found']                      = 'This project has no milestones';
@@ -3320,8 +3320,8 @@ $lang['allow_non_admin_members_to_import_leads']   = 'Allow non-admin staff memb
 $lang['project_hide_tasks_settings_info']          = 'Tasks are excluded from the main tasks table for this project, you can view the project tasks only in this area.';
 
 # Version 1.9.9
-$lang['ticket_create_no_contact']            = 'Ticket without contact';
-$lang['ticket_create_to_contact']            = 'Ticket to contact';
+$lang['ticket_create_no_contact']            = 'RFI without contact';
+$lang['ticket_create_to_contact']            = 'RFI to contact';
 $lang['showing_billable_tasks_from_project'] = 'Showing billable tasks from project';
 $lang['no_billable_tasks_found']             = 'Billable tasks not found';
 $lang['help_leads_permission_view']          = 'If this permission is not checked, a staff member will be only able to view leads to where is assigned, leads created by the staff member and leads that are marked as public';
@@ -3476,16 +3476,16 @@ $lang['test_sms_config']                                        = 'Test SMS Conf
 $lang['test_sms_message']                                       = 'Test Message';
 $lang['send_test_sms']                                          = 'Send Test SMS';
 $lang['gdpr_short']                                             = 'GDPR';
-$lang['allow_non_admin_staff_to_delete_ticket_attachments']     = 'Allow non-admin staff members to delete ticket attachments';
+$lang['allow_non_admin_staff_to_delete_ticket_attachments']     = 'Allow non-admin staff members to delete RFI attachments';
 
 # Version 2.1.0
 $lang['contract_number']                                = 'Contract Number';
 $lang['project_changing_status_recurring_tasks_notice'] = 'You are changing the status to {0}, all recurring tasks will be cancelled';
 $lang['not_contract_signed']                            = 'Contract with subject %s has been signed by the customer';
 $lang['the_number_sign']                                = '#';
-$lang['not_new_ticket_reply']                           = 'Customer replied to ticket - %s';
-$lang['receive_notification_on_new_ticket_replies']     = 'Receive notification when customer reply to a ticket';
-$lang['receive_notification_on_new_ticket_reply_help']  = 'All staff members which belong to the ticket department will receive notification when customer reply to a ticket';
+$lang['not_new_ticket_reply']                           = 'Customer replied to RFI - %s';
+$lang['receive_notification_on_new_ticket_replies']     = 'Receive notification when customer reply to a RFI';
+$lang['receive_notification_on_new_ticket_reply_help']  = 'All staff members which belong to the RFI department will receive notification when customer reply to a RFI';
 $lang['payment_gateway_enable_paypal']                  = 'Enable PayPal Payments';
 $lang['project_member']                                 = 'Project Member';
 $lang['contract_notes']                                 = 'Notes';
@@ -3518,8 +3518,8 @@ $lang['good_evening']                                                = 'Good Eve
 $lang['description_in_invoice_item']                                 = 'Include description in invoice item';
 $lang['description_in_invoice_item_help']                            = 'Useful if you want to include additional information on the subscription invoice, e.q. what this subscription includes.';
 $lang['ticket_reminders']                                            = 'Reminders';
-$lang['ticket_set_reminder_title']                                   = 'Set Ticket Reminder';
-$lang['calendar_ticket_reminder']                                    = 'Ticket Reminders';
+$lang['ticket_set_reminder_title']                                   = 'Set RFI Reminder';
+$lang['calendar_ticket_reminder']                                    = 'RFI Reminders';
 $lang['email_verification_required']                                 = 'Email Verification Required';
 $lang['email_verification_required_message']                         = 'In order to access all the available features in the portal, first you must verify your email.';
 $lang['email_verification_required_message_mail']                    = 'We have sent you an email with verification instructions, if you haven\'t received the email please check the spam folder or click <a href="%s">here</a> to resend the verification mail.';
@@ -3538,7 +3538,7 @@ $lang['not_customer_uploaded_file']                                  = 'New File
 
 # Version 2.2.1
 $lang['customer_files_info_message'] = 'Files from projects and tasks linked to the customer are not shown on this table.';
-$lang['ticket_import_reply_only']    = 'Try to import only the actual ticket reply (without quoted/forwarded message)';
+$lang['ticket_import_reply_only']    = 'Try to import only the actual RFI reply (without quoted/forwarded message)';
 $lang['learn_more']                  = 'Learn More';
 $lang['sales_item']                  = 'Item';
 
@@ -3684,7 +3684,7 @@ $lang['two_gateway_webhook_notice']      = 'The IPN Endpoint for 2Checkout is ( 
 $lang['something_went_wrong']            = 'Something went wrong. Try again';
 $lang['imap_folder']                     = 'Folder';
 $lang['retrieve_folders']                = 'Retrieve Folders';
-$lang['email_to_ticket_config']          = 'Email to ticket configuration';
+$lang['email_to_ticket_config']          = 'Email to RFI configuration';
 
 # Version 2.8.0
 $lang['enable_support_menu_badges']              = 'Enable support menu item badge';
@@ -3794,4 +3794,4 @@ $lang['permission_delete_milestones']                         = 'Delete Mileston
 $lang['add_timesheet'] 										  = 'Add timesheet';
 $lang['submit_button_bg_color']                               = 'Submit button background color';
 $lang['submit_button_text_color']                             = 'Submit button background text';
-$lang['automatically_assign_ticket_to_first_staff_responding'] = 'Automatically assign the ticket to the first staff that post a reply?';
+$lang['automatically_assign_ticket_to_first_staff_responding'] = 'Automatically assign the RFI to the first staff that post a reply?';
