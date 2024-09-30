@@ -3112,8 +3112,8 @@ class Purchase_model extends App_Model
       $html .= '<div style="page-break-before:always">&nbsp;</div>';
 
       $html .= '<div class="col-md-12 mtop15">
-            <p class="bold"><b>'. _l('estimate_add_edit_vendor_note').':</b> '. html_entity_decode($pur_order->vendornote).'</p>
-            <p class="bold"><b>'. _l('terms_and_conditions').':</b> '. html_entity_decode($pur_order->terms).'</p>
+            <p class="bold"><b>'. _l('estimate_add_edit_vendor_note').':</b> '. nl2br($pur_order->vendornote).'</p>
+            <p class="bold"><b>'. _l('terms_and_conditions').':</b> '. nl2br($pur_order->terms).'</p>
             </div>';
       $html .= '<br>
       <br>

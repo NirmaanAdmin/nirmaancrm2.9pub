@@ -276,14 +276,14 @@
                      <?php if($estimate->vendornote != ''){ ?>
                      <div class="col-md-12 mtop15">
                         <p class="bold text-muted"><?php echo _l('estimate_note'); ?></p>
-                        <p><?php echo html_entity_decode($estimate->vendornote); ?></p>
+                        <p><?php echo nl2br($estimate->vendornote); ?></p>
                      </div>
                      <?php } ?>
                                                             
                      <?php if($estimate->terms != ''){ ?>
                      <div class="col-md-12 mtop15">
                         <p class="bold text-muted"><?php echo _l('terms_and_conditions'); ?></p>
-                        <p><?php echo html_entity_decode($estimate->terms); ?></p>
+                        <p><?php echo nl2br($estimate->terms); ?></p>
                      </div>
                      <?php } ?>
                   </div>
