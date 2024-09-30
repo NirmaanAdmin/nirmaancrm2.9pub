@@ -1130,6 +1130,7 @@ class purchase extends AdminController
             if(!empty($pur_request_detail)) {
                 foreach ($pur_request_detail as $key => $value) {
                    $final_request_detail[$key]['item_code'] = $value['item_code'];
+                   $final_request_detail[$key]['description'] = $value['description'];
                    $final_request_detail[$key]['unit_id'] = $value['unit_id'];
                    $final_request_detail[$key]['unit_price'] = $value['unit_price'];
                    $final_request_detail[$key]['quantity'] = $value['quantity'];

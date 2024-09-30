@@ -811,6 +811,7 @@ class Purchase_model extends App_Model
     public function get_pur_request_detail_in_estimate($pur_request){
         $this->db->where('pur_request',$pur_request);
         $this->db->select('item_code');
+        $this->db->select('description');
         $this->db->select('unit_id');
         $this->db->select('unit_price');
         $this->db->select('quantity');
@@ -3042,6 +3043,7 @@ class Purchase_model extends App_Model
         <thead>
           <tr>
             <th class="thead-dark">'._l('items').'</th>
+            <th class="thead-dark" align="right">'._l('item_description').'</th>
             <th class="thead-dark" align="right">'._l('unit_price').'</th>
             <th class="thead-dark" align="right">'._l('quantity').'</th>
          
@@ -3058,6 +3060,7 @@ class Purchase_model extends App_Model
         $units = $this->get_units_by_id($row['unit_id']);
         $html .= '<tr nobr="true" class="sortable">
             <td >'.$items->commodity_code.' - '.$items->description.'</td>
+            <td align="left">'.$row['description'].'</td>
             <td align="right">'.app_format_money($row['unit_price'],'').'</td>
             <td align="right">'.$row['quantity'].'</td>
          

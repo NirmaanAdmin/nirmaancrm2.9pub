@@ -192,6 +192,7 @@
                                  <tr>
                                     <th align="center">#</th>
                                     <th class="description" width="50%" align="left"><?php echo _l('items'); ?></th>
+                                    <th align="right"><?php echo _l('decription'); ?></th>
                                     <th align="right"><?php echo _l('quantity'); ?></th>
                                     <th align="right"><?php echo _l('unit_price'); ?></th>
                                     <th align="right"><?php echo _l('into_money'); ?></th>
@@ -218,6 +219,7 @@
                                        echo '';
                                     }
                                     ?></strong></td>
+                                    <td align="left"><?php echo $es['description']; ?></td>
                                     <td align="right"  width="12%"><?php echo html_entity_decode($es['quantity']); ?></td>
                                     <td align="right"><?php echo app_format_money($es['unit_price'],''); ?></td>
                                     <td align="right"><?php echo app_format_money($es['into_money'],''); ?></td>
