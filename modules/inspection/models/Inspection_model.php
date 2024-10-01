@@ -342,11 +342,22 @@ class Inspection_model extends App_Model
 
     public function delete_inspection_file($label, $id)
     {
+        $deleted = false;
         $this->db->where('id', $id);
-        $this->db->delete(db_prefix() . $label. '_files');
-        if ($this->db->affected_rows() > 0) {
-            return true;
+        $attachment = $this->db->get(db_prefix() . $label. '_files')->row();
+        if ($attachment) {
+            if (unlink(get_upload_path_by_type('quality') . $label . '/' . $attachment->inspection_id . '/' . $attachment->file_name)) {
+                $this->db->where('id', $attachment->id);
+                $this->db->delete(db_prefix() . $label. '_files');
+                $deleted = true;
+            }
+            // Check if no attachments left, so we can delete the folder also
+            $other_attachments = list_files(get_upload_path_by_type('quality') . $label . '/' . $attachment->inspection_id);
+            if (count($other_attachments) == 0) {
+                delete_dir(get_upload_path_by_type('quality') . $label . '/' . $attachment->inspection_id);
+            }
         }
-        return false;
+
+        return $deleted;
     }
 }
