@@ -1520,7 +1520,7 @@ $lang['bulk_export_include_tag_help']  = 'eq. Original or Copy. The tag will be 
 # Version 1.0.7
 ## Customers - portal
 $lang['clients_nav_proposals'] = 'Proposals';
-$lang['clients_nav_support']   = 'Support';
+$lang['clients_nav_support']   = 'RFI';
 
 # General
 $lang['more']            = 'More';
@@ -1535,7 +1535,7 @@ $lang['customer_permission_invoice']  = 'Invoices';
 $lang['customer_permission_estimate'] = 'Estimates';
 $lang['customer_permission_proposal'] = 'Proposals';
 $lang['customer_permission_contract'] = 'Contracts';
-$lang['customer_permission_support']  = 'Support';
+$lang['customer_permission_support']  = 'RFI';
 
 #Tasks
 $lang['task_related_to'] = 'Related To';
@@ -1568,7 +1568,7 @@ $lang['bulk_export_pdf_proposals'] = 'Proposals';
 # Invoices
 $lang['delete_invoice'] = 'Delete';
 $lang['items']          = 'Items';
-$lang['support']        = 'Support';
+$lang['support']        = 'RFI';
 $lang['new_ticket']     = 'New RFI';
 
 # Reminders
