@@ -498,6 +498,12 @@ if ($config['csrf_protection'] == true
     $config['csrf_protection'] = false;
 }
 
+if ($config['csrf_protection'] == true
+    && isset($_SERVER['REQUEST_URI'])
+    && strpos($_SERVER['REQUEST_URI'], 'api/check_in_out') !== false) {
+    $config['csrf_protection'] = false;
+}
+
 /*
 |--------------------------------------------------------------------------
 | Output Compression
