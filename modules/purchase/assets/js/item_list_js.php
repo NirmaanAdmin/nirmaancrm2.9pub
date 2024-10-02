@@ -33,7 +33,7 @@ var hidden_columns = [3,7];
 
      appValidateForm($("body").find('.commodity_list-add-edit'), {
         'commodity_code': 'required',
-        'commodity_barcode': 'required',
+        // 'commodity_barcode': 'required',
         'unit_id': 'required',
         'purchase_id': 'required',
         'commodity_type': 'required',
