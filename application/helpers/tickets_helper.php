@@ -251,7 +251,7 @@ function ticket_message_save_as_predefined_reply_javascript()
             editorMessage.on('change',function(){
                 if(editorMessage.getContent().trim() != '') {
                     if($('#savePredefinedReplyFromMessage').length == 0){
-                        $('[app-field-wrapper="message"] [role="menubar"] .mce-container-body:first').append("<a id=\"savePredefinedReplyFromMessage\" data-toggle=\"modal\" data-target=\"#savePredefinedReplyFromMessageModal\" class=\"save_predefined_reply_from_message pointer\" href=\"#\"><?php echo _l('save_message_as_predefined_reply'); ?></a>");
+                        $('[app-field-wrapper="message"] [role="menubar"] .mce-container-body:first').append("<a id=\"savePredefinedReplyFromMessage\" data-toggle=\"modal\" data-target=\"#savePredefinedReplyFromMessageModal\" class=\"save_predefined_reply_from_message pointer\" href=\"#\"></a>");
                     }
                             // For open is handled on contact select
                             if($('#single-ticket-form').length > 0) {

@@ -1061,6 +1061,14 @@ class Tickets_model extends App_Model
             $data['email'] = null;
         }
 
+        if(empty($data['department'])) {
+            $data['department'] = 0;
+        }
+
+        if (isset($data['contact_db_id'])) {
+            unset($data['contact_db_id']);
+        }
+
         $this->db->where('ticketid', $data['ticketid']);
         $this->db->update(db_prefix() . 'tickets', $data);
         if ($this->db->affected_rows() > 0) {
@@ -1563,5 +1571,14 @@ class Tickets_model extends App_Model
         ]);
 
         return true;
+    }
+
+    public function find_project_contact($project_id) 
+    {
+        $this->db->select(db_prefix() . 'contacts.id as id, '.db_prefix() . 'contacts.userid as userid, CONCAT(firstname," ",lastname) AS full_name', FALSE);
+        $this->db->join(db_prefix() . 'projects', db_prefix() . 'projects.clientid = ' . db_prefix() . 'contacts.userid', 'left');
+        $this->db->where(db_prefix() . 'projects.id', $project_id);
+        $contacts = $this->db->get(db_prefix() . 'contacts')->result_array();
+        return $contacts;
     }
 }
