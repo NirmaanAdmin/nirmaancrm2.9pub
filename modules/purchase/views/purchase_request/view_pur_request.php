@@ -168,6 +168,9 @@
                                 <?php } ?> 
                                 <br><br>  
                                 <p class="bold text-center text-<?php if($value['approve'] == 2){ echo 'success'; }elseif($value['approve'] == 3){ echo 'danger'; } ?>"><?php echo _dt($value['date']); ?></p> 
+                                <?php if(!empty($value['note'])) { ?>
+                                  <p><?php echo _l('Reason'); ?>: <?php echo $value['note']; ?></p>
+                                <?php } ?>
                             </div>
                             <?php }
                             } ?>
