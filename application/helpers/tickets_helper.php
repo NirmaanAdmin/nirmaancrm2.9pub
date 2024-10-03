@@ -267,6 +267,19 @@ function ticket_message_save_as_predefined_reply_javascript()
                         clear_ticket_no_contact_email_warning();
                     }
                 });
+
+            if(editorMessage.getContent().trim() == '') {
+                $('button[data-form=#single-ticket-form]').attr('disabled', true);
+            } else {
+                $('button[data-form=#single-ticket-form]').attr('disabled', false);
+            }
+            editorMessage.on('keyup',function(){
+                if(editorMessage.getContent().trim() == '') {
+                    $('button[data-form=#single-ticket-form]').attr('disabled', true);
+                } else {
+                    $('button[data-form=#single-ticket-form]').attr('disabled', false);
+                }
+            });
         }
         $('body').on('click','#saveTicketMessagePredefinedReply',function(e){
             e.preventDefault();
