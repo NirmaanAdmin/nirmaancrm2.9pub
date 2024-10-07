@@ -13,7 +13,7 @@ var expenseDropzone;
         "item_filter": "[name='item_filter[]']",
     };
 
-    initDataTable('.table-table_pur_order', admin_url+'purchase/table_pur_order', [0], [0], Params,[1, 'desc']);
+    initDataTable('.table-table_pur_order', admin_url+'purchase/table_pur_order', [0], [0], Params,[5, 'desc']);
 	init_pur_order();
     $.each(Params, function(i, obj) {
         $('select' + obj).on('change', function() {  
