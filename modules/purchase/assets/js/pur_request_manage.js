@@ -1,6 +1,6 @@
 (function($) {
 	"use strict"; 
-	initDataTable('.table-table_pur_request', admin_url+'purchase/table_pur_request');
+	initDataTable('.table-table_pur_request', admin_url+'purchase/table_pur_request', [0], [0], {}, [3, 'desc']);
 	appValidateForm($('#send_rq-form'),{subject:'required',attachment:'required'});
 })(jQuery);
 
